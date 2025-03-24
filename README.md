@@ -1,4 +1,4 @@
-Original project: [technorabilia/generate-bits](https://github.com/technorabilia/generate-bits) 
+Original project: [technorabilia/docker-bits](https://github.com/technorabilia/docker-bits)
 
 --- 
 
