@@ -16,6 +16,6 @@ services:
       # Configuration files.
       - ${BASEDIR:-/volume1/docker}/socket-proxy/config:/config
     ports:
-      # Application WebUI
-      - 80:80
+      # Plex WebUI
+      - 32400:32400
     restart: unless-stopped

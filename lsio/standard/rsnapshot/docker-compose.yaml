@@ -24,6 +24,6 @@ services:
       # Storage location for data to be backed up.
       - ${BASEDIR:-/volume1/docker}/rsnapshot/data:/data # optional
     ports:
-      # Application WebUI
-      - 80:80
+      # Plex WebUI
+      - 32400:32400
     restart: unless-stopped

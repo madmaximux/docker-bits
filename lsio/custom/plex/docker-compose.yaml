@@ -29,6 +29,6 @@ services:
       # Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc.
       - ${BASEDIR:-/volume1/docker}/plex/movies:/movies
     ports:
-      # Application WebUI
-      - 80:80
+      # Plex WebUI
+      - 32400:32400
     restart: unless-stopped
