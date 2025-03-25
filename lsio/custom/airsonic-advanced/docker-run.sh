@@ -9,15 +9,16 @@ docker run -d \
   --name=airsonic-advanced \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e CONTEXT_PATH= `# optional` `# For setting url-base in reverse proxy setups.` \
   -e JAVA_OPTS= `# optional` `# For passing additional java options.` \
   -p 4040:4040 `# WebUI` \
-  -v ${BASEDIR:-/volume1/docker}/airsonic-advanced/config:/config `# Configuration file location.` \
-  -v ${BASEDIR:-/volume1/docker}/airsonic-advanced/music:/music `# Location of music.` \
-  -v ${BASEDIR:-/volume1/docker}/airsonic-advanced/playlists:/playlists `# Location for playlists to be saved to.` \
-  -v ${BASEDIR:-/volume1/docker}/airsonic-advanced/podcasts:/podcasts `# Location of podcasts.` \
-  -v ${BASEDIR:-/volume1/docker}/airsonic-advanced/media:/media `# optional` `# Location of other media.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/config:/config `# Configuration file location.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/music:/music `# Location of music.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/playlists:/playlists `# Location for playlists to be saved to.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/podcasts:/podcasts `# Location of podcasts.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/media:/media `# optional` `# Location of other media.` \
   --device /dev/snd:/dev/snd `# optional` `# Only needed to pass your host sound device to Airsonic's Java jukebox player.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/airsonic-advanced

@@ -12,14 +12,15 @@ docker run -d \
   --name=jellyfin \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e JELLYFIN_PublishedServerUrl=http://192.168.0.5 `# optional` `# Set the autodiscovery response domain or IP address, include http(s)://.` \
   -p 8096:8096 `# Http webUI.` \
   -p 8920:8920 `# optional` `# Optional - Https webUI (you need to set up your own certificate).` \
   -p 7359:7359/udp `# optional` `# Optional - Allows clients to discover Jellyfin on the local network.` \
   -p 1900:1900/udp `# optional` `# Optional - Service discovery used by DNLA and clients.` \
-  -v ${BASEDIR:-/volume1/docker}/jellyfin/config:/config `# Jellyfin data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \
-  -v ${BASEDIR:-/volume1/docker}/jellyfin/data/tvshows:/data/tvshows `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
-  -v ${BASEDIR:-/volume1/docker}/jellyfin/data/movies:/data/movies `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jellyfin/config:/config `# Jellyfin data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jellyfin/data/tvshows:/data/tvshows `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jellyfin/data/movies:/data/movies `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/jellyfin

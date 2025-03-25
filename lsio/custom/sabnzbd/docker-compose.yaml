@@ -1,29 +1,35 @@
+
 # [Sabnzbd](http://sabnzbd.org/) makes Usenet as simple and streamlined as
 # possible by automating everything we can. All you have to do is add an .nzb.
 # SABnzbd takes over from there, where it will be automatically downloaded,
 # verified, repaired, extracted and filed away with zero human interaction.
 
 ---
-version: "2.1"
+
 services:
   sabnzbd:
     image: ghcr.io/linuxserver/sabnzbd
     container_name: sabnzbd
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/sabnzbd/config:/config
-      # Local path for finished downloads.
-      - ${BASEDIR:-/volume1/docker}/sabnzbd/downloads:/downloads # optional
-      # Local path for incomplete-downloads.
-      - ${BASEDIR:-/volume1/docker}/sabnzbd/incomplete-downloads:/incomplete-downloads # optional
-    ports:
-      # HTTP port for the WebUI.
-      - 8080:8080
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd/incomplete-downloads:/incomplete-downloads
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+    # ports:
+      # - 8080:8080 # HTTP port for the WebUI.
+    networks:
+      default:
+        aliases:
+          - sabnzbd
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

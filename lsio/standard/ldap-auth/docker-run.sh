@@ -11,7 +11,8 @@ docker run -d \
   --name=ldap-auth \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e FERNETKEY= `# optional` `# Optionally define a custom valid fernet key (only needed if container is frequently recreated, or if using multi-node setups, invalidating previous authentications)` \
   -e CERTFILE= `# optional` `# Optionally point this to a certificate file to enable HTTP over SSL (HTTPS) for the ldap auth daemon` \
   -e KEYFILE= `# optional` `# Optionally point this to the private key file, matching the certificate file referred to in CERTFILE` \

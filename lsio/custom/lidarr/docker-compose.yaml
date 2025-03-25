@@ -1,3 +1,4 @@
+
 # [Lidarr](https://github.com/lidarr/Lidarr) is a music collection manager for
 # Usenet and BitTorrent users. It can monitor multiple RSS feeds for new tracks
 # from your favorite artists and will grab, sort and rename them. It can also be
@@ -5,26 +6,30 @@
 # when a better quality format becomes available.
 
 ---
-version: "2.1"
+
 services:
   lidarr:
     image: ghcr.io/linuxserver/lidarr
     container_name: lidarr
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Configuration files for Lidarr.
-      - ${BASEDIR:-/volume1/docker}/lidarr/config:/config
-      # Music files (See note in Application setup).
-      - ${BASEDIR:-/volume1/docker}/lidarr/music:/music # optional
-      # Path to your download folder for music (See note in Application setup).
-      - ${BASEDIR:-/volume1/docker}/lidarr/downloads:/downloads # optional
-    ports:
-      # Application WebUI
-      - 8686:8686
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lidarr:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+    # ports:
+      # - 8686:8686 # Application WebUI
+    networks:
+      default:
+        aliases:
+          - lidarr
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

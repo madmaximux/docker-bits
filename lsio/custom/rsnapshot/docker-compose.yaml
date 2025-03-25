@@ -1,29 +1,34 @@
+
 # [Rsnapshot](http://www.rsnapshot.org/) is a filesystem snapshot utility based
 # on rsync. rsnapshot makes it easy to make periodic snapshots of local
 # machines, and remote machines over ssh. The code makes extensive use of hard
 # links whenever possible, to greatly reduce the disk space required.'
 
 ---
-version: "2.1"
+
 services:
   rsnapshot:
     image: ghcr.io/linuxserver/rsnapshot
     container_name: rsnapshot
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/rsnapshot/config:/config
-      # Storage location for all snapshots.
-      - ${BASEDIR:-/volume1/docker}/rsnapshot/.snapshots:/.snapshots # optional
-      # Storage location for data to be backed up.
-      - ${BASEDIR:-/volume1/docker}/rsnapshot/data:/data # optional
-    ports:
-      # Plex WebUI
-      - 32400:32400
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/.snapshots:/.snapshots
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/data:/data
+    # ports:
+    networks:
+      default:
+        aliases:
+          - rsnapshot
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

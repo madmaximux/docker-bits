@@ -1,37 +1,38 @@
+
 # [Wikijs](https://github.com/Requarks/wiki) A modern, lightweight and powerful
 # wiki app built on NodeJS.
 
 ---
-version: "2.1"
+
 services:
   wikijs:
     image: ghcr.io/linuxserver/wikijs
     container_name: wikijs
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Set to sqlite (default) or postgres depending on the database engine you wish to use
-      - DB_TYPE=sqlite # optional
-      # DB hostname (postgres only)
-      - DB_HOST= # optional
-      # DB port (postgres only)
-      - DB_PORT= # optional
-      # DB name (postgres only)
-      - DB_NAME= # optional
-      # DB username (postgres only)
-      - DB_USER= # optional
-      # DB password (postgres only)
-      - DB_PASS= # optional
+      # - DB_TYPE=sqlite # optional
+      # - DB_HOST= # optional
+      # - DB_PORT= # optional
+      # - DB_NAME= # optional
+      # - DB_USER= # optional
+      # - DB_PASS= # optional
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/wikijs/config:/config
-      # Where Wiki.js data is stored.
-      - ${BASEDIR:-/volume1/docker}/wikijs/data:/data
-    ports:
-      # Port for Wiki.js's web interface.
-      - 3000:3000
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wikijs:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wikijs/data:/data
+    # ports:
+      # - 3000:3000 # Port for Wiki.js's web interface.
+    networks:
+      default:
+        aliases:
+          - wikijs
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

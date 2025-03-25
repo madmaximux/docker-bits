@@ -1,28 +1,34 @@
+
 # [QDirStat](https://github.com/shundhammer/qdirstat) Qt-based directory
 # statistics: KDirStat without any KDE -- from the author of the original
 # KDirStat.
 
 ---
-version: "2.1"
+
 services:
   qdirstat:
     image: ghcr.io/linuxserver/qdirstat
     container_name: qdirstat
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores qdirstat settings and scans.
-      - ${BASEDIR:-/volume1/docker}/qdirstat/config:/config
-      # Data you want to analyze disk usage information of.
-      - ${BASEDIR:-/volume1/docker}/qdirstat/data:/data
-    ports:
-      # QdirStat desktop gui.
-      - 3000:3000
-      # QdirStat desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qdirstat:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qdirstat/data:/data
+    # ports:
+      # - 3000:3000 # QdirStat desktop gui.
+      # - 3001:3001 # QdirStat desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - qdirstat
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

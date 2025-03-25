@@ -13,7 +13,9 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      # for UMASK
+      - UMASK=${UMASK:-002}
+      # for timezone
       - TZ=${TZ:-America/Chicago}
     volumes:
       # Users home directory in the container, stores qdirstat settings and scans.

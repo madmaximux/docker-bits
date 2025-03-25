@@ -7,7 +7,8 @@ docker run -d \
   --name=emby \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -p 8096:8096 `# Http webUI.` \
   -p 8920:8920 `# optional` `# Https webUI (you need to setup your own certificate).` \
   -v ${BASEDIR:-/volume1/docker}/emby/config:/config `# Emby data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \

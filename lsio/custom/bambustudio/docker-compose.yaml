@@ -1,29 +1,35 @@
+
 # [Bambu Studio](https://bambulab.com/en/download/studio) is an open-source,
 # cutting-edge, feature-rich slicing software. It contains project-based
 # workflows, systematically optimized slicing algorithms, and an easy-to-use
 # graphical interface, bringing users an incredibly smooth printing experience.
 
 ---
-version: "2.1"
+
 services:
   bambustudio:
     image: ghcr.io/linuxserver/bambustudio
     container_name: bambustudio
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Set this to true to enable dark mode for Bambu Studio.
-      - DARK_MODE=true # optional
+      # - DARK_MODE=true # optional
     volumes:
-      # Users home directory in the container, stores program settings and files.
-      - ${BASEDIR:-/volume1/docker}/bambustudio/config:/config
-    ports:
-      # Bambu Studio desktop gui.
-      - 3000:3000
-      # Bambu Studio desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/bambustudio:/config
+    # ports:
+      # - 3000:3000 # Bambu Studio desktop gui.
+      # - 3001:3001 # Bambu Studio desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - bambustudio
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

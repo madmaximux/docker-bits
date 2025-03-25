@@ -1,23 +1,31 @@
+
 # [Overseerr](https://overseerr.dev/) is a request management and media
 # discovery tool built to work with your existing Plex ecosystem.
 
 ---
-version: "2.1"
+
 services:
   overseerr:
     image: ghcr.io/linuxserver/overseerr
     container_name: overseerr
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/overseerr/config:/config
-    ports:
-      # Port for Overseerr's web interface.
-      - 5055:5055
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/overseerr:/config
+    # ports:
+      # - 5055:5055 # Port for Overseerr's web interface.
+    networks:
+      default:
+        aliases:
+          - overseerr
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

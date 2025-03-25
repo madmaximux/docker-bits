@@ -10,9 +10,10 @@ docker run -d \
   --name=davos \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -p 8080:8080 `# This is the default port that davos runs under` \
-  -v ${BASEDIR:-/volume1/docker}/davos/config:/config `# davos's config location. This is where it stores its database file and logs.` \
-  -v ${BASEDIR:-/volume1/docker}/davos/download:/download `# davos's file download location` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos/config:/config `# davos's config location. This is where it stores its database file and logs.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos/download:/download `# davos's file download location` \
   --restart unless-stopped \
   ghcr.io/linuxserver/davos

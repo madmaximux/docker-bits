@@ -7,12 +7,13 @@ docker run -d \
   --name=minisatip \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e RUN_OPTS= `# Specify specific run params for minisatip` \
   -p 8875:8875 `# Status Page WebUI` \
   -p 554:554 `# RTSP Port` \
   -p 1900:1900/udp `# App Discovery` \
-  -v ${BASEDIR:-/volume1/docker}/minisatip/config:/config `# Configuration files and minisatip data` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/minisatip/config:/config `# Configuration files and minisatip data` \
   --device /dev/dvb:/dev/dvb `# For passing through Tv-cards` \
   --restart unless-stopped \
   ghcr.io/linuxserver/minisatip

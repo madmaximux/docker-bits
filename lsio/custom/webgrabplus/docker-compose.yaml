@@ -1,28 +1,32 @@
+
 # [Webgrabplus](https://www.webgrabplus.com) is a multi-site incremental xmltv
 # epg grabber. It collects tv-program guide data from selected tvguide sites for
 # your favourite channels.
 
 ---
-version: "2.1"
+
 services:
   webgrabplus:
     image: ghcr.io/linuxserver/webgrabplus
     container_name: webgrabplus
-    # Set the hostname for the container for the license check.
-    hostname: webgrabplus
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/webgrabplus/config:/config
-      # Where webgrabplus should store it's data files.
-      - ${BASEDIR:-/volume1/docker}/webgrabplus/data:/data
-    ports:
-      # Plex WebUI
-      - 32400:32400
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webgrabplus:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webgrabplus/data:/data
+    # ports:
+    networks:
+      default:
+        aliases:
+          - webgrabplus
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

@@ -9,7 +9,8 @@ docker run -d \
   --name=transmission \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e TRANSMISSION_WEB_HOME= `# optional` `# Specify the path to an alternative UI folder.` \
   -e USER= `# optional` `# Specify an optional username for the interface` \
   -e PASS= `# optional` `# Specify an optional password for the interface` \
@@ -19,8 +20,8 @@ docker run -d \
   -p 9091:9091 `# WebUI` \
   -p 51413:51413 `# Torrent Port TCP` \
   -p 51413:51413/udp `# Torrent Port UDP` \
-  -v ${BASEDIR:-/volume1/docker}/transmission/config:/config `# Where transmission should store config files and logs.` \
-  -v ${BASEDIR:-/volume1/docker}/transmission/downloads:/downloads `# optional` `# Local path for downloads.` \
-  -v ${BASEDIR:-/volume1/docker}/transmission/watch:/watch `# optional` `# Watch folder for torrent files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/transmission/config:/config `# Where transmission should store config files and logs.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/transmission/downloads:/downloads `# optional` `# Local path for downloads.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/transmission/watch:/watch `# optional` `# Watch folder for torrent files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/transmission

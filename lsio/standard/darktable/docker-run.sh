@@ -9,7 +9,8 @@ docker run -d \
   --name=darktable \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -p 3000:3000 `# Darktable desktop gui.` \
   -p 3001:3001 `# Darktable desktop gui HTTPS.` \
   -v ${BASEDIR:-/volume1/docker}/darktable/config:/config `# Users home directory in the container, stores program settings and images` \

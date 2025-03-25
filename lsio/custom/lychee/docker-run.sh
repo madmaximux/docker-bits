@@ -8,7 +8,8 @@ docker run -d \
   --name=lychee \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e DB_CONNECTION= `# DB type, from `sqlite`, `mysql`, `pqsql`.` \
   -e DB_HOST= `# DB server hostname. For `mysql` and `pgsql` only.` \
   -e DB_PORT= `# DB server port. For `mysql` and `pgsql` only.` \
@@ -19,7 +20,7 @@ docker run -d \
   -e APP_URL= `# optional` `# The URL you will use to access Lychee including protocol, and port where appropriate.` \
   -e TRUSTED_PROXIES= `# optional` `# Set to the IP or netmask covering your reverse proxy, if running behind one. Set to `*` to trust all IPs (**do not** use `*` if exposed to the internet`).` \
   -p 80:80 `# http gui` \
-  -v ${BASEDIR:-/volume1/docker}/lychee/config:/config `# Persistent config files.` \
-  -v ${BASEDIR:-/volume1/docker}/lychee/pictures:/pictures `# Where lychee will store uploaded images.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee/config:/config `# Persistent config files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee/pictures:/pictures `# Where lychee will store uploaded images.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/lychee

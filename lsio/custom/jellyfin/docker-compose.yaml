@@ -1,3 +1,4 @@
+
 # [Jellyfin](https://github.com/jellyfin/jellyfin) is a Free Software Media
 # System that puts you in control of managing and streaming your media. It is an
 # alternative to the proprietary Emby and Plex, to provide media from a
@@ -8,34 +9,34 @@
 # better and work together to achieve it.
 
 ---
-version: "2.1"
+
 services:
   jellyfin:
     image: ghcr.io/linuxserver/jellyfin
     container_name: jellyfin
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Set the autodiscovery response domain or IP address, include http(s)://.
-      - JELLYFIN_PublishedServerUrl=http://192.168.0.5 # optional
+      # - JELLYFIN_PublishedServerUrl=http://192.168.0.5 # optional
     volumes:
-      # Jellyfin data storage location. *This can grow very large, 50gb+ is likely for a large collection.*
-      - ${BASEDIR:-/volume1/docker}/jellyfin/config:/config
-      # Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.
-      - ${BASEDIR:-/volume1/docker}/jellyfin/data/tvshows:/data/tvshows
-      # Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.
-      - ${BASEDIR:-/volume1/docker}/jellyfin/data/movies:/data/movies
-    ports:
-      # Http webUI.
-      - 8096:8096
-      # Optional - Https webUI (you need to set up your own certificate).
-      - 8920:8920 # optional
-      # Optional - Allows clients to discover Jellyfin on the local network.
-      - 7359:7359/udp # optional
-      # Optional - Service discovery used by DNLA and clients.
-      - 1900:1900/udp # optional
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jellyfin:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+    # ports:
+      # - 8096:8096 # Http webUI.
+      # - 8920:8920 # Optional - Https webUI (you need to set up your own certificate). # optional
+      # - 7359:7359/udp # Optional - Allows clients to discover Jellyfin on the local network. # optional
+      # - 1900:1900/udp # Optional - Service discovery used by DNLA and clients. # optional
+    networks:
+      default:
+        aliases:
+          - jellyfin
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

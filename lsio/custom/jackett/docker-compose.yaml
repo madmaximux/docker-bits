@@ -1,3 +1,4 @@
+
 # [Jackett](https://github.com/Jackett/Jackett) works as a proxy server: it
 # translates queries from apps (Sonarr, SickRage, CouchPotato, Mylar, etc) into
 # tracker-site-specific http queries, parses the html response, then sends
@@ -7,28 +8,32 @@
 # other apps.
 
 ---
-version: "2.1"
+
 services:
   jackett:
     image: ghcr.io/linuxserver/jackett
     container_name: jackett
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Allow Jackett to update inside of the container.
-      - AUTO_UPDATE=true # optional
-      # Optionally specify additional arguments to be passed.
-      - RUN_OPTS= # optional
+      # - AUTO_UPDATE=true # optional
+      # - RUN_OPTS= # optional
     volumes:
-      # Where Jackett should store its config file.
-      - ${BASEDIR:-/volume1/docker}/jackett/config:/config
-      # Path to torrent blackhole.
-      - ${BASEDIR:-/volume1/docker}/jackett/downloads:/downloads
-    ports:
-      # WebUI
-      - 9117:9117
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jackett:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+    # ports:
+      # - 9117:9117 # WebUI
+    networks:
+      default:
+        aliases:
+          - jackett
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

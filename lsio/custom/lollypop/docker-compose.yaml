@@ -1,25 +1,32 @@
+
 # [Lollypop](https://wiki.gnome.org/Apps/Lollypop) is a lightweight modern music
 # player designed to work excellently on the GNOME desktop environment.
 
 ---
-version: "2.1"
+
 services:
   lollypop:
     image: ghcr.io/linuxserver/lollypop
     container_name: lollypop
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores settings and downloaded metadata for music.
-      - ${BASEDIR:-/volume1/docker}/lollypop/config:/config
-    ports:
-      # Lollypop desktop gui.
-      - 3000:3000
-      # Lollypop desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lollypop:/config
+    # ports:
+      # - 3000:3000 # Lollypop desktop gui.
+      # - 3001:3001 # Lollypop desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - lollypop
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

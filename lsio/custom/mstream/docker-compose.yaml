@@ -1,26 +1,33 @@
+
 # [Mstream](https://mstream.io/) is a personal music streaming server. You can
 # use mStream to stream your music from your home computer to any device,
 # anywhere. There are mobile apps available for both Android and iPhone.
 
 ---
-version: "2.1"
+
 services:
   mstream:
     image: ghcr.io/linuxserver/mstream
     container_name: mstream
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # mStream config
-      - ${BASEDIR:-/volume1/docker}/mstream/config:/config
-      # Music location
-      - ${BASEDIR:-/volume1/docker}/mstream/music:/music
-    ports:
-      # The port for the mStream web interface
-      - 3000:3000
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mstream:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+    # ports:
+      # - 3000:3000 # The port for the mStream web interface
+    networks:
+      default:
+        aliases:
+          - mstream
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

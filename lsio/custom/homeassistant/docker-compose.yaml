@@ -1,29 +1,37 @@
+
 # [Home Assistant Core](https://www.home-assistant.io/) - Open source home
 # automation that puts local control and privacy first. Powered by a worldwide
 # community of tinkerers and DIY enthusiasts. Perfect to run on a Raspberry Pi
 # or a local server
 
 ---
-version: "2.1"
+
 services:
   homeassistant:
     image: ghcr.io/linuxserver/homeassistant
     container_name: homeassistant
-    network_mode: host
+    # network_mode: host
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Home Assistant config storage path.
-      - ${BASEDIR:-/volume1/docker}/homeassistant/config:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/homeassistant:/config
     ports:
-      # Application WebUI, only use this if you are not using host mode.
-      - 8123:8123 # optional
+      # - 8123:8123 # Application WebUI, only use this if you are not using host mode. # optional
+    networks:
+      default:
+        aliases:
+          - homeassistant
     devices:
       # For passing through USB, serial or gpio devices.
       - /path/to/device:/path/to/device # optional
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

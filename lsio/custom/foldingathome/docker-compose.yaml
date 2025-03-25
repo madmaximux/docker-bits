@@ -1,3 +1,4 @@
+
 # [Folding@home](https://foldingathome.org/) is a distributed computing project
 # for simulating protein dynamics, including the process of protein folding and
 # the movements of proteins implicated in a variety of diseases. It brings
@@ -7,30 +8,33 @@
 # developing therapeutics.
 
 ---
-version: "2.1"
+
 services:
   foldingathome:
     image: ghcr.io/linuxserver/foldingathome
     container_name: foldingathome
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Register for an account on `https://app.foldingathome.org` and retrieve account token in settings. Required on first start.
       - ACCOUNT_TOKEN=
-      # Assign a friendly name to this instance (no spaces). Required on first start.
       - MACHINE_NAME=
-      # Optionally pass additional cli arguments to `fah-client` on container start.
-      - CLI_ARGS= # optional
+      # - CLI_ARGS= # optional
     volumes:
-      # Where Folding@home should store its database and config.
-      - ${BASEDIR:-/volume1/docker}/foldingathome/config:/config
-    ports:
-      # Application WebUI
-      - 80:80
-      # Folding@home web gui (redirects to [https://app.foldingathome.org](https://app.foldingathome.org)).
-      - 7396:7396 # optional
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/foldingathome:/config
+    # ports:
+      # - 80:80 # Application WebUI
+      # - 7396:7396 # Folding@home web gui (redirects to [https://app.foldingathome.org](https://app.foldingathome.org)). # optional
+    networks:
+      default:
+        aliases:
+          - foldingathome
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

@@ -1,30 +1,36 @@
+
 # [Opera](https://www.opera.com/) is a multi-platform web browser developed by
 # its namesake company Opera. The browser is based on Chromium, but
 # distinguishes itself from other Chromium-based browsers (Chrome, Edge, etc.)
 # through its user interface and other features.
 
 ---
-version: "2.1"
+
 services:
   opera:
     image: ghcr.io/linuxserver/opera
     container_name: opera
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify one or multiple Chromium CLI flags, this string will be passed to the application in full.
-      - OPERA_CLI=https://www.linuxserver.io/ # optional
+      # - OPERA_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/opera/config:/config
-    ports:
-      # Opera desktop gui.
-      - 3000:3000
-      # HTTPS Opera desktop gui.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/opera:/config
+    # ports:
+      # - 3000:3000 # Opera desktop gui.
+      # - 3001:3001 # HTTPS Opera desktop gui.
+    networks:
+      default:
+        aliases:
+          - opera
     shm_size: "1gb"
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

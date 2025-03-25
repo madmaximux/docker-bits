@@ -1,3 +1,4 @@
+
 # [Sonarr](https://sonarr.tv/) (formerly NZBdrone) is a PVR for usenet and
 # bittorrent users. It can monitor multiple RSS feeds for new episodes of your
 # favorite shows and will grab, sort and rename them. It can also be configured
@@ -5,26 +6,30 @@
 # quality format becomes available.
 
 ---
-version: "2.1"
+
 services:
   sonarr:
     image: ghcr.io/linuxserver/sonarr
     container_name: sonarr
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Database and sonarr configs
-      - ${BASEDIR:-/volume1/docker}/sonarr/config:/config
-      # Location of TV library on disk (See note in Application setup)
-      - ${BASEDIR:-/volume1/docker}/sonarr/tv:/tv # optional
-      # Location of download managers output directory (See note in Application setup)
-      - ${BASEDIR:-/volume1/docker}/sonarr/downloads:/downloads # optional
-    ports:
-      # The port for the Sonarr web interface
-      - 8989:8989
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sonarr:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+    # ports:
+      # - 8989:8989 # The port for the Sonarr web interface
+    networks:
+      default:
+        aliases:
+          - sonarr
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

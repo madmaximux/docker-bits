@@ -9,11 +9,12 @@ docker run -d \
   --name=calibre-web \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e DOCKER_MODS=linuxserver/mods:universal-calibre `# optional` `# #optional & **x86-64 only** Adds the ability to perform ebook conversion` \
   -e OAUTHLIB_RELAX_TOKEN_SCOPE=1 `# optional` `# Optionally set this to allow Google OAUTH to work` \
   -p 8083:8083 `# WebUI` \
-  -v ${BASEDIR:-/volume1/docker}/calibre-web/config:/config `# Where calibre-web stores the internal database and config.` \
-  -v ${BASEDIR:-/volume1/docker}/calibre-web/books:/books `# Where your preexisting calibre database is located.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre-web/config:/config `# Where calibre-web stores the internal database and config.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre-web/books:/books `# Where your preexisting calibre database is located.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/calibre-web

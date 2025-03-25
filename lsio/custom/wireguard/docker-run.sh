@@ -16,7 +16,8 @@ docker run -d \
   --cap-add=SYS_MODULE `# optional` \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e SERVERURL=wireguard.domain.com `# optional` `# External IP or domain name for docker host. Used in server mode. If set to `auto`, the container will try to determine and set the external IP automatically` \
   -e SERVERPORT=51820 `# optional` `# External port for docker host. Used in server mode.` \
   -e PEERS=1 `# optional` `# Number of peers to create confs for. Required for server mode. Can also be a list of names: `myPC,myPhone,myTablet` (alphanumeric only)` \
@@ -26,7 +27,7 @@ docker run -d \
   -e PERSISTENTKEEPALIVE_PEERS= `# optional` `# Set to `all` or a list of comma separated peers (ie. `1,4,laptop`) for the wireguard server to send keepalive packets to listed peers every 25 seconds. Useful if server is accessed via domain name and has dynamic IP. Used only in server mode.` \
   -e LOG_CONFS=true `# optional` `# Generated QR codes will be displayed in the docker log. Set to `false` to skip log output.` \
   -p 51820:51820/udp `# wireguard port` \
-  -v ${BASEDIR:-/volume1/docker}/wireguard/config:/config `# Contains all relevant configuration files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireguard/config:/config `# Contains all relevant configuration files.` \
   -v /lib/modules:/lib/modules `# optional` `# Path to host kernel module for situations where it's not already loaded.` \
   --sysctl="net.ipv4.conf.all.src_valid_mark=1" \
   --restart unless-stopped \

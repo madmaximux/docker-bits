@@ -1,29 +1,34 @@
+
 # [SickGear](https://github.com/sickgear/sickgear) provides management of TV
 # shows and/or Anime, it detects new episodes, links downloader apps, and more..
 # For more information on SickGear visit their website and check it out:
 # https://github.com/SickGear/SickGear
 
 ---
-version: "2.1"
+
 services:
   sickgear:
     image: ghcr.io/linuxserver/sickgear
     container_name: sickgear
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent configuration files.
-      - ${BASEDIR:-/volume1/docker}/sickgear/config:/config
-      # where you store your tv shows
-      - ${BASEDIR:-/volume1/docker}/sickgear/tv:/tv
-      # your downloads folder for post processing (must not be download in progress)
-      - ${BASEDIR:-/volume1/docker}/sickgear/downloads:/downloads
-    ports:
-      # will map the container's port 8081 to port 8081 on the host
-      - 8081:8081
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickgear:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+    # ports:
+      # - 8081:8081 # will map the container's port 8081 to port 8081 on the host
+    networks:
+      default:
+        aliases:
+          - sickgear
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

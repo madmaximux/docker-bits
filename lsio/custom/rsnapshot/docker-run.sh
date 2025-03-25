@@ -8,10 +8,10 @@ docker run -d \
   --name=rsnapshot \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
-  -p 32400:32400 `# Plex WebUI` \
-  -v ${BASEDIR:-/volume1/docker}/rsnapshot/config:/config `# Persistent config files` \
-  -v ${BASEDIR:-/volume1/docker}/rsnapshot/.snapshots:/.snapshots `# optional` `# Storage location for all snapshots.` \
-  -v ${BASEDIR:-/volume1/docker}/rsnapshot/data:/data `# optional` `# Storage location for data to be backed up.` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/.snapshots:/.snapshots `# optional` `# Storage location for all snapshots.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/data:/data `# optional` `# Storage location for data to be backed up.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/rsnapshot

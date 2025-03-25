@@ -9,12 +9,13 @@ docker run -d \
   --name=calibre \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e PASSWORD= `# optional` `# Optionally set a password for the gui.` \
   -e CLI_ARGS= `# optional` `# Optionally pass cli start arguments to calibre.` \
   -p 8080:8080 `# Calibre desktop gui.` \
   -p 8181:8181 `# Calibre desktop gui HTTPS.` \
   -p 8081:8081 `# Calibre webserver gui.` \
-  -v ${BASEDIR:-/volume1/docker}/calibre/config:/config `# Where calibre should store its database and library.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre/config:/config `# Where calibre should store its database and library.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/calibre

@@ -1,23 +1,31 @@
+
 # [Htpcmanager](https://github.com/HTPC-Manager/HTPC-Manager) is a front end for
 # many htpc related applications.
 
 ---
-version: "2.1"
+
 services:
   htpcmanager:
     image: ghcr.io/linuxserver/htpcmanager
     container_name: htpcmanager
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/htpcmanager/config:/config
-    ports:
-      # Application WebUI
-      - 8085:8085
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/htpcmanager:/config
+    # ports:
+      # - 8085:8085 # Application WebUI
+    networks:
+      default:
+        aliases:
+          - htpcmanager
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

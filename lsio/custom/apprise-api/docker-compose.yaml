@@ -1,3 +1,4 @@
+
 # [Apprise-api](https://github.com/caronc/apprise-api) Takes advantage of
 # [Apprise](https://github.com/caronc/apprise) through your network with a user-
 # friendly API. * Send notifications to more than 100 services. * An incredibly
@@ -7,26 +8,31 @@
 # that are looking for a simple notification solution.
 
 ---
-version: "2.1"
+
 services:
   apprise-api:
     image: ghcr.io/linuxserver/apprise-api
     container_name: apprise-api
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Max attachment size in Mb. `0` disables attachments. Must have `/attachments` mounted to set to a positive value.
-      - APPRISE_ATTACH_SIZE=0 # optional
+      # - APPRISE_ATTACH_SIZE=0 # optional
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/apprise-api/config:/config
-      # Temporary storage for attachments when sent with notifications.
-      - ${BASEDIR:-/volume1/docker}/apprise-api/attachments:/attachments # optional
-    ports:
-      # Port for apprise's interface and API.
-      - 8000:8000
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/apprise-api:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/apprise-api/attachments:/attachments
+    # ports:
+      # - 8000:8000 # Port for apprise's interface and API.
+    networks:
+      default:
+        aliases:
+          - apprise-api
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

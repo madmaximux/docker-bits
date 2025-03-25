@@ -10,7 +10,8 @@ docker run -d \
   --cap-add=NET_ADMIN \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e URL=example.com `# Top url you have control over (e.g. `example.com` if you own it, or `customsubdomain.example.com` if dynamic dns).` \
   -e VALIDATION=http `# Certbot validation method to use, options are `http` or `dns` (`dns` method also requires `DNSPLUGIN` variable set).` \
   -e SUBDOMAINS=www, `# optional` `# Subdomains you'd like the cert to cover (comma separated, no spaces) ie. `www,ftp,cloud`. For a wildcard cert, set this *exactly* to `wildcard` (wildcard cert is available via `dns` validation only)` \
@@ -26,6 +27,6 @@ docker run -d \
   -e SWAG_AUTORELOAD_WATCHLIST= `# optional` `# A [pipe](https://en.wikipedia.org/wiki/Vertical_bar)-separated list of additional folders for auto reload to watch in addition to `/config/nginx`` \
   -p 443:443 `# HTTPS port` \
   -p 80:80 `# optional` `# HTTP port (required for HTTP validation and HTTP -> HTTPS redirect)` \
-  -v ${BASEDIR:-/volume1/docker}/swag/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/swag/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/swag

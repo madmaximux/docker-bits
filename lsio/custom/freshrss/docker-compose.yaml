@@ -1,23 +1,31 @@
+
 # [Freshrss](https://freshrss.org/) is a free, self-hostable aggregator for rss
 # feeds.
 
 ---
-version: "2.1"
+
 services:
   freshrss:
     image: ghcr.io/linuxserver/freshrss
     container_name: freshrss
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/freshrss/config:/config
-    ports:
-      # WebUI
-      - 80:80
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/freshrss:/config
+    # ports:
+      # - 80:80 # WebUI
+    networks:
+      default:
+        aliases:
+          - freshrss
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

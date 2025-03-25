@@ -1,8 +1,9 @@
+
 # [VSCodium](https://vscodium.com/) is a community-driven, freely-licensed
 # binary distribution of Microsoft’s editor VS Code.
 
 ---
-version: "2.1"
+
 services:
   vscodium:
     image: ghcr.io/linuxserver/vscodium
@@ -10,19 +11,25 @@ services:
     cap_add:
       - IPC_LOCK
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/vscodium/config:/config
-    ports:
-      # VSCodium desktop gui.
-      - 3000:3000
-      # HTTPS VSCodium desktop gui.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/vscodium:/config
+    # ports:
+      # - 3000:3000 # VSCodium desktop gui.
+      # - 3001:3001 # HTTPS VSCodium desktop gui.
+    networks:
+      default:
+        aliases:
+          - vscodium
     shm_size: "1gb"
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

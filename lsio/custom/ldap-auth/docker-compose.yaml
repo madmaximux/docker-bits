@@ -1,3 +1,4 @@
+
 # [Ldap-auth](https://github.com/nginxinc/nginx-ldap-auth) software is for
 # authenticating users who request protected resources from servers proxied by
 # nginx. It includes a daemon (ldap-auth) that communicates with an
@@ -7,30 +8,33 @@
 # (OpenLDAP or Microsoft Windows Active Directory 2003 and 2012).
 
 ---
-version: "2.1"
+
 services:
   ldap-auth:
     image: ghcr.io/linuxserver/ldap-auth
     container_name: ldap-auth
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Optionally define a custom valid fernet key (only needed if container is frequently recreated, or if using multi-node setups, invalidating previous authentications)
-      - FERNETKEY= # optional
-      # Optionally point this to a certificate file to enable HTTP over SSL (HTTPS) for the ldap auth daemon
-      - CERTFILE= # optional
-      # Optionally point this to the private key file, matching the certificate file referred to in CERTFILE
-      - KEYFILE= # optional
+      # - FERNETKEY= # optional
+      # - CERTFILE= # optional
+      # - KEYFILE= # optional
     volumes:
-      # Configuration files.
-      - ${BASEDIR:-/volume1/docker}/ldap-auth/config:/config
-    ports:
-      # the port for ldap auth daemon
-      - 8888:8888
-      # the port for ldap login page
-      - 9000:9000
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ldap-auth:/config
+    # ports:
+      # - 8888:8888 # the port for ldap auth daemon
+      # - 9000:9000 # the port for ldap login page
+    networks:
+      default:
+        aliases:
+          - ldap-auth
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

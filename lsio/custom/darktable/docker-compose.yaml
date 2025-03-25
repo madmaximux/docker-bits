@@ -1,3 +1,4 @@
+
 # [darktable](https://www.darktable.org/) is an open source photography workflow
 # application and raw developer. A virtual lighttable and darkroom for
 # photographers. It manages your digital negatives in a database, lets you view
@@ -5,24 +6,30 @@
 # enhance them.
 
 ---
-version: "2.1"
+
 services:
   darktable:
     image: ghcr.io/linuxserver/darktable
     container_name: darktable
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores program settings and images
-      - ${BASEDIR:-/volume1/docker}/darktable/config:/config
-    ports:
-      # Darktable desktop gui.
-      - 3000:3000
-      # Darktable desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/darktable:/config
+    # ports:
+      # - 3000:3000 # Darktable desktop gui.
+      # - 3001:3001 # Darktable desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - darktable
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

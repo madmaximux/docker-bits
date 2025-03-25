@@ -1,28 +1,34 @@
+
 # [Double Commander](https://doublecmd.sourceforge.io/) is a free cross platform
 # open source file manager with two panels side by side. It is inspired by Total
 # Commander and features some new ideas.
 
 ---
-version: "2.1"
+
 services:
   doublecommander:
     image: ghcr.io/linuxserver/doublecommander
     container_name: doublecommander
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores program settings.
-      - ${BASEDIR:-/volume1/docker}/doublecommander/config:/config
-      # Host data directories, mount as many as needed.
-      - ${BASEDIR:-/volume1/docker}/doublecommander/data:/data
-    ports:
-      # Double Commander desktop gui.
-      - 3000:3000
-      # Double Commander desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doublecommander:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doublecommander/data:/data
+    # ports:
+      # - 3000:3000 # Double Commander desktop gui.
+      # - 3001:3001 # Double Commander desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - doublecommander
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

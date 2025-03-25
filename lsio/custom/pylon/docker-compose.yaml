@@ -1,33 +1,37 @@
+
 # [Pylon](https://github.com/pylonide/pylon) is a web based integrated
 # development environment built with Node.js as a backend and with a
 # supercharged JavaScript/HTML5 frontend, licensed under GPL version 3. This
 # project originates from Cloud9 v2 project.
 
 ---
-version: "2.1"
+
 services:
   pylon:
     image: ghcr.io/linuxserver/pylon
     container_name: pylon
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify a git repo to checkout on first startup
-      - GITURL=https://github.com/linuxserver/docker-pylon.git # optional
-      # Specify a basic auth user.
-      - PYUSER=myuser # optional
-      # Specify a basic auth password.
-      - PYPASS=mypass # optional
+      # - GITURL=https://github.com/linuxserver/docker-pylon.git # optional
+      # - PYUSER=myuser # optional
+      # - PYPASS=mypass # optional
     volumes:
-      # Configuration files.
-      - ${BASEDIR:-/volume1/docker}/pylon/config:/config
-      # Optionally if you want the bind mount your own code and have changes survive container upgrades.
-      - ${BASEDIR:-/volume1/docker}/pylon/code:/code # optional
-    ports:
-      # The port for the Pylon web interface
-      - 3131:3131
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pylon:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pylon/code:/code
+    # ports:
+      # - 3131:3131 # The port for the Pylon web interface
+    networks:
+      default:
+        aliases:
+          - pylon
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

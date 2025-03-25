@@ -1,3 +1,4 @@
+
 # [BOINC](https://boinc.berkeley.edu/) is a platform for high-throughput
 # computing on a large scale (thousands or millions of computers). It can be
 # used for volunteer computing (using consumer devices) or grid computing (using
@@ -5,29 +6,34 @@
 # applications.
 
 ---
-version: "2.1"
+
 services:
   boinc:
     image: ghcr.io/linuxserver/boinc
     container_name: boinc
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Optionally set a password for the gui.
-      - PASSWORD= # optional
+      # - PASSWORD= # optional
     volumes:
-      # Where BOINC should store its database and config.
-      - ${BASEDIR:-/volume1/docker}/boinc/config:/config
-    ports:
-      # Boinc desktop gui.
-      - 8080:8080
-      # Boinc desktop gui HTTPS.
-      - 8181:8181
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/boinc:/config
+    # ports:
+      # - 8080:8080 # Boinc desktop gui.
+      # - 8181:8181 # Boinc desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - boinc
     devices:
       # Only needed if you want to use your Intel GPU (vaapi).
       - /dev/dri:/dev/dri # optional
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

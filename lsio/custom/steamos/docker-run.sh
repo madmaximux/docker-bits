@@ -6,11 +6,11 @@
 . ./.env
 docker run -d \
   --name=steamos \
-    --hostname=hostname `# optional` `# Specify the hostname of the host, this is useful for keeping a persistent hostname between upgrades and identifying the server in the remote play Steam Client.` \
   --cap-add=NET_ADMIN \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e DRINODE=/dev/dri/renderD128 `# Specify the render device (GPU) for the contianer to use.` \
   -e HOST_IP=192.168.100.10 `# optional` `# Specify the IP of the host, needed for LAN Remote Play.` \
   -e STARTUP=KDE `# optional` `# KDE to boot into desktop mode, BIGPICTURE to boot into gamescope.` \
@@ -22,7 +22,7 @@ docker run -d \
   -p 47984-47990:47984-47990 `# optional` `# Sunshine Ports (TCP).` \
   -p 48010-48010:48010-48010 `# optional` `# Sunshine Ports (TCP).` \
   -p 47998-48000:47998-48000/udp `# optional` `# Sunshine Ports (UDP).` \
-  -v ${BASEDIR:-/volume1/docker}/steamos/config:/config `# Users home directory in the container, stores all files and games.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/steamos/config:/config `# Users home directory in the container, stores all files and games.` \
   -v /dev/input:/dev/input `# optional` `# Optional for gamepad support. *Only working for Steam Remote Play` \
   -v /run/udev/data:/run/udev/data `# optional` `# Optional for gamepad support. *Only working for Steam Remote Play` \
   --device /dev/dri:/dev/dri `# Video card passthrough to Steam.` \

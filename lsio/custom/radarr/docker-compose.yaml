@@ -1,27 +1,32 @@
+
 # [Radarr](https://github.com/Radarr/Radarr) - A fork of Sonarr to work with
 # movies à la Couchpotato.
 
 ---
-version: "2.1"
+
 services:
   radarr:
     image: ghcr.io/linuxserver/radarr
     container_name: radarr
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Database and Radarr configs
-      - ${BASEDIR:-/volume1/docker}/radarr/config:/config
-      # Location of Movie library on disk (See note in Application setup)
-      - ${BASEDIR:-/volume1/docker}/radarr/movies:/movies # optional
-      # Location of download managers output directory (See note in Application setup)
-      - ${BASEDIR:-/volume1/docker}/radarr/downloads:/downloads # optional
-    ports:
-      # The port for the Radarr Web UI
-      - 7878:7878
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/radarr:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+    # ports:
+      # - 7878:7878 # The port for the Radarr Web UI
+    networks:
+      default:
+        aliases:
+          - radarr
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

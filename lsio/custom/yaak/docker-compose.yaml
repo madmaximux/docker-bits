@@ -1,27 +1,34 @@
+
 # [Yaak](https://yaak.app/) is a desktop API client for organizing and executing
 # REST, GraphQL, and gRPC requests. It's built using
 # [Tauri](https://tauri.app/), [Rust](https://www.rust-lang.org/), and
 # [ReactJS](https://react.dev/).
 
 ---
-version: "2.1"
+
 services:
   yaak:
     image: ghcr.io/linuxserver/yaak
     container_name: yaak
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Where yaak should store its config and data.
-      - ${BASEDIR:-/volume1/docker}/yaak/config:/config
-    ports:
-      # Yaak desktop gui.
-      - 3000:3000
-      # Yaak desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/yaak:/config
+    # ports:
+      # - 3000:3000 # Yaak desktop gui.
+      # - 3001:3001 # Yaak desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - yaak
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

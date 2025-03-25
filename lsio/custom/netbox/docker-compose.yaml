@@ -1,3 +1,4 @@
+
 # [Netbox](https://github.com/netbox-community/netbox) is an IP address
 # management (IPAM) and data center infrastructure management (DCIM) tool.
 # Initially conceived by the network engineering team at DigitalOcean, NetBox
@@ -6,62 +7,49 @@
 # network operations.
 
 ---
-version: "2.1"
+
 services:
   netbox:
     image: ghcr.io/linuxserver/netbox
     container_name: netbox
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Email address for `admin` account
       - SUPERUSER_EMAIL=
-      # Password for `admin` account
       - SUPERUSER_PASSWORD=
-      # The hostname you will use to access the app (i.e., netbox.example.com)
       - ALLOWED_HOST=
-      # Database name (default: netbox)
       - DB_NAME=
-      # Database user
       - DB_USER=
-      # Database password
       - DB_PASSWORD=
-      # Database host (default: postgres)
       - DB_HOST=
-      # Database port (default: 5432)
       - DB_PORT=
-      # Redis host (default: redis)
       - REDIS_HOST=
-      # Redis port number (default: 6379)
       - REDIS_PORT=
-      # Redis password (default: none)
       - REDIS_PASSWORD=
-      # Redis database ID for tasks (default: 0)
       - REDIS_DB_TASK=
-      # Redis database ID for caching (default: 1)
       - REDIS_DB_CACHE=
-      # The path you will use to access the app (i.e., /netbox, optional, default: none)
-      - BASE_PATH= # optional
-      # Enable remote authentication (optional, default: False)
-      - REMOTE_AUTH_ENABLED= # optional
-      # Python path to the custom Django authentication backend to use for external user authentication (optional, default: netbox.authentication.RemoteUserBackend)
-      - REMOTE_AUTH_BACKEND= # optional
-      # Name of the HTTP header which informs NetBox of the currently authenticated user. (optional, default: HTTP_REMOTE_USER)
-      - REMOTE_AUTH_HEADER= # optional
-      # If true, NetBox will automatically create local accounts for users authenticated via a remote service (optional, default: False)
-      - REMOTE_AUTH_AUTO_CREATE_USER= # optional
-      # The list of groups to assign a new user account when created using remote authentication (optional, default: [])
-      - REMOTE_AUTH_DEFAULT_GROUPS= # optional
-      # A mapping of permissions to assign a new user account when created using remote authentication (optional, default: {})
-      - REMOTE_AUTH_DEFAULT_PERMISSIONS= # optional
+      # - BASE_PATH= # optional
+      # - REMOTE_AUTH_ENABLED= # optional
+      # - REMOTE_AUTH_BACKEND= # optional
+      # - REMOTE_AUTH_HEADER= # optional
+      # - REMOTE_AUTH_AUTO_CREATE_USER= # optional
+      # - REMOTE_AUTH_DEFAULT_GROUPS= # optional
+      # - REMOTE_AUTH_DEFAULT_PERMISSIONS= # optional
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/netbox/config:/config
-    ports:
-      # will map the container's port 8000 to port 8000 on the host
-      - 8000:8000
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbox:/config
+    # ports:
+      # - 8000:8000 # will map the container's port 8000 to port 8000 on the host
+    networks:
+      default:
+        aliases:
+          - netbox
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

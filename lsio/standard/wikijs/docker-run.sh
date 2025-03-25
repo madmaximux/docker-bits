@@ -6,7 +6,8 @@ docker run -d \
   --name=wikijs \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e DB_TYPE=sqlite `# optional` `# Set to sqlite (default) or postgres depending on the database engine you wish to use` \
   -e DB_HOST= `# optional` `# DB hostname (postgres only)` \
   -e DB_PORT= `# optional` `# DB port (postgres only)` \

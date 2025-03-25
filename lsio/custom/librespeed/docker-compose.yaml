@@ -1,42 +1,41 @@
+
 # [Librespeed](https://github.com/librespeed/speedtest) is a very lightweight
 # Speedtest implemented in Javascript, using XMLHttpRequest and Web Workers. No
 # Flash, No Java, No Websocket, No Bullshit.
 
 ---
-version: "2.1"
+
 services:
   librespeed:
     image: ghcr.io/linuxserver/librespeed
     container_name: librespeed
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Set the password for the results database.
       - PASSWORD=PASSWORD
-      # (optional) set to `true` to enable custom results page in `/config/www/results/index.php`.
-      - CUSTOM_RESULTS=false # optional
-      # Defaults to `sqlite`, can also be set to `mysql` or `postgresql`.
-      - DB_TYPE=sqlite # optional
-      # Database name. Required for mysql and pgsql.
-      - DB_NAME=DB_NAME # optional
-      # Database address. Required for mysql and pgsql.
-      - DB_HOSTNAME=DB_HOSTNAME # optional
-      # Database username. Required for mysql and pgsql.
-      - DB_USERNAME=DB_USERNAME # optional
-      # Database password. Required for mysql and pgsql.
-      - DB_PASSWORD=DB_PASSWORD # optional
-      # Database port. Required for mysql.
-      - DB_PORT=DB_PORT # optional
-      # Access token from ipinfo.io. Required for detailed IP information.
-      - IPINFO_APIKEY=ACCESS_TOKEN # optional
+      # - CUSTOM_RESULTS=false # optional
+      # - DB_TYPE=sqlite # optional
+      # - DB_NAME=DB_NAME # optional
+      # - DB_HOSTNAME=DB_HOSTNAME # optional
+      # - DB_USERNAME=DB_USERNAME # optional
+      # - DB_PASSWORD=DB_PASSWORD # optional
+      # - DB_PORT=DB_PORT # optional
+      # - IPINFO_APIKEY=ACCESS_TOKEN # optional
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/librespeed/config:/config
-    ports:
-      # web gui
-      - 80:80
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/librespeed:/config
+    # ports:
+      # - 80:80 # web gui
+    networks:
+      default:
+        aliases:
+          - librespeed
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

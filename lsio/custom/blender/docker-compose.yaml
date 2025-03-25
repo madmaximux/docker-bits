@@ -1,3 +1,4 @@
+
 # [Blender](https://www.blender.org/) is a free and open-source 3D computer
 # graphics software toolset used for creating animated films, visual effects,
 # art, 3D printed models, motion graphics, interactive 3D applications, virtual
@@ -5,26 +6,31 @@
 # of the box only accelerated workspace experience**
 
 ---
-version: "2.1"
+
 services:
   blender:
     image: ghcr.io/linuxserver/blender
     container_name: blender
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify a subfolder to use with reverse proxies, IE `/subfolder/`
-      - SUBFOLDER=/ # optional
+      # - SUBFOLDER=/ # optional
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/blender/config:/config
-    ports:
-      # Blender desktop gui
-      - 3000:3000
-      # Blender desktop gui HTTPS
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/blender:/config
+    # ports:
+      # - 3000:3000 # Blender desktop gui
+      # - 3001:3001 # Blender desktop gui HTTPS
+    networks:
+      default:
+        aliases:
+          - blender
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

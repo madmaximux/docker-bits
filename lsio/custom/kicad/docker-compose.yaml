@@ -1,25 +1,32 @@
+
 # [KiCad](https://www.kicad.org/) - A Cross Platform and Open Source Electronics
 # Design Automation Suite.
 
 ---
-version: "2.1"
+
 services:
   kicad:
     image: ghcr.io/linuxserver/kicad
     container_name: kicad
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores program settings and files.
-      - ${BASEDIR:-/volume1/docker}/kicad/config:/config
-    ports:
-      # KiCad desktop gui.
-      - 3000:3000
-      # KiCad desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kicad:/config
+    # ports:
+      # - 3000:3000 # KiCad desktop gui.
+      # - 3001:3001 # KiCad desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - kicad
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

@@ -1,25 +1,33 @@
+
 # [Znc](http://wiki.znc.in/ZNC) is an IRC network bouncer or BNC. It can detach
 # the client from the actual IRC server, and also from selected channels.
 # Multiple clients from different locations can connect to a single ZNC account
 # simultaneously and therefore appear under the same nickname on IRC.
 
 ---
-version: "2.1"
+
 services:
   znc:
     image: ghcr.io/linuxserver/znc
     container_name: znc
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/znc/config:/config
-    ports:
-      # Port ZNC listens on.
-      - 6501:6501
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/znc:/config
+    # ports:
+      # - 6501:6501 # Port ZNC listens on.
+    networks:
+      default:
+        aliases:
+          - znc
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

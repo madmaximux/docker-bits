@@ -1,34 +1,37 @@
+
 # The [Qbittorrent](https://www.qbittorrent.org/) project aims to provide an
 # open-source software alternative to µTorrent. qBittorrent is based on the Qt
 # toolkit and libtorrent-rasterbar library.
 
 ---
-version: "2.1"
+
 services:
   qbittorrent:
     image: ghcr.io/linuxserver/qbittorrent
     container_name: qbittorrent
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # for changing the port of the web UI, see below for explanation
       - WEBUI_PORT=8080
-      # for changing the port of tcp/udp connection, see below for explanation
       - TORRENTING_PORT=6881
     volumes:
-      # Contains all relevant configuration files.
-      - ${BASEDIR:-/volume1/docker}/qbittorrent/config:/config
-      # Location of downloads on disk.
-      - ${BASEDIR:-/volume1/docker}/qbittorrent/downloads:/downloads # optional
-    ports:
-      # WebUI
-      - 8080:8080
-      # tcp connection port
-      - 6881:6881
-      # udp connection port
-      - 6881:6881/udp
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qbittorrent:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+    # ports:
+      # - 8080:8080 # WebUI
+      # - 6881:6881 # tcp connection port
+      # - 6881:6881/udp # udp connection port
+    networks:
+      default:
+        aliases:
+          - qbittorrent
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

@@ -6,7 +6,8 @@ docker run -d \
   --name=monica \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e DB_HOST= `# Mariadb DB server hostname.` \
   -e DB_PORT= `# Mariadb DB server port.` \
   -e DB_USERNAME= `# Mariadb DB user.` \
@@ -18,6 +19,6 @@ docker run -d \
   -e APP_DISABLE_SIGNUP=true `# optional` `# Set to `false` to enable new account sign-ups.` \
   -p 80:80 `# http gui` \
   -p 443:443 `# https gui` \
-  -v ${BASEDIR:-/volume1/docker}/monica/config:/config `# Persistent config files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/monica/config:/config `# Persistent config files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/monica

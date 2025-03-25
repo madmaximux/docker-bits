@@ -6,7 +6,8 @@ docker run -d \
   --name=doplarr \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e DISCORD__TOKEN= `# Specify your discord bot token.` \
   -e OVERSEERR__API= `# Specify your Overseerr API key. Leave blank if using Radarr/Sonarr.` \
   -e OVERSEERR__URL=http://localhost:5055 `# Specify your Overseerr URL. Leave blank if using Radarr/Sonarr.` \
@@ -26,6 +27,6 @@ docker run -d \
   -e LOG_LEVEL=:info `# optional` `# The log level for the logging backend. This can be changed for debugging purposes. One of trace `:debug` `:info` `:warn` `:error` `:fatal` `:report`` \
   -e JAVA_OPTS= `# optional` `# For passing additional java options.` \
   -p 80:80 `# Application WebUI` \
-  -v ${BASEDIR:-/volume1/docker}/doplarr/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doplarr/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/doplarr

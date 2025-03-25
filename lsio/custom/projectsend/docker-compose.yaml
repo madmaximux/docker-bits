@@ -1,27 +1,34 @@
+
 # [Projectsend](http://www.projectsend.org) is a self-hosted application that
 # lets you upload files and assign them to specific clients that you create
 # yourself. Secure, private and easy. No more depending on external services or
 # e-mail to send those files.
 
 ---
-version: "2.1"
+
 services:
   projectsend:
     image: ghcr.io/linuxserver/projectsend
     container_name: projectsend
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/projectsend/config:/config
-      # Where to store files to share.
-      - ${BASEDIR:-/volume1/docker}/projectsend/data:/data
-    ports:
-      # WebUI
-      - 80:80
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/projectsend:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/projectsend/data:/data
+    # ports:
+      # - 80:80 # WebUI
+    networks:
+      default:
+        aliases:
+          - projectsend
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

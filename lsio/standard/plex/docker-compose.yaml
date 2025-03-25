@@ -15,7 +15,9 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      # for UMASK
+      - UMASK=${UMASK:-002}
+      # for timezone
       - TZ=${TZ:-America/Chicago}
       # Set whether to update plex or not - see Application Setup section.
       - VERSION=docker
@@ -29,6 +31,4 @@ services:
       # Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc.
       - ${BASEDIR:-/volume1/docker}/plex/movies:/movies
     ports:
-      # Plex WebUI
-      - 32400:32400
     restart: unless-stopped

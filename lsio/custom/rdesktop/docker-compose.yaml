@@ -1,32 +1,39 @@
+
 # [Rdesktop](http://xrdp.org/) - Containers containing full desktop environments
 # in many popular flavors for Alpine, Ubuntu, Arch, and Fedora accessible via
 # RDP.
 
 ---
-version: "2.1"
+
 services:
   rdesktop:
     image: ghcr.io/linuxserver/rdesktop
     container_name: rdesktop
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Configuration files.
-      - ${BASEDIR:-/volume1/docker}/rdesktop/config:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
       # Docker Socket on the system, if you want to use Docker in the container
-      - /var/run/docker.sock:/var/run/docker.sock # optional
-      # abc users home directory
-      - ${BASEDIR:-/volume1/docker}/rdesktop/config:/config # optional
-    ports:
-      # RDP access port
-      - 3389:3389
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
+    # ports:
+      # - 3389:3389 # RDP access port
+    networks:
+      default:
+        aliases:
+          - rdesktop
     devices:
       # Add this for GL support (Linux hosts only)
       - /dev/dri:/dev/dri # optional
     shm_size: "1gb" # optional
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

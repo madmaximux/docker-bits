@@ -1,27 +1,34 @@
+
 # [GIMP](https://www.gimp.org/) is a free and open-source raster graphics editor
 # used for image manipulation (retouching) and image editing, free-form drawing,
 # transcoding between different image file formats, and more specialized tasks.
 # It is extensible by means of plugins, and scriptable.
 
 ---
-version: "2.1"
+
 services:
   gimp:
     image: ghcr.io/linuxserver/gimp
     container_name: gimp
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/gimp/config:/config
-    ports:
-      # GIMP desktop gui.
-      - 3000:3000
-      # GIMP desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/gimp:/config
+    # ports:
+      # - 3000:3000 # GIMP desktop gui.
+      # - 3001:3001 # GIMP desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - gimp
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

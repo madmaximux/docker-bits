@@ -7,7 +7,8 @@ docker run -d \
   --name=librespeed \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e PASSWORD=PASSWORD `# Set the password for the results database.` \
   -e CUSTOM_RESULTS=false `# optional` `# (optional) set to `true` to enable custom results page in `/config/www/results/index.php`.` \
   -e DB_TYPE=sqlite `# optional` `# Defaults to `sqlite`, can also be set to `mysql` or `postgresql`.` \
@@ -18,6 +19,6 @@ docker run -d \
   -e DB_PORT=DB_PORT `# optional` `# Database port. Required for mysql.` \
   -e IPINFO_APIKEY=ACCESS_TOKEN `# optional` `# Access token from ipinfo.io. Required for detailed IP information.` \
   -p 80:80 `# web gui` \
-  -v ${BASEDIR:-/volume1/docker}/librespeed/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/librespeed/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/librespeed

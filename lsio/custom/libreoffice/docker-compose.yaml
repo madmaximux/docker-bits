@@ -1,27 +1,34 @@
+
 # [LibreOffice](https://www.libreoffice.org/) is a free and powerful office
 # suite, and a successor to OpenOffice.org (commonly known as OpenOffice). Its
 # clean interface and feature-rich tools help you unleash your creativity and
 # enhance your productivity.
 
 ---
-version: "2.1"
+
 services:
   libreoffice:
     image: ghcr.io/linuxserver/libreoffice
     container_name: libreoffice
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores program settings and documents
-      - ${BASEDIR:-/volume1/docker}/libreoffice/config:/config
-    ports:
-      # LibreOffice desktop gui.
-      - 3000:3000
-      # LibreOffice desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/libreoffice:/config
+    # ports:
+      # - 3000:3000 # LibreOffice desktop gui.
+      # - 3001:3001 # LibreOffice desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - libreoffice
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

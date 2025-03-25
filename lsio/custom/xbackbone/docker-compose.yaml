@@ -1,3 +1,4 @@
+
 # [Xbackbone](https://github.com/SergiX44/XBackBone) is a simple, self-hosted,
 # lightweight PHP file manager that support the instant sharing tool ShareX and
 # *NIX systems. It supports uploading and displaying images, GIF, video, code,
@@ -5,24 +6,30 @@
 # multi user management, past uploads history and search support.
 
 ---
-version: "2.1"
+
 services:
   xbackbone:
     image: ghcr.io/linuxserver/xbackbone
     container_name: xbackbone
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/xbackbone/config:/config
-    ports:
-      # http gui
-      - 80:80
-      # https gui
-      - 443:443
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/xbackbone:/config
+    # ports:
+      # - 80:80 # http gui
+      # - 443:443 # https gui
+    networks:
+      default:
+        aliases:
+          - xbackbone
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

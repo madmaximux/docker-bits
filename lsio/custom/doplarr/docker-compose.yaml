@@ -1,59 +1,49 @@
+
 # [Doplarr](https://github.com/kiranshila/Doplarr) is an *arr request bot for
 # Discord.'
 
 ---
-version: "2.1"
+
 services:
   doplarr:
     image: ghcr.io/linuxserver/doplarr
     container_name: doplarr
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify your discord bot token.
       - DISCORD__TOKEN=
-      # Specify your Overseerr API key. Leave blank if using Radarr/Sonarr.
       - OVERSEERR__API=
-      # Specify your Overseerr URL. Leave blank if using Radarr/Sonarr.
       - OVERSEERR__URL=http://localhost:5055
-      # Specify your Radarr API key. Leave blank if using Overseerr.
       - RADARR__API=
-      # Specify your Radarr URL. Leave blank if using Overseerr.
       - RADARR__URL=http://localhost:7878
-      # Specify your Sonarr API key. Leave blank if using Overseerr.
       - SONARR__API=
-      # Specify your Sonarr URL. Leave blank if using Overseerr.
       - SONARR__URL=http://localhost:8989
-      # Sets the maximum size of the search results selection
-      - DISCORD__MAX_RESULTS=25 # optional
-      # Sets the style of the request alert message. One of `:plain` `:embed` `:none`
-      - DISCORD__REQUESTED_MSG_STYLE=:plain # optional
-      # The name of the quality profile to use by default for Sonarr
-      - SONARR__QUALITY_PROFILE= # optional
-      # The name of the quality profile to use by default for Radarr
-      - RADARR__QUALITY_PROFILE= # optional
-      # The root folder to use by default for Sonarr
-      - SONARR__ROOTFOLDER= # optional
-      # The root folder to use by default for Radarr
-      - RADARR__ROOTFOLDER= # optional
-      # The name of the language profile to use by default for Sonarr
-      - SONARR__LANGUAGE_PROFILE= # optional
-      # The Overseerr user id to use by default if there is no associated discord account for the requester
-      - OVERSEERR__DEFAULT_ID= # optional
-      # Sets whether users can request partial seasons.
-      - PARTIAL_SEASONS=true # optional
-      # The log level for the logging backend. This can be changed for debugging purposes. One of trace `:debug` `:info` `:warn` `:error` `:fatal` `:report`
-      - LOG_LEVEL=:info # optional
-      # For passing additional java options.
-      - JAVA_OPTS= # optional
+      # - DISCORD__MAX_RESULTS=25 # optional
+      # - DISCORD__REQUESTED_MSG_STYLE=:plain # optional
+      # - SONARR__QUALITY_PROFILE= # optional
+      # - RADARR__QUALITY_PROFILE= # optional
+      # - SONARR__ROOTFOLDER= # optional
+      # - RADARR__ROOTFOLDER= # optional
+      # - SONARR__LANGUAGE_PROFILE= # optional
+      # - OVERSEERR__DEFAULT_ID= # optional
+      # - PARTIAL_SEASONS=true # optional
+      # - LOG_LEVEL=:info # optional
+      # - JAVA_OPTS= # optional
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/doplarr/config:/config
-    ports:
-      # Application WebUI
-      - 80:80
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doplarr:/config
+    # ports:
+      # - 80:80 # Application WebUI
+    networks:
+      default:
+        aliases:
+          - doplarr
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

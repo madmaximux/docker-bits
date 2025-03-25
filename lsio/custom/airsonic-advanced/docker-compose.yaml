@@ -1,3 +1,4 @@
+
 # [Airsonic-advanced](https://github.com/kagemomiji/airsonic-advanced) is a
 # free, web-based media streamer, providing ubiquitious access to your music.
 # Use it to share your music with friends, or to listen to your own music while
@@ -5,37 +6,38 @@
 # one player in your kitchen and another in your living room.
 
 ---
-version: "2.1"
+
 services:
   airsonic-advanced:
     image: ghcr.io/linuxserver/airsonic-advanced
     container_name: airsonic-advanced
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # For setting url-base in reverse proxy setups.
-      - CONTEXT_PATH= # optional
-      # For passing additional java options.
-      - JAVA_OPTS= # optional
+      # - CONTEXT_PATH= # optional
+      # - JAVA_OPTS= # optional
     volumes:
-      # Configuration file location.
-      - ${BASEDIR:-/volume1/docker}/airsonic-advanced/config:/config
-      # Location of music.
-      - ${BASEDIR:-/volume1/docker}/airsonic-advanced/music:/music
-      # Location for playlists to be saved to.
-      - ${BASEDIR:-/volume1/docker}/airsonic-advanced/playlists:/playlists
-      # Location of podcasts.
-      - ${BASEDIR:-/volume1/docker}/airsonic-advanced/podcasts:/podcasts
-      # Location of other media.
-      - ${BASEDIR:-/volume1/docker}/airsonic-advanced/media:/media # optional
-    ports:
-      # WebUI
-      - 4040:4040
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/playlists:/playlists
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/podcasts:/podcasts
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/media:/media
+    # ports:
+      # - 4040:4040 # WebUI
+    networks:
+      default:
+        aliases:
+          - airsonic-advanced
     devices:
       # Only needed to pass your host sound device to Airsonic's Java jukebox player.
       - /dev/snd:/dev/snd # optional
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

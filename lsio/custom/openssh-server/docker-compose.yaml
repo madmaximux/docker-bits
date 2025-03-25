@@ -1,3 +1,4 @@
+
 # [Openssh-server](https://www.openssh.com/) is a sandboxed environment that
 # allows ssh access without giving keys to the entire server. Giving ssh access
 # via private key often means giving full access to the server. This container
@@ -6,44 +7,39 @@
 # this container.
 
 ---
-version: "2.1"
+
 services:
   openssh-server:
     image: ghcr.io/linuxserver/openssh-server
     container_name: openssh-server
-    # Optionally the hostname can be defined.
-    hostname: {{ project_name }} # optional
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Optional ssh public key, which will automatically be added to authorized_keys.
-      - PUBLIC_KEY=yourpublickey # optional
-      # Optionally specify a file containing the public key (works with docker secrets).
-      - PUBLIC_KEY_FILE=/path/to/file # optional
-      # Optionally specify a directory containing the public keys (works with docker secrets).
-      - PUBLIC_KEY_DIR=/path/to/directory/containing/_only_/pubkeys # optional
-      # Optionally specify a URL containing the public key.
-      - PUBLIC_KEY_URL=https://github.com/username.keys # optional
-      # Set to `true` to allow `linuxserver.io`, the ssh user, sudo access. Without `USER_PASSWORD` set, this will allow passwordless sudo access.
-      - SUDO_ACCESS=false # optional
-      # Set to `true` to allow user/password ssh access. You will want to set `USER_PASSWORD` or `USER_PASSWORD_FILE` as well.
-      - PASSWORD_ACCESS=false # optional
-      # Optionally set a sudo password for `linuxserver.io`, the ssh user. If this or `USER_PASSWORD_FILE` are not set but `SUDO_ACCESS` is set to true, the user will have passwordless sudo access.
-      - USER_PASSWORD=password # optional
-      # Optionally specify a file that contains the password. This setting supersedes the `USER_PASSWORD` option (works with docker secrets).
-      - USER_PASSWORD_FILE=/path/to/file # optional
-      # Optionally specify a user name (Default:`linuxserver.io`)
-      - USER_NAME=linuxserver.io # optional
-      # Set to `true` to log to stdout instead of file.
-      - LOG_STDOUT= # optional
+      # - PUBLIC_KEY=yourpublickey # optional
+      # - PUBLIC_KEY_FILE=/path/to/file # optional
+      # - PUBLIC_KEY_DIR=/path/to/directory/containing/_only_/pubkeys # optional
+      # - PUBLIC_KEY_URL=https://github.com/username.keys # optional
+      # - SUDO_ACCESS=false # optional
+      # - PASSWORD_ACCESS=false # optional
+      # - USER_PASSWORD=password # optional
+      # - USER_PASSWORD_FILE=/path/to/file # optional
+      # - USER_NAME=linuxserver.io # optional
+      # - LOG_STDOUT= # optional
     volumes:
-      # Contains all relevant configuration files.
-      - ${BASEDIR:-/volume1/docker}/openssh-server/config:/config
-    ports:
-      # ssh port
-      - 2222:2222
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openssh-server:/config
+    # ports:
+      # - 2222:2222 # ssh port
+    networks:
+      default:
+        aliases:
+          - openssh-server
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

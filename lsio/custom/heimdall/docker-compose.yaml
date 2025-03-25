@@ -1,27 +1,34 @@
+
 # [Heimdall](https://heimdall.site) is a way to organise all those links to your
 # most used web sites and web applications in a simple way. Simplicity is the
 # key to Heimdall. Why not use it as your browser start page? It even has the
 # ability to include a search bar using either Google, Bing or DuckDuckGo.
 
 ---
-version: "2.1"
+
 services:
   heimdall:
     image: ghcr.io/linuxserver/heimdall
     container_name: heimdall
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/heimdall/config:/config
-    ports:
-      # http gui
-      - 80:80
-      # https gui
-      - 443:443
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/heimdall:/config
+    # ports:
+      # - 80:80 # http gui
+      # - 443:443 # https gui
+    networks:
+      default:
+        aliases:
+          - heimdall
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

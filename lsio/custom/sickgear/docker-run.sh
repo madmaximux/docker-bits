@@ -8,10 +8,11 @@ docker run -d \
   --name=sickgear \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -p 8081:8081 `# will map the container's port 8081 to port 8081 on the host` \
-  -v ${BASEDIR:-/volume1/docker}/sickgear/config:/config `# Persistent configuration files.` \
-  -v ${BASEDIR:-/volume1/docker}/sickgear/tv:/tv `# where you store your tv shows` \
-  -v ${BASEDIR:-/volume1/docker}/sickgear/downloads:/downloads `# your downloads folder for post processing (must not be download in progress)` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickgear/config:/config `# Persistent configuration files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickgear/tv:/tv `# where you store your tv shows` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickgear/downloads:/downloads `# your downloads folder for post processing (must not be download in progress)` \
   --restart unless-stopped \
   ghcr.io/linuxserver/sickgear

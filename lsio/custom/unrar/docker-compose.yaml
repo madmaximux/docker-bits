@@ -1,21 +1,28 @@
+
 # This container needs special attention. Please check https://hub.docker.com/r/linuxserver/unrar for details.
 ---
-version: "2.1"
+
 services:
   unrar:
     image: ghcr.io/linuxserver/unrar
     container_name: unrar
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Configuration files.
-      - ${BASEDIR:-/volume1/docker}/unrar/config:/config
-    ports:
-      # Plex WebUI
-      - 32400:32400
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/unrar:/config
+    # ports:
+    networks:
+      default:
+        aliases:
+          - unrar
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

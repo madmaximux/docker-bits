@@ -7,7 +7,8 @@ docker run -d \
   --name=mastodon \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e LOCAL_DOMAIN=example.com `# This is the unique identifier of your server in the network. It cannot be safely changed later.` \
   -e REDIS_HOST=redis `# Redis server hostname` \
   -e REDIS_PORT=6379 `# Redis port` \
@@ -47,6 +48,6 @@ docker run -d \
   -e NO_CHOWN= `# optional` `# Set to `true` to skip chown of /config on init. *READ THE APPLICATION NOTES BEFORE SETTING THIS*.` \
   -p 80:80 `# Port for web frontend` \
   -p 443:443 `# Port for web frontend` \
-  -v ${BASEDIR:-/volume1/docker}/mastodon/config:/config `# Contains all relevant configuration files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mastodon/config:/config `# Contains all relevant configuration files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/mastodon

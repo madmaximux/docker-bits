@@ -1,3 +1,4 @@
+
 # [Kimai](https://kimai.org/) is a professional grade time-tracking application,
 # free and open-source. It handles use-cases of freelancers as well as companies
 # with dozens or hundreds of users. Kimai was build to track your project times
@@ -12,26 +13,31 @@
 # more.
 
 ---
-version: "2.1"
+
 services:
   kimai:
     image: ghcr.io/linuxserver/kimai
     container_name: kimai
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Configure your database connection, see Application Setup instructions.
       - DATABASE_URL=mysql://your_db_user:your_db_pass@your_db_host:3306/your_db_name?charset=your_db_charset&serverVersion=your_db_version
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/kimai/config:/config
-    ports:
-      # http gui
-      - 80:80
-      # https gui
-      - 443:443
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kimai:/config
+    # ports:
+      # - 80:80 # http gui
+      # - 443:443 # https gui
+    networks:
+      default:
+        aliases:
+          - kimai
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

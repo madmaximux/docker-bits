@@ -1,3 +1,4 @@
+
 # [Calibre-web](https://github.com/janeczku/calibre-web) is a web app providing
 # a clean interface for browsing, reading and downloading eBooks using an
 # existing Calibre database. It is also possible to integrate google drive and
@@ -5,28 +6,32 @@
 # is a fork of library and licensed under the GPL v3 License.
 
 ---
-version: "2.1"
+
 services:
   calibre-web:
     image: ghcr.io/linuxserver/calibre-web
     container_name: calibre-web
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # #optional & **x86-64 only** Adds the ability to perform ebook conversion
-      - DOCKER_MODS=linuxserver/mods:universal-calibre # optional
-      # Optionally set this to allow Google OAUTH to work
-      - OAUTHLIB_RELAX_TOKEN_SCOPE=1 # optional
+      # - DOCKER_MODS=linuxserver/mods:universal-calibre # optional
+      # - OAUTHLIB_RELAX_TOKEN_SCOPE=1 # optional
     volumes:
-      # Where calibre-web stores the internal database and config.
-      - ${BASEDIR:-/volume1/docker}/calibre-web/config:/config
-      # Where your preexisting calibre database is located.
-      - ${BASEDIR:-/volume1/docker}/calibre-web/books:/books
-    ports:
-      # WebUI
-      - 8083:8083
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre-web:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre-web/books:/books
+    # ports:
+      # - 8083:8083 # WebUI
+    networks:
+      default:
+        aliases:
+          - calibre-web
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

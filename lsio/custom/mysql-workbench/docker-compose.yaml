@@ -1,10 +1,11 @@
+
 # [MySQL Workbench](https://www.mysql.com/products/workbench/) is a unified
 # visual tool for database architects, developers, and DBAs. MySQL Workbench
 # provides data modeling, SQL development, and comprehensive administration
 # tools for server configuration, user administration, backup, and much more.
 
 ---
-version: "2.1"
+
 services:
   mysql-workbench:
     image: ghcr.io/linuxserver/mysql-workbench
@@ -12,18 +13,24 @@ services:
     cap_add:
       - IPC_LOCK
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores program settings.
-      - ${BASEDIR:-/volume1/docker}/mysql-workbench/config:/config
-    ports:
-      # Mysql Workbench desktop gui.
-      - 3000:3000
-      # Mysql Workbench desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mysql-workbench:/config
+    # ports:
+      # - 3000:3000 # Mysql Workbench desktop gui.
+      # - 3001:3001 # Mysql Workbench desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - mysql-workbench
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

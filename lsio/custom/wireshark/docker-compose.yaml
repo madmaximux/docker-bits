@@ -1,3 +1,4 @@
+
 # [Wireshark](https://www.wireshark.org/) is the world’s foremost and widely-
 # used network protocol analyzer. It lets you see what’s happening on your
 # network at a microscopic level and is the de facto (and often de jure)
@@ -7,29 +8,33 @@
 # the continuation of a project started by Gerald Combs in 1998.
 
 ---
-version: "2.1"
+
 services:
   wireshark:
     image: ghcr.io/linuxserver/wireshark
     container_name: wireshark
     cap_add:
       - NET_ADMIN
-    network_mode: host
+    # network_mode: host
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores program settings and potentially dump files.
-      - ${BASEDIR:-/volume1/docker}/wireshark/config:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireshark:/config
     ports:
-      # Plex WebUI
-      - 32400:32400
-      # WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic.
-      - 3000:3000 # optional
-      # WireShark desktop gui HTTPS, only use this if you are not using host mode and sniffing Docker network traffic.
-      - 3001:3001 # optional
+      # - 3000:3000 # WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic. # optional
+      # - 3001:3001 # WireShark desktop gui HTTPS, only use this if you are not using host mode and sniffing Docker network traffic. # optional
+    networks:
+      default:
+        aliases:
+          - wireshark
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

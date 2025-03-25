@@ -1,26 +1,33 @@
+
 # [Babybuddy](https://github.com/babybuddy/babybuddy) is a buddy for babies!
 # Helps caregivers track sleep, feedings, diaper changes, tummy time and more to
 # learn about and predict baby's needs without (as much) guess work.
 
 ---
-version: "2.1"
+
 services:
   babybuddy:
     image: ghcr.io/linuxserver/babybuddy
     container_name: babybuddy
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Add any address you'd like to access babybuddy at (comma separated, no spaces)
       - CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/babybuddy/config:/config
-    ports:
-      # the port for the web ui
-      - 8000:8000
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/babybuddy:/config
+    # ports:
+      # - 8000:8000 # the port for the web ui
+    networks:
+      default:
+        aliases:
+          - babybuddy
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

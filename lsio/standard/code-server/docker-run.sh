@@ -11,7 +11,8 @@ docker run -d \
   --name=code-server \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e PASSWORD=password `# optional` `# Optional web gui password, if `PASSWORD` or `HASHED_PASSWORD` is not provided, there will be no auth.` \
   -e HASHED_PASSWORD= `# optional` `# Optional web gui password, overrides `PASSWORD`, instructions on how to create it is below.` \
   -e SUDO_PASSWORD=password `# optional` `# If this optional variable is set, user will have sudo access in the code-server terminal with the specified password.` \

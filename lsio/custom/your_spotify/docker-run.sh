@@ -9,7 +9,8 @@ docker run -d \
   --name=your_spotify \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e APP_URL=http://localhost `# The protocol and hostname where the app will be accessed.` \
   -e SPOTIFY_PUBLIC= `# Your Spotify application client ID.` \
   -e SPOTIFY_SECRET= `# Your Spotify application secret.` \
@@ -17,6 +18,6 @@ docker run -d \
   -e MONGO_ENDPOINT=mongodb://mongo:27017/your_spotify `# Set mongodb endpoint address/port.` \
   -p 80:80 `# your_spotify HTTP webui` \
   -p 443:443 `# your_spotify HTTPS webui` \
-  -v ${BASEDIR:-/volume1/docker}/your_spotify/config:/config `# Configuration files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/your_spotify/config:/config `# Configuration files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/your_spotify

@@ -1,3 +1,4 @@
+
 # [Your_spotify](https://github.com/Yooooomi/your_spotify) is a self-hosted
 # application that tracks what you listen and offers you a dashboard to explore
 # statistics about it! It's composed of a web server which polls the Spotify API
@@ -5,34 +6,35 @@
 # statistics.
 
 ---
-version: "2.1"
+
 services:
   your_spotify:
     image: ghcr.io/linuxserver/your_spotify
     container_name: your_spotify
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # The protocol and hostname where the app will be accessed.
       - APP_URL=http://localhost
-      # Your Spotify application client ID.
       - SPOTIFY_PUBLIC=
-      # Your Spotify application secret.
       - SPOTIFY_SECRET=
-      # Allowed CORS sources, set to `all` to allow any source.
       - CORS=http://localhost:80,https://localhost:443
-      # Set mongodb endpoint address/port.
       - MONGO_ENDPOINT=mongodb://mongo:27017/your_spotify
     volumes:
-      # Configuration files.
-      - ${BASEDIR:-/volume1/docker}/your_spotify/config:/config
-    ports:
-      # your_spotify HTTP webui
-      - 80:80
-      # your_spotify HTTPS webui
-      - 443:443
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/your_spotify:/config
+    # ports:
+      # - 80:80 # your_spotify HTTP webui
+      # - 443:443 # your_spotify HTTPS webui
+    networks:
+      default:
+        aliases:
+          - your_spotify
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

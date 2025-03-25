@@ -9,11 +9,12 @@ docker run -d \
   --name=resilio-sync \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -p 8888:8888 `# WebUI` \
   -p 55555:55555 `# Sync Port.` \
-  -v ${BASEDIR:-/volume1/docker}/resilio-sync/config:/config `# Where resilio-sync should store its config file.` \
-  -v ${BASEDIR:-/volume1/docker}/resilio-sync/downloads:/downloads `# Folder for downloads/cache.` \
-  -v ${BASEDIR:-/volume1/docker}/resilio-sync/sync:/sync `# Sync folders root.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/resilio-sync/config:/config `# Where resilio-sync should store its config file.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/resilio-sync/downloads:/downloads `# Folder for downloads/cache.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/resilio-sync/sync:/sync `# Sync folders root.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/resilio-sync

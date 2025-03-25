@@ -1,100 +1,70 @@
+
 # [Mastodon](https://github.com/mastodon/mastodon/) is a free, open-source
 # social network server based on ActivityPub where users can follow friends and
 # discover new ones..
 
 ---
-version: "2.1"
+
 services:
   mastodon:
     image: ghcr.io/linuxserver/mastodon
     container_name: mastodon
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # This is the unique identifier of your server in the network. It cannot be safely changed later.
       - LOCAL_DOMAIN=example.com
-      # Redis server hostname
       - REDIS_HOST=redis
-      # Redis port
       - REDIS_PORT=6379
-      # Postgres database hostname
       - DB_HOST=db
-      # Postgres username
       - DB_USER=mastodon
-      # Postgres db name
       - DB_NAME=mastodon
-      # Postgres password
       - DB_PASS=mastodon
-      # Postgres port
       - DB_PORT=5432
-      # Enable or disable Elasticsearch (requires a separate ES instance)
       - ES_ENABLED=false
-      # Primary key for [Active Record Encryption](https://github.com/mastodon/mastodon/pull/29831/files).
       - ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY=
-      # Deterministic key for [Active Record Encryption](https://github.com/mastodon/mastodon/pull/29831/files).
       - ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY=
-      # Derivation salt for [Active Record Encryption](https://github.com/mastodon/mastodon/pull/29831/files).
       - ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT=
-      # Browser session secret. Changing it will break all active browser sessions.
       - SECRET_KEY_BASE=
-      # MFA secret. Changing it after initial setup will break two-factor authentication.
       - OTP_SECRET=
-      # Push notification private key. Changing it after initial setup will break push notifications.
       - VAPID_PRIVATE_KEY=
-      # Push notification public key. Changing it after initial setup will break push notifications.
       - VAPID_PUBLIC_KEY=
-      # SMTP server for email notifications
       - SMTP_SERVER=mail.example.com
-      # SMTP server port
       - SMTP_PORT=25
-      # SMTP username
       - SMTP_LOGIN=
-      # SMTP password
       - SMTP_PASSWORD=
-      # From address for emails send from Mastodon
       - SMTP_FROM_ADDRESS=notifications@example.com
-      # Enable or disable S3 storage of uploaded files
       - S3_ENABLED=false
-      # This can be set if you want your server identifier to be different to the subdomain hosting Mastodon. See [https://docs.joinmastodon.org/admin/config/#basic](https://docs.joinmastodon.org/admin/config/#basic)
-      - WEB_DOMAIN=mastodon.example.com # optional
-      # Elasticsearch server hostname
-      - ES_HOST=es # optional
-      # Elasticsearch port
-      - ES_PORT=9200 # optional
-      # Elasticsearch username
-      - ES_USER=elastic # optional
-      # Elasticsearch password
-      - ES_PASS=elastic # optional
-      # S3 bucket hostname
-      - S3_BUCKET= # optional
-      # S3 bucket access key ID
-      - AWS_ACCESS_KEY_ID= # optional
-      # S3 bucket secret access key
-      - AWS_SECRET_ACCESS_KEY= # optional
-      # Alternate hostname for object fetching if you are front the S3 connections.
-      - S3_ALIAS_HOST= # optional
-      # Only run the sidekiq service in this container instance. For large scale instances that need better queue handling.
-      - SIDEKIQ_ONLY=false # optional
-      # The name of the sidekiq queue to run in this container. See [notes](https://docs.joinmastodon.org/admin/scaling/#sidekiq-queues).
-      - SIDEKIQ_QUEUE= # optional
-      # Set to `true` on the main container if you're running additional sidekiq instances. It will run the `default` queue.
-      - SIDEKIQ_DEFAULT=false # optional
-      # The number of threads for sidekiq to use. See [notes](https://docs.joinmastodon.org/admin/scaling/#sidekiq-threads).
-      - SIDEKIQ_THREADS=5 # optional
-      # The size of the DB connection pool, must be *at least* the same as `SIDEKIQ_THREADS`. See [notes](https://docs.joinmastodon.org/admin/scaling/#sidekiq-threads).
-      - DB_POOL=5 # optional
-      # Set to `true` to skip chown of /config on init. *READ THE APPLICATION NOTES BEFORE SETTING THIS*.
-      - NO_CHOWN= # optional
+      # - WEB_DOMAIN=mastodon.example.com # optional
+      # - ES_HOST=es # optional
+      # - ES_PORT=9200 # optional
+      # - ES_USER=elastic # optional
+      # - ES_PASS=elastic # optional
+      # - S3_BUCKET= # optional
+      # - AWS_ACCESS_KEY_ID= # optional
+      # - AWS_SECRET_ACCESS_KEY= # optional
+      # - S3_ALIAS_HOST= # optional
+      # - SIDEKIQ_ONLY=false # optional
+      # - SIDEKIQ_QUEUE= # optional
+      # - SIDEKIQ_DEFAULT=false # optional
+      # - SIDEKIQ_THREADS=5 # optional
+      # - DB_POOL=5 # optional
+      # - NO_CHOWN= # optional
     volumes:
-      # Contains all relevant configuration files.
-      - ${BASEDIR:-/volume1/docker}/mastodon/config:/config
-    ports:
-      # Port for web frontend
-      - 80:80
-      # Port for web frontend
-      - 443:443
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mastodon:/config
+    # ports:
+      # - 80:80 # Port for web frontend
+      # - 443:443 # Port for web frontend
+    networks:
+      default:
+        aliases:
+          - mastodon
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

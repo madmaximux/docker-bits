@@ -1,3 +1,4 @@
+
 # [HedgeDoc](https://hedgedoc.org/) gives you access to all your files wherever
 # you are. HedgeDoc is a real-time, multi-platform collaborative markdown note
 # editor. This means that you can write notes with other people on your desktop,
@@ -5,44 +6,40 @@
 # Facebook, Twitter, GitHub and many more on the homepage.
 
 ---
-version: "2.1"
+
 services:
   hedgedoc:
     image: ghcr.io/linuxserver/hedgedoc
     container_name: hedgedoc
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Host address of mariadb database
       - DB_HOST=<hostname or ip>
-      # Port to access mariadb database default is 3306
       - DB_PORT=3306
-      # Database user
       - DB_USER=hedgedoc
-      # Database password
       - DB_PASS=<secret password>
-      # Database name
       - DB_NAME=hedgedoc
-      # The address the gui will be accessed at (ie. `192.168.1.1` or `hedgedoc.domain.com`).
       - CMD_DOMAIN=localhost
-      # Set to `true` if using a port other than `80` or `443`.
-      - CMD_URL_ADDPORT=false # optional
-      # Set to `true` if accessing over https via reverse proxy.
-      - CMD_PROTOCOL_USESSL=false # optional
-      # If you wish to access hedgedoc at a port different than 80, 443 or 3000, you need to set this to that port (ie. `CMD_PORT=5000`) and change the port mapping accordingly (5000:5000).
-      - CMD_PORT=3000 # optional
-      # Comma-separated list of allowed hostnames
-      - CMD_ALLOW_ORIGIN=['localhost'] # optional
-      # This variable allows selecting a database engine (if DB_HOST not set up). Available options are: `mariadb`, `mysql`, `postgres`, `sqlite`.
-      - CMD_DB_DIALECT= # optional
+      # - CMD_URL_ADDPORT=false # optional
+      # - CMD_PROTOCOL_USESSL=false # optional
+      # - CMD_PORT=3000 # optional
+      # - CMD_ALLOW_ORIGIN=['localhost'] # optional
+      # - CMD_DB_DIALECT= # optional
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/hedgedoc/config:/config
-    ports:
-      # Web gui port (internal port also needs to be changed if accessing at port other than 80, 443 and 3000).
-      - 3000:3000
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/hedgedoc:/config
+    # ports:
+      # - 3000:3000 # Web gui port (internal port also needs to be changed if accessing at port other than 80, 443 and 3000).
+    networks:
+      default:
+        aliases:
+          - hedgedoc
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

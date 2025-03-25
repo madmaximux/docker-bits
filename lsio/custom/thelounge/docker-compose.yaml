@@ -1,23 +1,31 @@
+
 # [Thelounge](https://thelounge.github.io/) (a fork of shoutIRC) is a web IRC
 # client that you host on your own server.
 
 ---
-version: "2.1"
+
 services:
   thelounge:
     image: ghcr.io/linuxserver/thelounge
     container_name: thelounge
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/thelounge/config:/config
-    ports:
-      # Application WebUI
-      - 9000:9000
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/thelounge:/config
+    # ports:
+      # - 9000:9000 # Application WebUI
+    networks:
+      default:
+        aliases:
+          - thelounge
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

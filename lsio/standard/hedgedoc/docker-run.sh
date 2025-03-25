@@ -9,7 +9,8 @@ docker run -d \
   --name=hedgedoc \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e DB_HOST=<hostname or ip> `# Host address of mariadb database` \
   -e DB_PORT=3306 `# Port to access mariadb database default is 3306` \
   -e DB_USER=hedgedoc `# Database user` \

@@ -1,36 +1,41 @@
+
 # [Webtop](https://github.com/linuxserver/docker-webtop) - Alpine, Ubuntu,
 # Fedora, and Arch based containers containing full desktop environments in
 # officially supported flavors accessible via any modern web browser.
 
 ---
-version: "2.1"
+
 services:
   webtop:
     image: ghcr.io/linuxserver/webtop
     container_name: webtop
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify a subfolder to use with reverse proxies, IE `/subfolder/`
-      - SUBFOLDER=/ # optional
-      # String which will be used as page/tab title in the web browser.
-      - TITLE=Webtop # optional
+      # - SUBFOLDER=/ # optional
+      # - TITLE=Webtop # optional
     volumes:
-      # abc users home directory
-      - ${BASEDIR:-/volume1/docker}/webtop/config:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webtop:/config
       # Docker Socket on the system, if you want to use Docker in the container
-      - /var/run/docker.sock:/var/run/docker.sock # optional
-    ports:
-      # Web Desktop GUI
-      - 3000:3000
-      # Web Desktop GUI HTTPS
-      - 3001:3001
+      - /var/run/docker.sock:/var/run/docker.sock
+    # ports:
+      # - 3000:3000 # Web Desktop GUI
+      # - 3001:3001 # Web Desktop GUI HTTPS
+    networks:
+      default:
+        aliases:
+          - webtop
     devices:
       # Add this for GL support (Linux hosts only)
       - /dev/dri:/dev/dri # optional
     shm_size: "1gb" # optional
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

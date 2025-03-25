@@ -8,7 +8,8 @@ docker run -d \
   --name=snipe-it \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e APP_KEY= `# App key used for encrypting stored data. Generate with `docker exec snipe-it php /app/www/artisan key:generate --show`.` \
   -e APP_URL=http://localhost:8080 `# Hostname or IP and port if applicable, be sure to define https/http` \
   -e MYSQL_PORT_3306_TCP_ADDR= `# Mysql hostname or IP to use` \
@@ -28,6 +29,6 @@ docker run -d \
   -e MAIL_ENV_USERNAME= `# optional` `# SMTP server login username.` \
   -e MAIL_ENV_PASSWORD= `# optional` `# SMTP server login password.` \
   -p 8080:80 `# Snipe-IT Web UI` \
-  -v ${BASEDIR:-/volume1/docker}/snipe-it/config:/config `# Contains your config files and data storage for Snipe-IT` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/snipe-it/config:/config `# Contains your config files and data storage for Snipe-IT` \
   --restart unless-stopped \
   ghcr.io/linuxserver/snipe-it

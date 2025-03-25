@@ -1,3 +1,4 @@
+
 # [Davos](https://github.com/linuxserver/davos) is an FTP automation tool that
 # periodically scans given host locations for new files. It can be configured
 # for various purposes, including listening for specific files to appear in the
@@ -6,24 +7,30 @@
 # the workflow.
 
 ---
-version: "2.1"
+
 services:
   davos:
     image: ghcr.io/linuxserver/davos
     container_name: davos
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # davos's config location. This is where it stores its database file and logs.
-      - ${BASEDIR:-/volume1/docker}/davos/config:/config
-      # davos's file download location
-      - ${BASEDIR:-/volume1/docker}/davos/download:/download
-    ports:
-      # This is the default port that davos runs under
-      - 8080:8080
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos/download:/download
+    # ports:
+      # - 8080:8080 # This is the default port that davos runs under
+    networks:
+      default:
+        aliases:
+          - davos
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

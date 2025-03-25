@@ -1,25 +1,32 @@
+
 # [Nginx](https://nginx.org/) is a simple webserver with php support. The config
 # files reside in `/config` for easy user customization.
 
 ---
-version: "2.1"
+
 services:
   nginx:
     image: ghcr.io/linuxserver/nginx
     container_name: nginx
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/nginx/config:/config
-    ports:
-      # http
-      - 80:80
-      # https
-      - 443:443
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nginx:/config
+    # ports:
+      # - 80:80 # http
+      # - 443:443 # https
+    networks:
+      default:
+        aliases:
+          - nginx
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

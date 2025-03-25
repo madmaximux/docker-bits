@@ -1,3 +1,4 @@
+
 # [Ddclient](https://github.com/ddclient/ddclient) is a Perl client used to
 # update dynamic DNS entries for accounts on Dynamic DNS Network Service
 # Provider. It was originally written by Paul Burry and is now mostly by
@@ -5,22 +6,29 @@
 # fetch your WAN-ipaddress in a few different ways.
 
 ---
-version: "2.1"
+
 services:
   ddclient:
     image: ghcr.io/linuxserver/ddclient
     container_name: ddclient
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/ddclient/config:/config
-    ports:
-      # Application WebUI
-      - 80:80
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ddclient:/config
+    # ports:
+      # - 80:80 # Application WebUI
+    networks:
+      default:
+        aliases:
+          - ddclient
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

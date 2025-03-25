@@ -1,23 +1,32 @@
+
 # [Tautulli](http://tautulli.com) is a python based web application for
 # monitoring, analytics and notifications for Plex Media Server.
 
 ---
-version: "2.1"
+
 services:
   tautulli:
     image: ghcr.io/linuxserver/tautulli
     container_name: tautulli
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/tautulli/config:/config
-    ports:
-      # WebUI
-      - 8181:8181
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/tautulli:/config
+      # - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/plex/Library/Application Support/Plex Media Server/Logs:/plex_logs # Plex logs
+    # ports:
+      # - 8181:8181 # WebUI
+    networks:
+      default:
+        aliases:
+          - tautulli
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

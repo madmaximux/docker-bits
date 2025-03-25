@@ -1,26 +1,33 @@
+
 # [Series Troxide](https://github.com/MaarifaMaarifa/series-troxide) a Simple
 # and Modern Series Tracker
 
 ---
-version: "2.1"
+
 services:
   series-troxide:
     image: ghcr.io/linuxserver/series-troxide
     container_name: series-troxide
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/series-troxide/config:/config
-    ports:
-      # Series Troxide desktop gui.
-      - 3000:3000
-      # HTTPS Series Troxide desktop gui.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/series-troxide:/config
+    # ports:
+      # - 3000:3000 # Series Troxide desktop gui.
+      # - 3001:3001 # HTTPS Series Troxide desktop gui.
+    networks:
+      default:
+        aliases:
+          - series-troxide
     shm_size: "1gb"
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

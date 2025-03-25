@@ -1,3 +1,4 @@
+
 # [Ngircd](https://ngircd.barton.de/) is a free, portable and lightweight
 # Internet Relay Chat server for small or private networks, developed under the
 # GNU General Public License (GPL). It is easy to configure, can cope with
@@ -6,22 +7,29 @@
 # original IRCd.
 
 ---
-version: "2.1"
+
 services:
   ngircd:
     image: ghcr.io/linuxserver/ngircd
     container_name: ngircd
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Where `ngircd.conf` is stored
-      - ${BASEDIR:-/volume1/docker}/ngircd/config:/config
-    ports:
-      # ngircd port
-      - 6667:6667
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ngircd:/config
+    # ports:
+      # - 6667:6667 # ngircd port
+    networks:
+      default:
+        aliases:
+          - ngircd
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

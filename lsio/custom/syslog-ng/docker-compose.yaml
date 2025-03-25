@@ -1,32 +1,37 @@
+
 # [syslog-ng](https://www.syslog-ng.com/products/open-source-log-management/)
 # allows you to flexibly collect, parse, classify, rewrite and correlate logs
 # from across your infrastructure and store or route them to log analysis tools.
 
 ---
-version: "2.1"
+
 services:
   syslog-ng:
     image: ghcr.io/linuxserver/syslog-ng
     container_name: syslog-ng
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # If set to `true` container will log to stdout, otherwise will log to `/config/log/`.
-      - LOG_TO_STDOUT= # optional
+      # - LOG_TO_STDOUT= # optional
     volumes:
-      # Stores config and application files
-      - ${BASEDIR:-/volume1/docker}/syslog-ng/config:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syslog-ng:/config
       # Stores logs collected by the syslog-ng service
-      - /var/log:/var/log # optional
-    ports:
-      # Syslog UDP
-      - 514:5514/udp
-      # Syslog TCP
-      - 601:6601/tcp
-      # Syslog TLS
-      - 6514:6514/tcp
+      - /var/log:/var/log
+    # ports:
+      # - 514:5514/udp # Syslog UDP
+      # - 601:6601/tcp # Syslog TCP
+      # - 6514:6514/tcp # Syslog TLS
+    networks:
+      default:
+        aliases:
+          - syslog-ng
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

@@ -1,29 +1,34 @@
+
 # [Bazarr](https://www.bazarr.media/) is a companion application to Sonarr and
 # Radarr. It can manage and download subtitles based on your requirements. You
 # define your preferences by TV show or movie and Bazarr takes care of
 # everything for you.
 
 ---
-version: "2.1"
+
 services:
   bazarr:
     image: ghcr.io/linuxserver/bazarr
     container_name: bazarr
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/bazarr/config:/config
-      # Location of your movies
-      - ${BASEDIR:-/volume1/docker}/bazarr/movies:/movies # optional
-      # Location of your TV Shows
-      - ${BASEDIR:-/volume1/docker}/bazarr/tv:/tv # optional
-    ports:
-      # Allows HTTP access to the internal webserver.
-      - 6767:6767
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/bazarr:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+    # ports:
+      # - 6767:6767 # Allows HTTP access to the internal webserver.
+    networks:
+      default:
+        aliases:
+          - bazarr
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

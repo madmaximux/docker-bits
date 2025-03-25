@@ -1,29 +1,35 @@
+
 # [Chromium](https://www.chromium.org/chromium-projects/) is an open-source
 # browser project that aims to build a safer, faster, and more stable way for
 # all users to experience the web.
 
 ---
-version: "2.1"
+
 services:
   chromium:
     image: ghcr.io/linuxserver/chromium
     container_name: chromium
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify one or multiple Chromium CLI flags, this string will be passed to the application in full.
-      - CHROME_CLI=https://www.linuxserver.io/ # optional
+      # - CHROME_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/chromium/config:/config
-    ports:
-      # Chromium desktop gui.
-      - 3000:3000
-      # HTTPS Chromium desktop gui.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/chromium:/config
+    # ports:
+      # - 3000:3000 # Chromium desktop gui.
+      # - 3001:3001 # HTTPS Chromium desktop gui.
+    networks:
+      default:
+        aliases:
+          - chromium
     shm_size: "1gb"
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

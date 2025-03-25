@@ -6,7 +6,8 @@ docker run -d \
   --name=adguardhome-sync \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e CONFIGFILE=/config/adguardhome-sync.yaml `# optional` `# Set a custom config file.` \
   -p 8080:8080 `# Port for AdGuardHome Sync's web API.` \
   -v ${BASEDIR:-/volume1/docker}/adguardhome-sync/config:/config `# Contains all relevant configuration files.` \

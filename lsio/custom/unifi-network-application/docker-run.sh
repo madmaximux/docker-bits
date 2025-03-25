@@ -7,7 +7,8 @@ docker run -d \
   --name=unifi-network-application \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e MONGO_USER=unifi `# Mongodb Username. Only evaluated on first run. **Special characters must be [url encoded](https://en.wikipedia.org/wiki/Percent-encoding)**.` \
   -e MONGO_PASS= `# Mongodb Password. Only evaluated on first run. **Special characters must be [url encoded](https://en.wikipedia.org/wiki/Percent-encoding)**.` \
   -e MONGO_HOST=unifi-db `# Mongodb Hostname. Only evaluated on first run.` \
@@ -26,6 +27,6 @@ docker run -d \
   -p 8880:8880 `# optional` `# Unifi guest portal HTTP redirect port` \
   -p 6789:6789 `# optional` `# For mobile throughput test` \
   -p 5514:5514/udp `# optional` `# Remote syslog port` \
-  -v ${BASEDIR:-/volume1/docker}/unifi-network-application/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/unifi-network-application/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/unifi-network-application

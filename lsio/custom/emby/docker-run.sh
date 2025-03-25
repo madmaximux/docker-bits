@@ -7,12 +7,13 @@ docker run -d \
   --name=emby \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -p 8096:8096 `# Http webUI.` \
   -p 8920:8920 `# optional` `# Https webUI (you need to setup your own certificate).` \
-  -v ${BASEDIR:-/volume1/docker}/emby/config:/config `# Emby data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \
-  -v ${BASEDIR:-/volume1/docker}/emby/data/tvshows:/data/tvshows `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
-  -v ${BASEDIR:-/volume1/docker}/emby/data/movies:/data/movies `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emby/config:/config `# Emby data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emby/data/tvshows:/data/tvshows `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emby/data/movies:/data/movies `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
   -v /opt/vc/lib:/opt/vc/lib `# optional` `# Path for Raspberry Pi OpenMAX libs *optional*.` \
   --device /dev/dri:/dev/dri `# optional` `# Only needed if you want to use your Intel or AMD GPU for hardware accelerated video encoding (vaapi).` \
   --device /dev/vchiq:/dev/vchiq `# optional` `# Only needed if you want to use your Raspberry Pi OpenMax video encoding (Bellagio).` \

@@ -1,32 +1,38 @@
+
 # [Kdenlive](https://kdenlive.org/) is a powerful free and open source cross-
 # platform video editing program made by the KDE community. Feature rich and
 # production ready.
 
 ---
-version: "2.1"
+
 services:
   kdenlive:
     image: ghcr.io/linuxserver/kdenlive
     container_name: kdenlive
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify a subfolder to use with reverse proxies, IE `/subfolder/`
-      - SUBFOLDER=/ # optional
+      # - SUBFOLDER=/ # optional
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/kdenlive/config:/config
-    ports:
-      # Kdenlive desktop gui
-      - 3000:3000
-      # Kdenlive desktop gui HTTPS
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kdenlive:/config
+    # ports:
+      # - 3000:3000 # Kdenlive desktop gui
+      # - 3001:3001 # Kdenlive desktop gui HTTPS
+    networks:
+      default:
+        aliases:
+          - kdenlive
     devices:
       # Add this for hardware acceleration (Linux hosts only)
       - /dev/dri:/dev/dri # optional
     shm_size: "1gb" # optional
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

@@ -1,29 +1,35 @@
+
 # [hiSHtory](https://github.com/ddworken/hishtory) is a better shell history. It
 # stores your shell history in context (what directory you ran the command in,
 # whether it succeeded or failed, how long it took, etc). This is all stored
 # locally and end-to-end encrypted for syncing to to all your other computers.
 
 ---
-version: "2.1"
+
 services:
   hishtory-server:
     image: ghcr.io/linuxserver/hishtory-server
     container_name: hishtory-server
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Postgres DB [Connection URI](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING). Special characters must be [URL encoded](https://en.wikipedia.org/wiki/URL_encoding).
-      - HISHTORY_POSTGRES_DB=postgresql://${HISHTORY_DB_USER}:${HISHTORY_DB_PASS}@hishtory-db:5432/hishtory?sslmode=disable # optional
-      # SQLite database path. Needs to be a mounted volume for persistence. Don't set at the same time as HISHTORY_POSTGRES_DB.
-      - HISHTORY_SQLITE_DB=/config/hishtory.db # optional
+      # - HISHTORY_POSTGRES_DB=postgresql://${HISHTORY_DB_USER}:${HISHTORY_DB_PASS}@hishtory-db:5432/hishtory?sslmode=disable # optional
+      # - HISHTORY_SQLITE_DB=/config/hishtory.db # optional
     volumes:
-      # Configuration files.
-      - ${BASEDIR:-/volume1/docker}/hishtory-server/config:/config
-    ports:
-      # API port
-      - 8080:8080
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/hishtory-server:/config
+    # ports:
+      # - 8080:8080 # API port
+    networks:
+      default:
+        aliases:
+          - hishtory-server
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

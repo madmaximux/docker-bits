@@ -9,11 +9,12 @@ docker run -d \
   --name=boinc \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e PASSWORD= `# optional` `# Optionally set a password for the gui.` \
   -p 8080:8080 `# Boinc desktop gui.` \
   -p 8181:8181 `# Boinc desktop gui HTTPS.` \
-  -v ${BASEDIR:-/volume1/docker}/boinc/config:/config `# Where BOINC should store its database and config.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/boinc/config:/config `# Where BOINC should store its database and config.` \
   --device /dev/dri:/dev/dri `# optional` `# Only needed if you want to use your Intel GPU (vaapi).` \
   --restart unless-stopped \
   ghcr.io/linuxserver/boinc

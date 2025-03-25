@@ -1,3 +1,4 @@
+
 # [Duplicati](https://www.duplicati.com/) is a backup client that securely
 # stores encrypted, incremental, compressed backups on local storage, cloud
 # storage services and remote file servers. It works with standard protocols
@@ -5,32 +6,34 @@
 # Amazon S3, Google Drive, box.com, Mega, B2, and many others.
 
 ---
-version: "2.1"
+
 services:
   duplicati:
     image: ghcr.io/linuxserver/duplicati
     container_name: duplicati
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Encryption key for settings database. Minimum 8 characters, alphanumeric.
       - SETTINGS_ENCRYPTION_KEY=
-      # Optionally specify any [CLI variables](https://duplicati.readthedocs.io/en/latest/07-other-command-line-utilities/) you want to launch the app with
-      - CLI_ARGS= # optional
-      # Password for the webui. If left unset will default to `changeme` and can be changed from the webui settings.
-      - DUPLICATI__WEBSERVICE_PASSWORD= # optional
+      # - CLI_ARGS= # optional
+      # - DUPLICATI__WEBSERVICE_PASSWORD= # optional
     volumes:
-      # Contains all relevant configuration files.
-      - ${BASEDIR:-/volume1/docker}/duplicati/config:/config
-      # Path to store local backups.
-      - ${BASEDIR:-/volume1/docker}/duplicati/backups:/backups
-      # Path to source for files to backup.
-      - ${BASEDIR:-/volume1/docker}/duplicati/source:/source
-    ports:
-      # http gui
-      - 8200:8200
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/backups:/backups
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/source:/source
+    # ports:
+      # - 8200:8200 # http gui
+    networks:
+      default:
+        aliases:
+          - duplicati
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

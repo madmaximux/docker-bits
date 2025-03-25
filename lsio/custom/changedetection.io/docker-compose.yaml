@@ -1,3 +1,4 @@
+
 # [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) provides
 # free, open-source web page monitoring, notification and change detection.
 
@@ -18,3 +19,8 @@ services:
       - 5000:5000
     restart: unless-stopped
 
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

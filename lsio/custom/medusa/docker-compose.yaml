@@ -1,28 +1,33 @@
+
 # [Medusa](https://pymedusa.com/) is an automatic Video Library Manager for TV
 # Shows. It watches for new episodes of your favorite shows, and when they are
 # posted it does its magic.
 
 ---
-version: "2.1"
+
 services:
   medusa:
     image: ghcr.io/linuxserver/medusa
     container_name: medusa
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/medusa/config:/config
-      # Download location
-      - ${BASEDIR:-/volume1/docker}/medusa/downloads:/downloads
-      # TV Shows location
-      - ${BASEDIR:-/volume1/docker}/medusa/tv:/tv
-    ports:
-      # The port for the Medusa webui
-      - 8081:8081
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/medusa:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+    # ports:
+      # - 8081:8081 # The port for the Medusa webui
+    networks:
+      default:
+        aliases:
+          - medusa
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

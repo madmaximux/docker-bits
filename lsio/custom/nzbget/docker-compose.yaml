@@ -1,30 +1,35 @@
+
 # [Nzbget](http://nzbget.com/) is a usenet downloader, written in C++ and
 # designed with performance in mind to achieve maximum download speed by using
 # very little system resources.
 
 ---
-version: "2.1"
+
 services:
   nzbget:
     image: ghcr.io/linuxserver/nzbget
     container_name: nzbget
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify the user for web authentication.
-      - NZBGET_USER=nzbget # optional
-      # Specify the password for web authentication.
-      - NZBGET_PASS=tegbzn6789 # optional
+      # - NZBGET_USER=nzbget # optional
+      # - NZBGET_PASS=tegbzn6789 # optional
     volumes:
-      # Persistent config
-      - ${BASEDIR:-/volume1/docker}/nzbget/config:/config
-      # Location of downloads on disk.
-      - ${BASEDIR:-/volume1/docker}/nzbget/downloads:/downloads # optional
-    ports:
-      # WebUI
-      - 6789:6789
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nzbget:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+    # ports:
+      # - 6789:6789 # WebUI
+    networks:
+      default:
+        aliases:
+          - nzbget
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

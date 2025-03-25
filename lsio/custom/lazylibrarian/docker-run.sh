@@ -8,11 +8,12 @@ docker run -d \
   --name=lazylibrarian \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e DOCKER_MODS=linuxserver/mods:universal-calibre|linuxserver/mods:lazylibrarian-ffmpeg `# optional` `# Allows additional functionality to be added, e.g. the Calibredb import program (optional, more info below)` \
   -p 5299:5299 `# The port for the LazyLibrarian webinterface` \
-  -v ${BASEDIR:-/volume1/docker}/lazylibrarian/config:/config `# LazyLibrarian config` \
-  -v ${BASEDIR:-/volume1/docker}/lazylibrarian/downloads:/downloads `# Download location` \
-  -v ${BASEDIR:-/volume1/docker}/lazylibrarian/books:/books `# optional` `# Books location` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lazylibrarian/config:/config `# LazyLibrarian config` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lazylibrarian/downloads:/downloads `# Download location` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lazylibrarian/books:/books `# optional` `# Books location` \
   --restart unless-stopped \
   ghcr.io/linuxserver/lazylibrarian

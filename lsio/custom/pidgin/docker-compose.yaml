@@ -1,26 +1,33 @@
+
 # [Pidgin](https://pidgin.im/) is a chat program which lets you log into
 # accounts on multiple chat networks simultaneously. This means that you can be
 # chatting with friends on XMPP and sitting in an IRC channel at the same time.
 
 ---
-version: "2.1"
+
 services:
   pidgin:
     image: ghcr.io/linuxserver/pidgin
     container_name: pidgin
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/pidgin/config:/config
-    ports:
-      # Pidgin desktop gui.
-      - 3000:3000
-      # Pidgin desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pidgin:/config
+    # ports:
+      # - 3000:3000 # Pidgin desktop gui.
+      # - 3001:3001 # Pidgin desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - pidgin
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

@@ -8,11 +8,12 @@ docker run -d \
   --name=faster-whisper \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e WHISPER_MODEL=tiny-int8 `# Whisper model that will be used for transcription. From [here](https://github.com/SYSTRAN/faster-whisper/blob/master/faster_whisper/utils.py#L12-L31), all with `-int8` compressed variants` \
   -e WHISPER_BEAM=1 `# optional` `# Number of candidates to consider simultaneously during transcription.` \
   -e WHISPER_LANG=en `# optional` `# Language that you will speak to the add-on.` \
   -p 10300:10300 `# Wyoming connection port.` \
-  -v ${BASEDIR:-/volume1/docker}/faster-whisper/config:/config `# Local path for Whisper config files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/faster-whisper/config:/config `# Local path for Whisper config files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/faster-whisper

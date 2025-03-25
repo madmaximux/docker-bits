@@ -1,26 +1,33 @@
+
 # [Piwigo](http://piwigo.org/) is a photo gallery software for the web that
 # comes with powerful features to publish and manage your collection of
 # pictures.
 
 ---
-version: "2.1"
+
 services:
   piwigo:
     image: ghcr.io/linuxserver/piwigo
     container_name: piwigo
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/piwigo/config:/config
-      # Image storage for Piwigo
-      - ${BASEDIR:-/volume1/docker}/piwigo/gallery:/gallery
-    ports:
-      # Application WebUI
-      - 80:80
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piwigo:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piwigo/gallery:/gallery
+    # ports:
+      # - 80:80 # Application WebUI
+    networks:
+      default:
+        aliases:
+          - piwigo
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

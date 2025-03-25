@@ -1,3 +1,4 @@
+
 # [Calibre](https://calibre-ebook.com/) is a powerful and easy to use e-book
 # manager. Users say it's outstanding and a must-have. It'll allow you to do
 # nearly everything and it takes things a step beyond normal e-book software.
@@ -5,30 +6,33 @@
 # computer experts.
 
 ---
-version: "2.1"
+
 services:
   calibre:
     image: ghcr.io/linuxserver/calibre
     container_name: calibre
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Optionally set a password for the gui.
-      - PASSWORD= # optional
-      # Optionally pass cli start arguments to calibre.
-      - CLI_ARGS= # optional
+      # - PASSWORD= # optional
+      # - CLI_ARGS= # optional
     volumes:
-      # Where calibre should store its database and library.
-      - ${BASEDIR:-/volume1/docker}/calibre/config:/config
-    ports:
-      # Calibre desktop gui.
-      - 8080:8080
-      # Calibre desktop gui HTTPS.
-      - 8181:8181
-      # Calibre webserver gui.
-      - 8081:8081
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre:/config
+    # ports:
+      # - 8080:8080 # Calibre desktop gui.
+      # - 8181:8181 # Calibre desktop gui HTTPS.
+      # - 8081:8081 # Calibre webserver gui.
+    networks:
+      default:
+        aliases:
+          - calibre
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

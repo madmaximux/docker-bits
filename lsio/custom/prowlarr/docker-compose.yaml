@@ -1,3 +1,4 @@
+
 # [Prowlarr](https://github.com/Prowlarr/Prowlarr) is a indexer manager/proxy
 # built on the popular arr .net/reactjs base stack to integrate with your
 # various PVR apps. Prowlarr supports both Torrent Trackers and Usenet Indexers.
@@ -6,22 +7,29 @@
 # (we do it all).
 
 ---
-version: "2.1"
+
 services:
   prowlarr:
     image: ghcr.io/linuxserver/prowlarr
     container_name: prowlarr
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Database and Prowlarr configs
-      - ${BASEDIR:-/volume1/docker}/prowlarr/config:/config
-    ports:
-      # The port for the Prowlarr web UI
-      - 9696:9696
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/prowlarr:/config
+    # ports:
+      # - 9696:9696 # The port for the Prowlarr web UI
+    networks:
+      default:
+        aliases:
+          - prowlarr
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

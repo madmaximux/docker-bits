@@ -1,3 +1,4 @@
+
 # [Firefox](https://www.mozilla.org/en-US/firefox/) Browser, also known as
 # Mozilla Firefox or simply Firefox, is a free and open-source web browser
 # developed by the Mozilla Foundation and its subsidiary, the Mozilla
@@ -5,27 +6,32 @@
 # implements current and anticipated web standards.
 
 ---
-version: "2.1"
+
 services:
   firefox:
     image: ghcr.io/linuxserver/firefox
     container_name: firefox
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify one or multiple Firefox CLI flags, this string will be passed to the application in full.
-      - FIREFOX_CLI=https://www.linuxserver.io/ # optional
+      # - FIREFOX_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      # Users home directory in the container, stores local files and settings
-      - ${BASEDIR:-/volume1/docker}/firefox/config:/config
-    ports:
-      # Firefox desktop gui.
-      - 3000:3000
-      # Firefox desktop gui HTTPS.
-      - 3001:3001
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/firefox:/config
+    # ports:
+      # - 3000:3000 # Firefox desktop gui.
+      # - 3001:3001 # Firefox desktop gui HTTPS.
+    networks:
+      default:
+        aliases:
+          - firefox
     shm_size: "1gb"
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

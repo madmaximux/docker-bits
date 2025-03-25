@@ -1,3 +1,4 @@
+
 # [Nzbhydra2](https://github.com/theotherp/nzbhydra2) is a meta search
 # application for NZB indexers, the 'spiritual successor' to NZBmegasearcH, and
 # an evolution of the original application
@@ -5,24 +6,30 @@
 # a number of raw and newznab based indexers.
 
 ---
-version: "2.1"
+
 services:
   nzbhydra2:
     image: ghcr.io/linuxserver/nzbhydra2
     container_name: nzbhydra2
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Where nzbhydra2 should store config data.
-      - ${BASEDIR:-/volume1/docker}/nzbhydra2/config:/config
-      # NZB download folder.
-      - ${BASEDIR:-/volume1/docker}/nzbhydra2/downloads:/downloads # optional
-    ports:
-      # WebUI
-      - 5076:5076
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nzbhydra2:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+    # ports:
+      # - 5076:5076 # WebUI
+    networks:
+      default:
+        aliases:
+          - nzbhydra2
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

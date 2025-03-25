@@ -1,3 +1,4 @@
+
 # [Diskover](https://github.com/diskoverdata/diskover-community) is an open
 # source file system indexer that uses Elasticsearch to index and manage data
 # across heterogeneous storage systems.
@@ -46,3 +47,8 @@ services:
     command: sh -c "sysctl -w vm.max_map_count=262144"
     privileged: true
 
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

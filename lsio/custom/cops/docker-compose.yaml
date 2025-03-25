@@ -1,3 +1,4 @@
+
 # [Cops](https://github.com/mikespub-org/seblucas-cops) by Sébastien Lucas, now
 # maintained by MikesPub, stands for Calibre OPDS (and HTML) Php Server. COPS
 # links to your Calibre library database and allows downloading and emailing of
@@ -18,26 +19,31 @@
 # to use the OPDS feed don't forget to specify /feed at the end of your URL.
 
 ---
-version: "2.1"
+
 services:
   cops:
     image: ghcr.io/linuxserver/cops
     container_name: cops
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # COPS Application Data.
-      - ${BASEDIR:-/volume1/docker}/cops/config:/config
-      # Calibre metadata.db location.
-      - ${BASEDIR:-/volume1/docker}/cops/books:/books
-    ports:
-      # HTTP WebUI
-      - 80:80
-      # HTTPS WebUI
-      - 443:443
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/cops:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/cops/books:/books
+    # ports:
+      # - 80:80 # HTTP WebUI
+      # - 443:443 # HTTPS WebUI
+    networks:
+      default:
+        aliases:
+          - cops
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

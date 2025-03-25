@@ -8,10 +8,10 @@
 . ./.env
 docker run -d \
   --name=openssh-server \
-    --hostname={{ project_name }} `# optional` `# Optionally the hostname can be defined.` \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e PUBLIC_KEY=yourpublickey `# optional` `# Optional ssh public key, which will automatically be added to authorized_keys.` \
   -e PUBLIC_KEY_FILE=/path/to/file `# optional` `# Optionally specify a file containing the public key (works with docker secrets).` \
   -e PUBLIC_KEY_DIR=/path/to/directory/containing/_only_/pubkeys `# optional` `# Optionally specify a directory containing the public keys (works with docker secrets).` \
@@ -23,6 +23,6 @@ docker run -d \
   -e USER_NAME=linuxserver.io `# optional` `# Optionally specify a user name (Default:`linuxserver.io`)` \
   -e LOG_STDOUT= `# optional` `# Set to `true` to log to stdout instead of file.` \
   -p 2222:2222 `# ssh port` \
-  -v ${BASEDIR:-/volume1/docker}/openssh-server/config:/config `# Contains all relevant configuration files.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openssh-server/config:/config `# Contains all relevant configuration files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/openssh-server

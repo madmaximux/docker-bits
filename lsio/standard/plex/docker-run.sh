@@ -9,10 +9,10 @@ docker run -d \
   --net=host `# Use Host Networking` \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e VERSION=docker `# Set whether to update plex or not - see Application Setup section.` \
   -e PLEX_CLAIM= `# optional` `# Optionally you can obtain a claim token from https://plex.tv/claim and input here. Keep in mind that the claim tokens expire within 4 minutes.` \
-  -p 32400:32400 `# Plex WebUI` \
   -v ${BASEDIR:-/volume1/docker}/plex/config:/config `# Plex library location. *This can grow very large, 50gb+ is likely for a large collection.*` \
   -v ${BASEDIR:-/volume1/docker}/plex/tv:/tv `# Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc.` \
   -v ${BASEDIR:-/volume1/docker}/plex/movies:/movies `# Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc.` \

@@ -1,29 +1,34 @@
+
 # [Beets](http://beets.io/) is a music library manager and not, for the most
 # part, a music player. It does include a simple player plugin and an
 # experimental Web-based player, but it generally leaves actual sound-
 # reproduction to specialized tools.
 
 ---
-version: "2.1"
+
 services:
   beets:
     image: ghcr.io/linuxserver/beets
     container_name: beets
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/beets/config:/config
-      # Music library
-      - ${BASEDIR:-/volume1/docker}/beets/music:/music
-      # Non processed music
-      - ${BASEDIR:-/volume1/docker}/beets/downloads:/downloads
-    ports:
-      # Application WebUI
-      - 8337:8337
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/beets:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+    # ports:
+      # - 8337:8337 # Application WebUI
+    networks:
+      default:
+        aliases:
+          - beets
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

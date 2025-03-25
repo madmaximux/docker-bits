@@ -1,28 +1,34 @@
+
 # [Ardour](https://ardour.org/) is an open source, collaborative effort of a
 # worldwide team including musicians, programmers, and professional recording
 # engineers.
 
 ---
-version: "2.1"
+
 services:
   ardour:
     image: ghcr.io/linuxserver/ardour
     container_name: ardour
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify a subfolder to use with reverse proxies, IE `/subfolder/`
-      - SUBFOLDER=/ # optional
+      # - SUBFOLDER=/ # optional
     volumes:
-      # Users home directory in the container, stores data and application config files.
-      - ${BASEDIR:-/volume1/docker}/ardour/config:/config
-    ports:
-      # Ardour desktop gui
-      - 3000:3000 # optional
-      # Ardour desktop gui HTTPS
-      - 3001:3001 # optional
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ardour:/config
+    # ports:
+      # - 3000:3000 # Ardour desktop gui # optional
+      # - 3001:3001 # Ardour desktop gui HTTPS # optional
+    networks:
+      default:
+        aliases:
+          - ardour
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

@@ -1,28 +1,33 @@
+
 # [Sickchill](https://github.com/SickChill/SickChill) is an Automatic Video
 # Library Manager for TV Shows. It watches for new episodes of your favorite
 # shows, and when they are posted it does its magic.
 
 ---
-version: "2.1"
+
 services:
   sickchill:
     image: ghcr.io/linuxserver/sickchill
     container_name: sickchill
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/sickchill/config:/config
-      # this will store any downloaded data on the docker host
-      - ${BASEDIR:-/volume1/docker}/sickchill/downloads:/downloads # optional
-      # this will allow sickchill to view what you already have
-      - ${BASEDIR:-/volume1/docker}/sickchill/tv:/tv # optional
-    ports:
-      # will map the container's port 8081 to port 8081 on the host
-      - 8081:8081
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickchill:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+    # ports:
+      # - 8081:8081 # will map the container's port 8081 to port 8081 on the host
+    networks:
+      default:
+        aliases:
+          - sickchill
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

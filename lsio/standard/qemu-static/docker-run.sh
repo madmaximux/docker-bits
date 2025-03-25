@@ -4,8 +4,8 @@ docker run -d \
   --name=qemu-static \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
-  -p 32400:32400 `# Plex WebUI` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -v ${BASEDIR:-/volume1/docker}/qemu-static/config:/config `# Configuration files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/qemu-static

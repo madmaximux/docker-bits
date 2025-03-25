@@ -1,37 +1,38 @@
+
 # [Syncthing](https://syncthing.net) replaces proprietary sync and cloud
 # services with something open, trustworthy and decentralized. Your data is your
 # data alone and you deserve to choose where it is stored, if it is shared with
 # some third party and how it's transmitted over the Internet.
 
 ---
-version: "2.1"
+
 services:
   syncthing:
     image: ghcr.io/linuxserver/syncthing
     container_name: syncthing
-    # Optionally the hostname can be defined.
-    hostname: {{ project_name }} # optional
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Configuration files.
-      - ${BASEDIR:-/volume1/docker}/syncthing/config:/config
-      # Data1
-      - ${BASEDIR:-/volume1/docker}/syncthing/data1:/data1
-      # Data2
-      - ${BASEDIR:-/volume1/docker}/syncthing/data2:/data2
-    ports:
-      # Application WebUI
-      - 8384:8384
-      # Listening port (TCP)
-      - 22000:22000/tcp
-      # Listening port (UDP)
-      - 22000:22000/udp
-      # Protocol discovery
-      - 21027:21027/udp
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data1:/data1
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data2:/data2
+    # ports:
+      # - 8384:8384 # Application WebUI
+      # - 22000:22000/tcp # Listening port (TCP)
+      # - 22000:22000/udp # Listening port (UDP)
+      # - 21027:21027/udp # Protocol discovery
+    networks:
+      default:
+        aliases:
+          - syncthing
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

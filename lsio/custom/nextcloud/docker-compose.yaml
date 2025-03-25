@@ -1,3 +1,4 @@
+
 # [Nextcloud](https://nextcloud.com/) gives you access to all your files
 # wherever you are. Where are your photos and documents? With Nextcloud you pick
 # a server of your choice, at home, in a data center or at a provider. And that
@@ -7,24 +8,30 @@
 # at the office, a Dropbox or a NAS you have at home.
 
 ---
-version: "2.1"
+
 services:
   nextcloud:
     image: ghcr.io/linuxserver/nextcloud
     container_name: nextcloud
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/nextcloud/config:/config
-      # Your personal data.
-      - ${BASEDIR:-/volume1/docker}/nextcloud/data:/data
-    ports:
-      # WebUI
-      - 443:443
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nextcloud:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nextcloud/data:/data
+    # ports:
+      # - 443:443 # WebUI
+    networks:
+      default:
+        aliases:
+          - nextcloud
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

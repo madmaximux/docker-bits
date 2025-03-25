@@ -8,10 +8,11 @@ docker run -d \
   --name=sabnzbd \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -p 8080:8080 `# HTTP port for the WebUI.` \
-  -v ${BASEDIR:-/volume1/docker}/sabnzbd/config:/config `# Persistent config files` \
-  -v ${BASEDIR:-/volume1/docker}/sabnzbd/downloads:/downloads `# optional` `# Local path for finished downloads.` \
-  -v ${BASEDIR:-/volume1/docker}/sabnzbd/incomplete-downloads:/incomplete-downloads `# optional` `# Local path for incomplete-downloads.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd/downloads:/downloads `# optional` `# Local path for finished downloads.` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd/incomplete-downloads:/incomplete-downloads `# optional` `# Local path for incomplete-downloads.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/sabnzbd

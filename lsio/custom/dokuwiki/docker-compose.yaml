@@ -1,3 +1,4 @@
+
 # [Dokuwiki](https://www.dokuwiki.org/dokuwiki/) is a simple to use and highly
 # versatile Open Source wiki software that doesn't require a database. It is
 # loved by users for its clean and readable syntax. The ease of maintenance,
@@ -7,24 +8,30 @@
 # community allow for a broad range of use cases beyond a traditional wiki.
 
 ---
-version: "2.1"
+
 services:
   dokuwiki:
     image: ghcr.io/linuxserver/dokuwiki
     container_name: dokuwiki
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Persistent config files
-      - ${BASEDIR:-/volume1/docker}/dokuwiki/config:/config
-    ports:
-      # Application HTTP Port
-      - 80:80
-      # #optional Application HTTPS Port
-      - 443:443 # optional
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/dokuwiki:/config
+    # ports:
+      # - 80:80 # Application HTTP Port
+      # - 443:443 # #optional Application HTTPS Port # optional
+    networks:
+      default:
+        aliases:
+          - dokuwiki
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

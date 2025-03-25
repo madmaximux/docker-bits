@@ -10,7 +10,8 @@ docker run -d \
   --name=netbox \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e UMASK=${UMASK:-002} `# for UMASK` \
+  -e TZ=${TZ:-America/Chicago} `# for timezone` \
   -e SUPERUSER_EMAIL= `# Email address for `admin` account` \
   -e SUPERUSER_PASSWORD= `# Password for `admin` account` \
   -e ALLOWED_HOST= `# The hostname you will use to access the app (i.e., netbox.example.com)` \
@@ -32,6 +33,6 @@ docker run -d \
   -e REMOTE_AUTH_DEFAULT_GROUPS= `# optional` `# The list of groups to assign a new user account when created using remote authentication (optional, default: [])` \
   -e REMOTE_AUTH_DEFAULT_PERMISSIONS= `# optional` `# A mapping of permissions to assign a new user account when created using remote authentication (optional, default: {})` \
   -p 8000:8000 `# will map the container's port 8000 to port 8000 on the host` \
-  -v ${BASEDIR:-/volume1/docker}/netbox/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbox/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/netbox

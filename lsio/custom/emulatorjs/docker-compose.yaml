@@ -1,32 +1,36 @@
+
 # [Emulatorjs](https://github.com/linuxserver/emulatorjs) - In browser web based
 # emulation portable to nearly any device for many retro consoles. A mix of
 # emulators is used between Libretro and EmulatorJS.
 
 ---
-version: "2.1"
+
 services:
   emulatorjs:
     image: ghcr.io/linuxserver/emulatorjs
     container_name: emulatorjs
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
-      # Specify a subfolder for reverse proxies IE '/FOLDER/'
-      - SUBFOLDER=/ # optional
+      # - SUBFOLDER=/ # optional
     volumes:
-      # Path to store user profiles
-      - ${BASEDIR:-/volume1/docker}/emulatorjs/config:/config
-      # Path to store roms/artwork
-      - ${BASEDIR:-/volume1/docker}/emulatorjs/data:/data
-    ports:
-      # Rom/artwork management interface, used to generate/manage config files and download artwork
-      - 3000:3000
-      # Emulation frontend containing static web files used to browse and launch games
-      - 80:80
-      # IPFS peering port, if you want to participate in the P2P network to distribute frontend artwork please forward this to the Internet
-      - 4001:4001 # optional
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emulatorjs:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emulatorjs/data:/data
+    # ports:
+      # - 3000:3000 # Rom/artwork management interface, used to generate/manage config files and download artwork
+      # - 80:80 # Emulation frontend containing static web files used to browse and launch games
+      # - 4001:4001 # IPFS peering port, if you want to participate in the P2P network to distribute frontend artwork please forward this to the Internet # optional
+    networks:
+      default:
+        aliases:
+          - emulatorjs
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true

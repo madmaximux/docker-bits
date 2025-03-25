@@ -1,21 +1,29 @@
+
 # This container needs special attention. Please check https://hub.docker.com/r/linuxserver/ffmpeg for details.
 ---
-version: "2.1"
+
 services:
   ffmpeg:
     image: ghcr.io/linuxserver/ffmpeg
     container_name: ffmpeg
     environment:
-      # for UserID
       - PUID=${PUID:-1024}
-      # for GroupID
       - PGID=${PGID:-100}
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      # Configuration files.
-      - ${BASEDIR:-/volume1/docker}/ffmpeg/config:/config
-    ports:
-      # Application WebUI
-      - 80:80
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ffmpeg:/config
+    # ports:
+      # - 80:80 # Application WebUI
+    networks:
+      default:
+        aliases:
+          - ffmpeg
+    security_opt:
+      - no-new-privileges:true
     restart: unless-stopped
+
+networks:
+  default:
+    name: ${NETWORK_NAME:-synobridge}
+    external: true
