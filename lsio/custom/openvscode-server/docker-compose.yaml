@@ -18,7 +18,7 @@ services:
       # - SUDO_PASSWORD=password # optional
       # - SUDO_PASSWORD_HASH= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openvscode-server:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openvscode-server:/config
     # ports:
       # Web UI port.
       # - 3000:3000

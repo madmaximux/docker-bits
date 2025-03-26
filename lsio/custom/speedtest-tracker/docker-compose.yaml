@@ -26,7 +26,7 @@ services:
       # - DISPLAY_TIMEZONE=Etc/UTC # optional
       # - PRUNE_RESULTS_OLDER_THAN=0 # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/speedtest-tracker:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/speedtest-tracker:/config
     # ports:
       # Web UI
       # - 80:80

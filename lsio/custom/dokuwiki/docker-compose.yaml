@@ -18,7 +18,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/dokuwiki:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/dokuwiki:/config
     # ports:
       # Application HTTP Port
       # - 80:80

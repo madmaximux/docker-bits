@@ -15,11 +15,11 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot:/config
       # Storage location for all snapshots.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/.snapshots:/.snapshots
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/.snapshots:/.snapshots
       # Storage location for data to be backed up.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/data:/data
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rsnapshot/data:/data
     # ports:
     networks:
       default:

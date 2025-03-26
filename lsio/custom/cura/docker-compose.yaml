@@ -14,7 +14,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/cura:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/cura:/config
     # ports:
       # Cura desktop gui.
       # - 3000:3000

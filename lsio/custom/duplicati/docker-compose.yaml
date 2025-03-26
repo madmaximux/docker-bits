@@ -19,11 +19,11 @@ services:
       # - CLI_ARGS= # optional
       # - DUPLICATI__WEBSERVICE_PASSWORD= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati:/config
       # Path to store local backups.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/backups:/backups
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/backups:/backups
       # Path to source for files to backup.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/source:/source
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/source:/source
     # ports:
       # http gui
       # - 8200:8200

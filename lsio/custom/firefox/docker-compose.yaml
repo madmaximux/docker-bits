@@ -17,7 +17,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - FIREFOX_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/firefox:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/firefox:/config
     # ports:
       # Firefox desktop gui.
       # - 3000:3000

@@ -15,9 +15,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/projectsend:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/projectsend:/config
       # Where to store files to share.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/projectsend/data:/data
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/projectsend/data:/data
     # ports:
       # WebUI
       # - 80:80

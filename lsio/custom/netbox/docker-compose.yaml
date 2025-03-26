@@ -37,7 +37,7 @@ services:
       # - REMOTE_AUTH_DEFAULT_GROUPS= # optional
       # - REMOTE_AUTH_DEFAULT_PERMISSIONS= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbox:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbox:/config
     # ports:
       # will map the container's port 8000 to port 8000 on the host
       # - 8000:8000

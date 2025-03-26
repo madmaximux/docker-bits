@@ -13,8 +13,8 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/radarr:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/radarr:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
     # ports:
       # The port for the Radarr Web UI
       # - 7878:7878

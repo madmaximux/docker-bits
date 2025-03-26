@@ -15,7 +15,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/libreoffice:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/libreoffice:/config
     # ports:
       # LibreOffice desktop gui.
       # - 3000:3000

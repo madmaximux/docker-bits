@@ -23,9 +23,9 @@ services:
       # - DOCKER_MTU=1500 # optional
     volumes:
       # Docker and installation storage.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kasm/opt:/opt
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kasm/opt:/opt
       # Optionally specify a path for persistent profile storage.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kasm/profiles:/profiles
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kasm/profiles:/profiles
       # Optional for gamepad support.
       # - /dev/input:/dev/input
       # Optional for gamepad support.

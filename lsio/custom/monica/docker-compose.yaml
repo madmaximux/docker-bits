@@ -22,7 +22,7 @@ services:
       # - APP_ENV=local # optional
       # - APP_DISABLE_SIGNUP=true # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/monica:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/monica:/config
     # ports:
       # http gui
       # - 80:80

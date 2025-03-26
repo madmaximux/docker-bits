@@ -15,9 +15,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kavita:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kavita:/config
       # Media library containing manga, comics and books.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kavita/data:/data
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kavita/data:/data
     # ports:
       # web gui
       # - 5000:5000

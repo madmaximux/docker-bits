@@ -24,8 +24,8 @@ services:
       # - UPDATE_IP=ipv4 # optional
       # - LOG_FILE=false # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duckdns:/config
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duckdns:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duckdns:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duckdns:/config
     ports:
       # Application WebUI
       - 80:80

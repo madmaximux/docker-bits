@@ -31,7 +31,7 @@ services:
       # - SWAG_AUTORELOAD= # optional
       # - SWAG_AUTORELOAD_WATCHLIST= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/swag:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/swag:/config
     # ports:
       # HTTPS port
       # - 443:443

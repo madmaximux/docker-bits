@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - LOG_TO_STDOUT= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syslog-ng:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syslog-ng:/config
       # Stores logs collected by the syslog-ng service
       # - /var/log:/var/log
     # ports:

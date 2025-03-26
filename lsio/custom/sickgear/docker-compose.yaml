@@ -15,8 +15,8 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickgear:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickgear:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
     # ports:
       # will map the container's port 8081 to port 8081 on the host
       # - 8081:8081

@@ -19,7 +19,7 @@ services:
       # - RTC_CONFIG= # optional
       # - DEBUG_MODE=false # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pairdrop:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pairdrop:/config
     # ports:
       # http gui
       # - 3000:3000

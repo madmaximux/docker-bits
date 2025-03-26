@@ -21,7 +21,7 @@ services:
       # - STARTUP=KDE # optional
       # - RESOLUTION=1920x1080 # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/steamos:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/steamos:/config
       # Optional for gamepad support. *Only working for Steam Remote Play
       # - /dev/input:/dev/input
       # Optional for gamepad support. *Only working for Steam Remote Play

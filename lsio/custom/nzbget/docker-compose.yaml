@@ -16,8 +16,8 @@ services:
       # - NZBGET_USER=nzbget # optional
       # - NZBGET_PASS=tegbzn6789 # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nzbget:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nzbget:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
     # ports:
       # WebUI
       # - 6789:6789

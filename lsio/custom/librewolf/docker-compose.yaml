@@ -16,7 +16,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - LIBREWOLF_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/librewolf:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/librewolf:/config
     # ports:
       # LibreWolf desktop gui.
       # - 3000:3000

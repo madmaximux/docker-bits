@@ -33,7 +33,7 @@ services:
       # - SECRET_KEY= # optional
       # - SITE_LOGO_URL= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/healthchecks:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/healthchecks:/config
     # ports:
       # Healthchecks Web UI
       # - 8000:8000

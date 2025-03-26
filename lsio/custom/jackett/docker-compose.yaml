@@ -20,8 +20,8 @@ services:
       # - AUTO_UPDATE=true # optional
       # - RUN_OPTS= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jackett:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jackett:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
     # ports:
       # WebUI
       # - 9117:9117

@@ -14,8 +14,8 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mstream:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mstream:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
     # ports:
       # The port for the mStream web interface
       # - 3000:3000

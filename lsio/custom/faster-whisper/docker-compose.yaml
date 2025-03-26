@@ -18,7 +18,7 @@ services:
       # - WHISPER_BEAM=1 # optional
       # - WHISPER_LANG=en # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/faster-whisper:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/faster-whisper:/config
     # ports:
       # Wyoming connection port.
       # - 10300:10300

@@ -16,10 +16,10 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/resilio-sync:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/resilio-sync:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
       # Sync folders root.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/resilio-sync/sync:/sync
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/resilio-sync/sync:/sync
     # ports:
       # WebUI
       # - 8888:8888

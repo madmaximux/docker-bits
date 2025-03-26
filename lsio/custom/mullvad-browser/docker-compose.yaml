@@ -19,7 +19,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - LOCAL_NET=192.168.0.0/16 # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mullvad-browser:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mullvad-browser:/config
     # ports:
       # Mullvad Browser GUI.
       # - 3000:3000

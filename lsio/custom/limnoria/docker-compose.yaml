@@ -14,7 +14,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/limnoria:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/limnoria:/config
     # ports:
       # Port for Limnoria's web interface.
       # - 8080:8080

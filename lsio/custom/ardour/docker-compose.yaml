@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - SUBFOLDER=/ # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ardour:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ardour:/config
     # ports:
       # Ardour desktop gui 
       # - 3000:3000 # optional

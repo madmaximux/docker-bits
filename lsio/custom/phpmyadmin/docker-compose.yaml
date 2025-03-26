@@ -16,7 +16,7 @@ services:
       # - PMA_ARBITRARY=1 # optional
       # - PMA_ABSOLUTE_URI=https://phpmyadmin.example.com # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/phpmyadmin:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/phpmyadmin:/config
     # ports:
       # Port for web frontend
       # - 80:80

@@ -16,7 +16,7 @@ services:
       # - SUBFOLDER=/ # optional
       # - TITLE=Webtop # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webtop:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webtop:/config
       # Docker Socket on the system, if you want to use Docker in the container
       # - /var/run/docker.sock:/var/run/docker.sock
     # ports:

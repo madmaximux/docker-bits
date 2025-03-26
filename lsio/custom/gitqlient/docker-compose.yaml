@@ -14,7 +14,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/gitqlient:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/gitqlient:/config
     # ports:
       # GitQlient desktop gui.
       # - 3000:3000

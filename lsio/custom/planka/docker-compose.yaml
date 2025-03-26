@@ -21,7 +21,7 @@ services:
       - SECRET_KEY=notasecretkey
       - TRUST_PROXY=0
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/planka:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/planka:/config
     # ports:
       # Planka web UI.
       # - 1337:1337

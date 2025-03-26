@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - SECRET_PATH=/pwndrop # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pwndrop:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pwndrop:/config
     # ports:
       # web gui
       # - 8080:8080

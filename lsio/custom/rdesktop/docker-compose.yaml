@@ -14,10 +14,10 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
       # Docker Socket on the system, if you want to use Docker in the container
       # - /var/run/docker.sock:/var/run/docker.sock
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
     # ports:
       # RDP access port
       # - 3389:3389

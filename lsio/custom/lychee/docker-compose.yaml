@@ -24,9 +24,9 @@ services:
       # - APP_URL= # optional
       # - TRUSTED_PROXIES= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee:/config
       # Where lychee will store uploaded images.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee/pictures:/pictures
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee/pictures:/pictures
     # ports:
       # http gui
       # - 80:80

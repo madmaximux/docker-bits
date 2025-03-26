@@ -17,7 +17,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - PASSWORD= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/boinc:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/boinc:/config
     # ports:
       # Boinc desktop gui.
       # - 8080:8080

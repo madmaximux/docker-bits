@@ -18,7 +18,7 @@ services:
       # - PASSWORD= # optional
       # - CLI_ARGS= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre:/config
     # ports:
       # Calibre desktop gui.
       # - 8080:8080

@@ -18,7 +18,7 @@ services:
       # - MYSQL_PASSWORD=DATABASE_PASSWORD # optional
       # - REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mariadb:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mariadb:/config
     # ports:
       # MariaDB listens on this port.
       # - 3306:3306

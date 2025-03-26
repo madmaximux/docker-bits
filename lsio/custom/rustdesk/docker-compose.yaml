@@ -13,7 +13,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rustdesk:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rustdesk:/config
     # ports:
       # RustDesk desktop gui.
       # - 3000:3000

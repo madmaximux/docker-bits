@@ -17,9 +17,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos:/config
       # davos's file download location
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos/download:/download
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos/download:/download
     # ports:
       # This is the default port that davos runs under
       # - 8080:8080

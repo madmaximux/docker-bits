@@ -14,8 +14,8 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pyload-ng:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pyload-ng:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
     # ports:
       # Allows HTTP access to the application
       # - 8000:8000

@@ -20,7 +20,7 @@ services:
       # - KOMETA_TEST=False # optional
       # - KOMETA_NO_MISSING=False # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kometa:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kometa:/config
     # ports:
       # Application WebUI
       # - 80:80

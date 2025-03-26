@@ -18,8 +18,8 @@ services:
       - VERSION=docker
       # - PLEX_CLAIM= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/plex:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/plex:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
     ports:
       # Plex Media Server
       - 32400:32400/tcp

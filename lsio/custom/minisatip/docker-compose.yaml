@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       - RUN_OPTS=
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/minisatip:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/minisatip:/config
     # ports:
       # Status Page WebUI
       # - 8875:8875

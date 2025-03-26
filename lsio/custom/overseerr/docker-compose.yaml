@@ -13,7 +13,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/overseerr:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/overseerr:/config
     # ports:
       # Port for Overseerr's web interface.
       # - 5055:5055

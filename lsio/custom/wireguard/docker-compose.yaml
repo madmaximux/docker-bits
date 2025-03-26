@@ -32,7 +32,7 @@ services:
       # - PERSISTENTKEEPALIVE_PEERS= # optional
       # - LOG_CONFS=true # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireguard:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireguard:/config
       # Path to host kernel module for situations where it's not already loaded.
       # - /lib/modules:/lib/modules
     # ports:

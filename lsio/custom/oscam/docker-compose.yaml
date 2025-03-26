@@ -14,7 +14,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/oscam:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/oscam:/config
     # ports:
       # WebUI
       # - 8888:8888

@@ -15,9 +15,9 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - SUBFOLDER=/ # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emulatorjs:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emulatorjs:/config
       # Path to store roms/artwork
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emulatorjs/data:/data
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emulatorjs/data:/data
     # ports:
       # Rom/artwork management interface, used to generate/manage config files and download artwork
       # - 3000:3000

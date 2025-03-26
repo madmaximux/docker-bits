@@ -16,8 +16,8 @@ services:
       - WEBUI_PORT=8080
       - TORRENTING_PORT=6881
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qbittorrent:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qbittorrent:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
     # ports:
       # WebUI
       # - 8080:8080

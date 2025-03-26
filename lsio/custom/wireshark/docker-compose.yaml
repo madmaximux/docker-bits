@@ -21,7 +21,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireshark:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireshark:/config
     ports:
       # WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic. 
       # - 3000:3000 # optional

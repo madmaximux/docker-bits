@@ -21,7 +21,7 @@ services:
       # - CERTFILE= # optional
       # - KEYFILE= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ldap-auth:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ldap-auth:/config
     # ports:
       # the port for ldap auth daemon
       # - 8888:8888

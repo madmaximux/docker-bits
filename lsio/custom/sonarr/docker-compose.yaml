@@ -16,8 +16,8 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sonarr:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sonarr:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
     # ports:
       # The port for the Sonarr web interface
       # - 8989:8989

@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - CHROME_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/chromium:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/chromium:/config
     # ports:
       # Chromium desktop gui.
       # - 3000:3000

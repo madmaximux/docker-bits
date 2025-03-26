@@ -31,7 +31,7 @@ services:
       # - LOG_LEVEL=:info # optional
       # - JAVA_OPTS= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doplarr:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doplarr:/config
     # ports:
       # Application WebUI
       # - 80:80

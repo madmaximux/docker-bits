@@ -16,7 +16,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/grocy:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/grocy:/config
     # ports:
       # will map the container's port 80 to port 9283 on the host
       # - 9283:80

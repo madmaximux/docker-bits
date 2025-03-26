@@ -23,7 +23,7 @@ services:
       # - DB_PORT=DB_PORT # optional
       # - IPINFO_APIKEY=ACCESS_TOKEN # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/librespeed:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/librespeed:/config
     # ports:
       # web gui
       # - 80:80

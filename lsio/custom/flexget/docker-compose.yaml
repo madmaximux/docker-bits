@@ -17,9 +17,9 @@ services:
       - FG_CONFIG_FILE=/config/.flexget/config.yml
       # - FG_WEBUI_PASSWORD=info # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/flexget:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/flexget:/config
       # Default path for downloads.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/flexget/data:/data
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/flexget/data:/data
     # ports:
       # HTTP port for the WebUI.
       # - 5050:5050

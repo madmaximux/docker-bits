@@ -16,7 +16,7 @@ services:
       # - CLI_ARGS=--gameid devtest # optional
     volumes:
       # Where minetest stores config files and maps etc.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/minetest/config/.minetest:/config/.minetest
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/minetest/config/.minetest:/config/.minetest
     # ports:
       # Port Minetest listens on (UDP).
       # - 30000:30000/udp

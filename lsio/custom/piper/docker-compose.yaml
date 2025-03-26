@@ -20,7 +20,7 @@ services:
       # - PIPER_SPEAKER=0 # optional
       # - PIPER_PROCS=1 # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piper:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piper:/config
     # ports:
       # Wyoming connection port.
       # - 10200:10200

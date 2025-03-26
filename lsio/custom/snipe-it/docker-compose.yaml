@@ -33,7 +33,7 @@ services:
       # - MAIL_ENV_USERNAME= # optional
       # - MAIL_ENV_PASSWORD= # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/snipe-it:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/snipe-it:/config
     # ports:
       # Snipe-IT Web UI
       # - 8080:80

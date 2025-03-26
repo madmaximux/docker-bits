@@ -14,7 +14,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - EDGE_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/msedge:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/msedge:/config
     # ports:
       # Edge desktop gui.
       # - 3000:3000

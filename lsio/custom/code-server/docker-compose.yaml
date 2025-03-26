@@ -24,7 +24,7 @@ services:
       # - PROXY_DOMAIN=code-server.my.domain # optional
       # - DEFAULT_WORKSPACE=/config/workspace # optional
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/code-server:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/code-server:/config
     # ports:
       # web gui
       # - 8443:8443

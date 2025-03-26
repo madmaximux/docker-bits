@@ -14,8 +14,8 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emby:/config
-      ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emby:/config
+      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
       # Path for Raspberry Pi OpenMAX libs *optional*.
       # - /opt/vc/lib:/opt/vc/lib
     # ports:

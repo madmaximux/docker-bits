@@ -17,9 +17,9 @@ services:
       - REDIS_URL=
       - SECRET_KEY_BASE=
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold:/config
       # Location of your 3D model libraries.
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold/libraries:/libraries
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold/libraries:/libraries
     # ports:
       # Port for web frontend
       # - 3214:3214

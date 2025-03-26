@@ -11,7 +11,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ffmpeg:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ffmpeg:/config
     # ports:
       # Application WebUI
       # - 80:80

@@ -17,7 +17,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/prowlarr:/config
+      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/prowlarr:/config
     # ports:
       # The port for the Prowlarr web UI
       # - 9696:9696
