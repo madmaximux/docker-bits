@@ -1,4 +1,3 @@
-
 # [Netbox](https://github.com/netbox-community/netbox) is an IP address
 # management (IPAM) and data center infrastructure management (DCIM) tool.
 # Initially conceived by the network engineering team at DigitalOcean, NetBox
@@ -38,15 +37,14 @@ services:
       # - REMOTE_AUTH_DEFAULT_GROUPS= # optional
       # - REMOTE_AUTH_DEFAULT_PERMISSIONS= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbox:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbox:/config
     # ports:
-      # - 8000:8000 # will map the container's port 8000 to port 8000 on the host
+      # will map the container's port 8000 to port 8000 on the host
+      # - 8000:8000
     networks:
       default:
         aliases:
           - netbox
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

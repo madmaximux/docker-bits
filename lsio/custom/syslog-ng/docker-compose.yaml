@@ -1,4 +1,3 @@
-
 # [syslog-ng](https://www.syslog-ng.com/products/open-source-log-management/)
 # allows you to flexibly collect, parse, classify, rewrite and correlate logs
 # from across your infrastructure and store or route them to log analysis tools.
@@ -16,19 +15,20 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - LOG_TO_STDOUT= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syslog-ng:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syslog-ng:/config
       # Stores logs collected by the syslog-ng service
-      - /var/log:/var/log
+      # - /var/log:/var/log
     # ports:
-      # - 514:5514/udp # Syslog UDP
-      # - 601:6601/tcp # Syslog TCP
-      # - 6514:6514/tcp # Syslog TLS
+      # Syslog UDP
+      # - 514:5514/udp
+      # Syslog TCP
+      # - 601:6601/tcp
+      # Syslog TLS
+      # - 6514:6514/tcp
     networks:
       default:
         aliases:
           - syslog-ng
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

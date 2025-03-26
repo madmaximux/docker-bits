@@ -1,4 +1,3 @@
-
 # [Kali-linux](https://github.com/linuxserver/docker-kali-linux) - is an
 # Advanced Penetration Testing Linux distribution used for Penetration Testing,
 # Ethical Hacking and network security assessments. KALI LINUX ™ is a trademark
@@ -18,22 +17,22 @@ services:
       # - SUBFOLDER=/ # optional
       # - TITLE=Kali Linux # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kali-linux:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kali-linux:/config
       # Docker Socket on the system, if you want to use Docker in the container
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/run/docker.sock:/var/run/docker.sock
     # ports:
-      # - 3000:3000 # Web Desktop GUI
-      # - 3001:3001 # Web Desktop GUI HTTPS
+      # Web Desktop GUI
+      # - 3000:3000
+      # Web Desktop GUI HTTPS
+      # - 3001:3001
     networks:
       default:
         aliases:
           - kali-linux
     devices:
       # Add this for GL support (Linux hosts only)
-      - /dev/dri:/dev/dri # optional
-    shm_size: "1gb" # optional
-    security_opt:
-      - no-new-privileges:true
+      # - /dev/dri:/dev/dri # optional
+    # shm_size: "1gb" # optional
     restart: unless-stopped
 
 networks:

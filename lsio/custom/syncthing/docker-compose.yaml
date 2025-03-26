@@ -1,4 +1,3 @@
-
 # [Syncthing](https://syncthing.net) replaces proprietary sync and cloud
 # services with something open, trustworthy and decentralized. Your data is your
 # data alone and you deserve to choose where it is stored, if it is shared with
@@ -16,20 +15,24 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data1:/data1
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data2:/data2
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing:/config
+      # Data1
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data1:/data1
+      # Data2
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data2:/data2
     # ports:
-      # - 8384:8384 # Application WebUI
-      # - 22000:22000/tcp # Listening port (TCP)
-      # - 22000:22000/udp # Listening port (UDP)
-      # - 21027:21027/udp # Protocol discovery
+      # Application WebUI
+      # - 8384:8384
+      # Listening port (TCP)
+      # - 22000:22000/tcp
+      # Listening port (UDP)
+      # - 22000:22000/udp
+      # Protocol discovery
+      # - 21027:21027/udp
     networks:
       default:
         aliases:
           - syncthing
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

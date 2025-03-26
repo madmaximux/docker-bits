@@ -10,7 +10,7 @@ docker run -d \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
   -e UMASK=${UMASK:-002} `# for UMASK` \
-  -e TZ=${TZ:-America/Chicago} `# for timezone` \
+  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -e VERBOSITY=-vv `# optional` `# Set the container log verbosity. Valid options are -v, -vv, -vvv, -vvvv, or leaving the value blank or not setting the variable.` \
   -p 80:80 `# Application WebUI` \
   -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/config:/config `# Persistent config files` \

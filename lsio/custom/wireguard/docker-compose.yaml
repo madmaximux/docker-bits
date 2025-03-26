@@ -1,4 +1,3 @@
-
 # [WireGuard®](https://www.wireguard.com/) is an extremely simple yet fast and
 # modern VPN that utilizes state-of-the-art cryptography. It aims to be faster,
 # simpler, leaner, and more useful than IPsec, while avoiding the massive
@@ -33,19 +32,18 @@ services:
       # - PERSISTENTKEEPALIVE_PEERS= # optional
       # - LOG_CONFS=true # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireguard:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireguard:/config
       # Path to host kernel module for situations where it's not already loaded.
-      - /lib/modules:/lib/modules
+      # - /lib/modules:/lib/modules
     # ports:
-      # - 51820:51820/udp # wireguard port
+      # wireguard port
+      # - 51820:51820/udp
     networks:
       default:
         aliases:
           - wireguard
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

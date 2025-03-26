@@ -1,4 +1,3 @@
-
 # [Mariadb](https://mariadb.org/) is one of the most popular database servers.
 # Made by the original developers of MySQL.
 
@@ -19,15 +18,14 @@ services:
       # - MYSQL_PASSWORD=DATABASE_PASSWORD # optional
       # - REMOTE_SQL=http://URL1/your.sql,https://URL2/your.sql # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mariadb:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mariadb:/config
     # ports:
-      # - 3306:3306 # MariaDB listens on this port.
+      # MariaDB listens on this port.
+      # - 3306:3306
     networks:
       default:
         aliases:
           - mariadb
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

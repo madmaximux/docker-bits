@@ -14,7 +14,7 @@ services:
       - PGID=${PGID:-100}
       # for UMASK
       - UMASK=${UMASK:-002}
-      # for timezone
+      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
       - TZ=${TZ:-America/Chicago}
     volumes:
       # Users home directory in the container, stores program settings and files.

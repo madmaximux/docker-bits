@@ -1,4 +1,3 @@
-
 # [Beets](http://beets.io/) is a music library manager and not, for the most
 # part, a music player. It does include a simple player plugin and an
 # experimental Web-based player, but it generally leaves actual sound-
@@ -16,16 +15,15 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/beets:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/beets:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
     # ports:
-      # - 8337:8337 # Application WebUI
+      # Application WebUI
+      # - 8337:8337
     networks:
       default:
         aliases:
           - beets
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -1,4 +1,3 @@
-
 # [Speedtest-tracker](https://github.com/alexjustesen/speedtest-tracker) is a
 # self-hosted internet performance tracking application that runs speedtest
 # checks against Ookla's Speedtest service.
@@ -27,15 +26,14 @@ services:
       # - DISPLAY_TIMEZONE=Etc/UTC # optional
       # - PRUNE_RESULTS_OLDER_THAN=0 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/speedtest-tracker:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/speedtest-tracker:/config
     # ports:
-      # - 80:80 # Web UI
+      # Web UI
+      # - 80:80
     networks:
       default:
         aliases:
           - speedtest-tracker
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

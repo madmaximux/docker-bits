@@ -1,4 +1,3 @@
-
 # [FIleZilla](https://filezilla-project.org/) Client is a fast and reliable
 # cross-platform FTP, FTPS and SFTP client with lots of useful features and an
 # intuitive graphical user interface.
@@ -15,16 +14,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/filezilla:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/filezilla:/config
     # ports:
-      # - 3000:3000 # FileZilla desktop gui.
-      # - 3001:3001 # FileZilla desktop gui HTTPS.
+      # FileZilla desktop gui.
+      # - 3000:3000
+      # FileZilla desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - filezilla
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

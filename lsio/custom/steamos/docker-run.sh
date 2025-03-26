@@ -10,7 +10,7 @@ docker run -d \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
   -e UMASK=${UMASK:-002} `# for UMASK` \
-  -e TZ=${TZ:-America/Chicago} `# for timezone` \
+  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -e DRINODE=/dev/dri/renderD128 `# Specify the render device (GPU) for the contianer to use.` \
   -e HOST_IP=192.168.100.10 `# optional` `# Specify the IP of the host, needed for LAN Remote Play.` \
   -e STARTUP=KDE `# optional` `# KDE to boot into desktop mode, BIGPICTURE to boot into gamescope.` \

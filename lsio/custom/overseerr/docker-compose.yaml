@@ -1,4 +1,3 @@
-
 # [Overseerr](https://overseerr.dev/) is a request management and media
 # discovery tool built to work with your existing Plex ecosystem.
 
@@ -14,15 +13,14 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/overseerr:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/overseerr:/config
     # ports:
-      # - 5055:5055 # Port for Overseerr's web interface.
+      # Port for Overseerr's web interface.
+      # - 5055:5055
     networks:
       default:
         aliases:
           - overseerr
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

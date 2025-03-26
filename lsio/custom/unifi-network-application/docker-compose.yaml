@@ -1,4 +1,3 @@
-
 # The [Unifi-network-application](https://ui.com/) software is a powerful,
 # enterprise wireless software engine ideal for high-density client deployments
 # requiring low latency and high uptime performance.
@@ -24,23 +23,30 @@ services:
       # - MEM_STARTUP=1024 # optional
       # - MONGO_TLS= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/unifi-network-application:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/unifi-network-application:/config
     # ports:
-      # - 8443:8443 # Unifi web admin port
-      # - 3478:3478/udp # Unifi STUN port
-      # - 10001:10001/udp # Required for AP discovery
-      # - 8080:8080 # Required for device communication
-      # - 1900:1900/udp # Required for `Make controller discoverable on L2 network` option # optional
-      # - 8843:8843 # Unifi guest portal HTTPS redirect port # optional
-      # - 8880:8880 # Unifi guest portal HTTP redirect port # optional
-      # - 6789:6789 # For mobile throughput test # optional
-      # - 5514:5514/udp # Remote syslog port # optional
+      # Unifi web admin port
+      # - 8443:8443
+      # Unifi STUN port
+      # - 3478:3478/udp
+      # Required for AP discovery
+      # - 10001:10001/udp
+      # Required for device communication
+      # - 8080:8080
+      # Required for `Make controller discoverable on L2 network` option 
+      # - 1900:1900/udp # optional
+      # Unifi guest portal HTTPS redirect port 
+      # - 8843:8843 # optional
+      # Unifi guest portal HTTP redirect port 
+      # - 8880:8880 # optional
+      # For mobile throughput test 
+      # - 6789:6789 # optional
+      # Remote syslog port 
+      # - 5514:5514/udp # optional
     networks:
       default:
         aliases:
           - unifi-network-application
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

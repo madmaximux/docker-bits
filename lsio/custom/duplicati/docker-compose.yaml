@@ -1,4 +1,3 @@
-
 # [Duplicati](https://www.duplicati.com/) is a backup client that securely
 # stores encrypted, incremental, compressed backups on local storage, cloud
 # storage services and remote file servers. It works with standard protocols
@@ -20,17 +19,18 @@ services:
       # - CLI_ARGS= # optional
       # - DUPLICATI__WEBSERVICE_PASSWORD= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/backups:/backups
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/source:/source
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati:/config
+      # Path to store local backups.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/backups:/backups
+      # Path to source for files to backup.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/duplicati/source:/source
     # ports:
-      # - 8200:8200 # http gui
+      # http gui
+      # - 8200:8200
     networks:
       default:
         aliases:
           - duplicati
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

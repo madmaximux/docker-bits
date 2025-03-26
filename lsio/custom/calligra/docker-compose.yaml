@@ -1,4 +1,3 @@
-
 # [Calligra](https://calligra.org/) is an office and graphic art suite by KDE.
 # It is available for desktop PCs, tablet computers, and smartphones. It
 # contains applications for word processing, spreadsheets, presentation, vector
@@ -16,16 +15,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calligra:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calligra:/config
     # ports:
-      # - 3000:3000 # Calligra desktop gui.
-      # - 3001:3001 # Calligra desktop gui HTTPS.
+      # Calligra desktop gui.
+      # - 3000:3000
+      # Calligra desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - calligra
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

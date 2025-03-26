@@ -1,4 +1,3 @@
-
 # [Microsoft Edge](https://www.microsoft.com/edge) is a cross-platform web
 # browser developed by Microsoft and based on Chromium.
 
@@ -15,17 +14,17 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - EDGE_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/msedge:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/msedge:/config
     # ports:
-      # - 3000:3000 # Edge desktop gui.
-      # - 3001:3001 # HTTPS Edge desktop gui.
+      # Edge desktop gui.
+      # - 3000:3000
+      # HTTPS Edge desktop gui.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - msedge
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

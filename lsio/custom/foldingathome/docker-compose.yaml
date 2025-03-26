@@ -1,4 +1,3 @@
-
 # [Folding@home](https://foldingathome.org/) is a distributed computing project
 # for simulating protein dynamics, including the process of protein folding and
 # the movements of proteins implicated in a variety of diseases. It brings
@@ -22,16 +21,16 @@ services:
       - MACHINE_NAME=
       # - CLI_ARGS= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/foldingathome:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/foldingathome:/config
     # ports:
-      # - 80:80 # Application WebUI
-      # - 7396:7396 # Folding@home web gui (redirects to [https://app.foldingathome.org](https://app.foldingathome.org)). # optional
+      # Application WebUI
+      # - 80:80
+      # Folding@home web gui (redirects to [https://app.foldingathome.org](https://app.foldingathome.org)). 
+      # - 7396:7396 # optional
     networks:
       default:
         aliases:
           - foldingathome
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

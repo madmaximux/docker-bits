@@ -1,4 +1,3 @@
-
 # [Openvscode-server](https://github.com/gitpod-io/openvscode-server) provides a
 # version of VS Code that runs a server on a remote machine and allows access
 # through a modern web browser.
@@ -19,15 +18,14 @@ services:
       # - SUDO_PASSWORD=password # optional
       # - SUDO_PASSWORD_HASH= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openvscode-server:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openvscode-server:/config
     # ports:
-      # - 3000:3000 # Web UI port.
+      # Web UI port.
+      # - 3000:3000
     networks:
       default:
         aliases:
           - openvscode-server
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

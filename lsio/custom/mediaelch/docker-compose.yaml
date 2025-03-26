@@ -1,4 +1,3 @@
-
 # [MediaElch](https://github.com/Komet/MediaElch) is a MediaManager for Kodi.
 # Information about Movies, TV Shows, Concerts and Music are stored as nfo
 # files. Fanarts are downloaded automatically from fanart.tv. Using the nfo
@@ -16,16 +15,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mediaelch:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mediaelch:/config
     # ports:
-      # - 3000:3000 # MediaElch desktop gui.
-      # - 3001:3001 # MediaElch desktop gui HTTPS.
+      # MediaElch desktop gui.
+      # - 3000:3000
+      # MediaElch desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - mediaelch
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -19,7 +19,7 @@ services:
       - PGID=${PGID:-100}
       # for UMASK
       - UMASK=${UMASK:-002}
-      # for timezone
+      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
       - TZ=${TZ:-America/Chicago}
       # If using a VPN, set this to your local LAN IP range using CIDR notation. Without it you will be unable to access the web interface. If you have multiple ranges or a complex LAN setup you will need to manage this yourself in the wg0.conf, see the App Setup section for details.
       - LOCAL_NET=192.168.0.0/16 # optional

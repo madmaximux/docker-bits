@@ -1,4 +1,3 @@
-
 # [Webgrabplus](https://www.webgrabplus.com) is a multi-site incremental xmltv
 # epg grabber. It collects tv-program guide data from selected tvguide sites for
 # your favourite channels.
@@ -15,15 +14,14 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webgrabplus:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webgrabplus/data:/data
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webgrabplus:/config
+      # Where webgrabplus should store it's data files.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webgrabplus/data:/data
     # ports:
     networks:
       default:
         aliases:
           - webgrabplus
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -1,4 +1,3 @@
-
 # [Luanti](https://www.luanti.org/) (formerly Minetest) is an open source voxel
 # game-creation platform with easy modding and game creation
 
@@ -15,15 +14,15 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - CLI_ARGS=--gameid devtest # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/luanti/config/.minetest:/config/.minetest
+      # Where luanti stores config files and maps etc.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/luanti/config/.minetest:/config/.minetest
     # ports:
-      # - 30000:30000/udp # Port Luanti listens on (UDP).
+      # Port Luanti listens on (UDP).
+      # - 30000:30000/udp
     networks:
       default:
         aliases:
           - luanti
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

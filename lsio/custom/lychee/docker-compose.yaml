@@ -1,4 +1,3 @@
-
 # [Lychee](https://lycheeorg.github.io/) is a free photo-management tool, which
 # runs on your server or web-space. Installing is a matter of seconds. Upload,
 # manage and share photos like from a native application. Lychee comes with
@@ -25,16 +24,16 @@ services:
       # - APP_URL= # optional
       # - TRUSTED_PROXIES= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee/pictures:/pictures
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee:/config
+      # Where lychee will store uploaded images.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lychee/pictures:/pictures
     # ports:
-      # - 80:80 # http gui
+      # http gui
+      # - 80:80
     networks:
       default:
         aliases:
           - lychee
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

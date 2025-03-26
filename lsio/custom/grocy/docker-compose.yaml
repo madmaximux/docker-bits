@@ -1,4 +1,3 @@
-
 # [Grocy](https://github.com/grocy/grocy) is an ERP system for your kitchen! Cut
 # down on food waste, and manage your chores with this brilliant utility. Keep
 # track of your purchases, how much food you are wasting, what chores need doing
@@ -17,15 +16,14 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/grocy:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/grocy:/config
     # ports:
-      # - 9283:80 # will map the container's port 80 to port 9283 on the host
+      # will map the container's port 80 to port 9283 on the host
+      # - 9283:80
     networks:
       default:
         aliases:
           - grocy
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

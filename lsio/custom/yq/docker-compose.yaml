@@ -1,4 +1,3 @@
-
 # This container needs special attention. Please check https://hub.docker.com/r/linuxserver/yq for details.
 ---
 
@@ -12,14 +11,12 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/yq:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/yq:/config
     # ports:
     networks:
       default:
         aliases:
           - yq
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

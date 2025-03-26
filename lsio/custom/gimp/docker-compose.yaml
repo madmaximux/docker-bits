@@ -1,4 +1,3 @@
-
 # [GIMP](https://www.gimp.org/) is a free and open-source raster graphics editor
 # used for image manipulation (retouching) and image editing, free-form drawing,
 # transcoding between different image file formats, and more specialized tasks.
@@ -16,16 +15,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/gimp:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/gimp:/config
     # ports:
-      # - 3000:3000 # GIMP desktop gui.
-      # - 3001:3001 # GIMP desktop gui HTTPS.
+      # GIMP desktop gui.
+      # - 3000:3000
+      # GIMP desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - gimp
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

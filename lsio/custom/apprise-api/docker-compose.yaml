@@ -1,4 +1,3 @@
-
 # [Apprise-api](https://github.com/caronc/apprise-api) Takes advantage of
 # [Apprise](https://github.com/caronc/apprise) through your network with a user-
 # friendly API. * Send notifications to more than 100 services. * An incredibly
@@ -20,16 +19,16 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - APPRISE_ATTACH_SIZE=0 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/apprise-api:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/apprise-api/attachments:/attachments
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/apprise-api:/config
+      # Temporary storage for attachments when sent with notifications.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/apprise-api/attachments:/attachments
     # ports:
-      # - 8000:8000 # Port for apprise's interface and API.
+      # Port for apprise's interface and API.
+      # - 8000:8000
     networks:
       default:
         aliases:
           - apprise-api
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

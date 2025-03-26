@@ -1,4 +1,3 @@
-
 # [Nextcloud](https://nextcloud.com/) gives you access to all your files
 # wherever you are. Where are your photos and documents? With Nextcloud you pick
 # a server of your choice, at home, in a data center or at a provider. And that
@@ -19,16 +18,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nextcloud:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nextcloud/data:/data
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nextcloud:/config
+      # Your personal data.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nextcloud/data:/data
     # ports:
-      # - 443:443 # WebUI
+      # WebUI
+      # - 443:443
     networks:
       default:
         aliases:
           - nextcloud
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -1,4 +1,3 @@
-
 # [Mstream](https://mstream.io/) is a personal music streaming server. You can
 # use mStream to stream your music from your home computer to any device,
 # anywhere. There are mobile apps available for both Android and iPhone.
@@ -15,16 +14,15 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mstream:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mstream:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
     # ports:
-      # - 3000:3000 # The port for the mStream web interface
+      # The port for the mStream web interface
+      # - 3000:3000
     networks:
       default:
         aliases:
           - mstream
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

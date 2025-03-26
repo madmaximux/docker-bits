@@ -1,4 +1,3 @@
-
 # [QDirStat](https://github.com/shundhammer/qdirstat) Qt-based directory
 # statistics: KDirStat without any KDE -- from the author of the original
 # KDirStat.
@@ -15,17 +14,18 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qdirstat:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qdirstat/data:/data
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qdirstat:/config
+      # Data you want to analyze disk usage information of.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qdirstat/data:/data
     # ports:
-      # - 3000:3000 # QdirStat desktop gui.
-      # - 3001:3001 # QdirStat desktop gui HTTPS.
+      # QdirStat desktop gui.
+      # - 3000:3000
+      # QdirStat desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - qdirstat
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

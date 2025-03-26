@@ -1,4 +1,3 @@
-
 # [PairDrop](https://github.com/schlagmichdoch/PairDrop) is a sublime
 # alternative to AirDrop that works on all platforms. Send images, documents or
 # text via peer to peer connection to devices in the same local network/Wi-Fi or
@@ -20,15 +19,14 @@ services:
       # - RTC_CONFIG= # optional
       # - DEBUG_MODE=false # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pairdrop:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pairdrop:/config
     # ports:
-      # - 3000:3000 # http gui
+      # http gui
+      # - 3000:3000
     networks:
       default:
         aliases:
           - pairdrop
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

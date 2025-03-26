@@ -1,4 +1,3 @@
-
 # [Smokeping](https://oss.oetiker.ch/smokeping/) keeps track of your network
 # latency. For a full example of what this application is capable of visit
 # [UCDavis](http://smokeping.ucdavis.edu/cgi-bin/smokeping.fcgi).
@@ -18,16 +17,16 @@ services:
       # - SHARED_SECRET=password # optional
       # - CACHE_DIR=/tmp # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/smokeping:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/smokeping/data:/data
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/smokeping:/config
+      # Storage location for db and application data (graphs etc)
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/smokeping/data:/data
     # ports:
-      # - 80:80 # Allows HTTP access to the internal webserver.
+      # Allows HTTP access to the internal webserver.
+      # - 80:80
     networks:
       default:
         aliases:
           - smokeping
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

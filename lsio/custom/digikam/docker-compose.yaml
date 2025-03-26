@@ -1,4 +1,3 @@
-
 # [digiKam](https://www.digikam.org/): Professional Photo Management with the
 # Power of Open Source
 
@@ -15,16 +14,16 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - SUBFOLDER=/ # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/digikam:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/digikam:/config
     # ports:
-      # - 3000:3000 # digiKam desktop gui # optional
-      # - 3001:3001 # digiKam desktop gui HTTPS # optional
+      # digiKam desktop gui 
+      # - 3000:3000 # optional
+      # digiKam desktop gui HTTPS 
+      # - 3001:3001 # optional
     networks:
       default:
         aliases:
           - digikam
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

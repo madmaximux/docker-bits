@@ -1,4 +1,3 @@
-
 # [Fail2ban](http://www.fail2ban.org/) is a daemon to ban hosts that cause
 # multiple authentication errors.
 
@@ -19,33 +18,50 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - VERBOSITY=-vv # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/var/log:ro:/var/log:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/airsonic:ro:/remotelogs/airsonic:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/apache2:ro:/remotelogs/apache2:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/authelia:ro:/remotelogs/authelia:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/emby:ro:/remotelogs/emby:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/filebrowser:ro:/remotelogs/filebrowser:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/homeassistant:ro:/remotelogs/homeassistant:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/lighttpd:ro:/remotelogs/lighttpd:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/nextcloud:ro:/remotelogs/nextcloud:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/nginx:ro:/remotelogs/nginx:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/nzbget:ro:/remotelogs/nzbget:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/overseerr:ro:/remotelogs/overseerr:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/prowlarr:ro:/remotelogs/prowlarr:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/radarr:ro:/remotelogs/radarr:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/sabnzbd:ro:/remotelogs/sabnzbd:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/sonarr:ro:/remotelogs/sonarr:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/unificontroller:ro:/remotelogs/unificontroller:ro
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/vaultwarden:ro:/remotelogs/vaultwarden:ro
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban:/config
+      # Host logs. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/var/log:ro:/var/log:ro
+      # Optional path to airsonic log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/airsonic:ro:/remotelogs/airsonic:ro
+      # Optional path to apache2 log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/apache2:ro:/remotelogs/apache2:ro
+      # Optional path to authelia log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/authelia:ro:/remotelogs/authelia:ro
+      # Optional path to emby log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/emby:ro:/remotelogs/emby:ro
+      # Optional path to filebrowser log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/filebrowser:ro:/remotelogs/filebrowser:ro
+      # Optional path to homeassistant log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/homeassistant:ro:/remotelogs/homeassistant:ro
+      # Optional path to lighttpd log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/lighttpd:ro:/remotelogs/lighttpd:ro
+      # Optional path to nextcloud log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/nextcloud:ro:/remotelogs/nextcloud:ro
+      # Optional path to nginx log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/nginx:ro:/remotelogs/nginx:ro
+      # Optional path to nzbget log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/nzbget:ro:/remotelogs/nzbget:ro
+      # Optional path to overseerr log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/overseerr:ro:/remotelogs/overseerr:ro
+      # Optional path to prowlarr log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/prowlarr:ro:/remotelogs/prowlarr:ro
+      # Optional path to radarr log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/radarr:ro:/remotelogs/radarr:ro
+      # Optional path to sabnzbd log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/sabnzbd:ro:/remotelogs/sabnzbd:ro
+      # Optional path to sonarr log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/sonarr:ro:/remotelogs/sonarr:ro
+      # Optional path to unificontroller log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/unificontroller:ro:/remotelogs/unificontroller:ro
+      # Optional path to vaultwarden log folder. Mounted as Read Only.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fail2ban/remotelogs/vaultwarden:ro:/remotelogs/vaultwarden:ro
     ports:
-      - 80:80 # Application WebUI
+      # Application WebUI
+      - 80:80
     networks:
       default:
         aliases:
           - fail2ban
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

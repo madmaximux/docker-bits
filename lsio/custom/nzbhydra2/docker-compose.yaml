@@ -1,4 +1,3 @@
-
 # [Nzbhydra2](https://github.com/theotherp/nzbhydra2) is a meta search
 # application for NZB indexers, the 'spiritual successor' to NZBmegasearcH, and
 # an evolution of the original application
@@ -17,16 +16,15 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nzbhydra2:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nzbhydra2:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
     # ports:
-      # - 5076:5076 # WebUI
+      # WebUI
+      # - 5076:5076
     networks:
       default:
         aliases:
           - nzbhydra2
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

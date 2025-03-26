@@ -1,4 +1,3 @@
-
 # SWAG - Secure Web Application Gateway (formerly known as letsencrypt, no
 # relation to Let's Encrypt™) sets up an Nginx webserver and reverse proxy with
 # php support and a built-in certbot client that automates free SSL server
@@ -32,16 +31,16 @@ services:
       # - SWAG_AUTORELOAD= # optional
       # - SWAG_AUTORELOAD_WATCHLIST= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/swag:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/swag:/config
     # ports:
-      # - 443:443 # HTTPS port
-      # - 80:80 # HTTP port (required for HTTP validation and HTTP -> HTTPS redirect) # optional
+      # HTTPS port
+      # - 443:443
+      # HTTP port (required for HTTP validation and HTTP -> HTTPS redirect) 
+      # - 80:80 # optional
     networks:
       default:
         aliases:
           - swag
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

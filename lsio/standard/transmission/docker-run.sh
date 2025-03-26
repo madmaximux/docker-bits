@@ -10,7 +10,7 @@ docker run -d \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
   -e UMASK=${UMASK:-002} `# for UMASK` \
-  -e TZ=${TZ:-America/Chicago} `# for timezone` \
+  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -e TRANSMISSION_WEB_HOME= `# optional` `# Specify the path to an alternative UI folder.` \
   -e USER= `# optional` `# Specify an optional username for the interface` \
   -e PASS= `# optional` `# Specify an optional password for the interface` \

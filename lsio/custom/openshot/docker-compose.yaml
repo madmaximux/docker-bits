@@ -1,4 +1,3 @@
-
 # [OpenShot](https://openshot.org/) Video Editor is an award-winning free and
 # open-source video editor for Linux, Mac, and Windows, and is dedicated to
 # delivering high quality video editing and animation solutions to the world.
@@ -15,16 +14,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openshot:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openshot:/config
     # ports:
-      # - 3000:3000 # OpenShot desktop gui.
-      # - 3001:3001 # OpenShot desktop gui HTTPS.
+      # OpenShot desktop gui.
+      # - 3000:3000
+      # OpenShot desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - openshot
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

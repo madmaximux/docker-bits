@@ -1,4 +1,3 @@
-
 # [Sabnzbd](http://sabnzbd.org/) makes Usenet as simple and streamlined as
 # possible by automating everything we can. All you have to do is add an .nzb.
 # SABnzbd takes over from there, where it will be automatically downloaded,
@@ -16,17 +15,17 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd/incomplete-downloads:/incomplete-downloads
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      # Local path for incomplete-downloads.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sabnzbd/incomplete-downloads:/incomplete-downloads
     # ports:
-      # - 8080:8080 # HTTP port for the WebUI.
+      # HTTP port for the WebUI.
+      # - 8080:8080
     networks:
       default:
         aliases:
           - sabnzbd
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -1,4 +1,3 @@
-
 # [Faster-whisper](https://github.com/SYSTRAN/faster-whisper) is a
 # reimplementation of OpenAI's Whisper model using CTranslate2, which is a fast
 # inference engine for Transformer models. This container provides a Wyoming
@@ -19,15 +18,14 @@ services:
       # - WHISPER_BEAM=1 # optional
       # - WHISPER_LANG=en # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/faster-whisper:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/faster-whisper:/config
     # ports:
-      # - 10300:10300 # Wyoming connection port.
+      # Wyoming connection port.
+      # - 10300:10300
     networks:
       default:
         aliases:
           - faster-whisper
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

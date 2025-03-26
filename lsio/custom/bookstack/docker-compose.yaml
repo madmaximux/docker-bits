@@ -1,4 +1,3 @@
-
 # [Bookstack](https://github.com/BookStackApp/BookStack) is a free and open
 # source Wiki designed for creating beautiful documentation. Featuring a simple,
 # but powerful WYSIWYG editor it allows for teams to create detailed and useful
@@ -27,15 +26,14 @@ services:
       - DB_DATABASE=
       # - QUEUE_CONNECTION= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/bookstack:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/bookstack:/config
     # ports:
-      # - 6875:80 # http/s web interface.
+      # http/s web interface.
+      # - 6875:80
     networks:
       default:
         aliases:
           - bookstack
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

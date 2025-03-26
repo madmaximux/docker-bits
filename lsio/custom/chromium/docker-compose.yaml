@@ -1,4 +1,3 @@
-
 # [Chromium](https://www.chromium.org/chromium-projects/) is an open-source
 # browser project that aims to build a safer, faster, and more stable way for
 # all users to experience the web.
@@ -16,17 +15,17 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - CHROME_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/chromium:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/chromium:/config
     # ports:
-      # - 3000:3000 # Chromium desktop gui.
-      # - 3001:3001 # HTTPS Chromium desktop gui.
+      # Chromium desktop gui.
+      # - 3000:3000
+      # HTTPS Chromium desktop gui.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - chromium
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

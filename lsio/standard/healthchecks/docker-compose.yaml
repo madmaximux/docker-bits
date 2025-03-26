@@ -15,7 +15,7 @@ services:
       - PGID=${PGID:-100}
       # for UMASK
       - UMASK=${UMASK:-002}
-      # for timezone
+      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
       - TZ=${TZ:-America/Chicago}
       # The site's top-level URL and the port it listens to if different than 80 or 443 (e.g., https://healthchecks.example.com:8000).
       - SITE_ROOT=

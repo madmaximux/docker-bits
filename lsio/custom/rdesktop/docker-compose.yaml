@@ -1,4 +1,3 @@
-
 # [Rdesktop](http://xrdp.org/) - Containers containing full desktop environments
 # in many popular flavors for Alpine, Ubuntu, Arch, and Fedora accessible via
 # RDP.
@@ -15,22 +14,21 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
       # Docker Socket on the system, if you want to use Docker in the container
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
+      # - /var/run/docker.sock:/var/run/docker.sock
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rdesktop:/config
     # ports:
-      # - 3389:3389 # RDP access port
+      # RDP access port
+      # - 3389:3389
     networks:
       default:
         aliases:
           - rdesktop
     devices:
       # Add this for GL support (Linux hosts only)
-      - /dev/dri:/dev/dri # optional
-    shm_size: "1gb" # optional
-    security_opt:
-      - no-new-privileges:true
+      # - /dev/dri:/dev/dri # optional
+    # shm_size: "1gb" # optional
     restart: unless-stopped
 
 networks:

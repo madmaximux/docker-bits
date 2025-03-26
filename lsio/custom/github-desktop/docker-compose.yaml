@@ -1,4 +1,3 @@
-
 # [Github Desktop](https://desktop.github.com/) is an open source Electron-based
 # GitHub app. It is written in TypeScript and uses React.
 
@@ -16,17 +15,17 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/github-desktop:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/github-desktop:/config
     # ports:
-      # - 3000:3000 # Github Desktop gui.
-      # - 3001:3001 # HTTPS Github Desktop gui.
+      # Github Desktop gui.
+      # - 3000:3000
+      # HTTPS Github Desktop gui.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - github-desktop
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -16,7 +16,7 @@ services:
       - PGID=${PGID:-100}
       # for UMASK
       - UMASK=${UMASK:-002}
-      # for timezone
+      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
       - TZ=${TZ:-America/Chicago}
       # Allows additional functionality to be added, e.g. the Calibredb import program (optional, more info below)
       - DOCKER_MODS=linuxserver/mods:universal-calibre|linuxserver/mods:lazylibrarian-ffmpeg # optional

@@ -1,4 +1,3 @@
-
 # [Opera](https://www.opera.com/) is a multi-platform web browser developed by
 # its namesake company Opera. The browser is based on Chromium, but
 # distinguishes itself from other Chromium-based browsers (Chrome, Edge, etc.)
@@ -17,17 +16,17 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - OPERA_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/opera:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/opera:/config
     # ports:
-      # - 3000:3000 # Opera desktop gui.
-      # - 3001:3001 # HTTPS Opera desktop gui.
+      # Opera desktop gui.
+      # - 3000:3000
+      # HTTPS Opera desktop gui.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - opera
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

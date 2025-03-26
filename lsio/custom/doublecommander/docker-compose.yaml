@@ -1,4 +1,3 @@
-
 # [Double Commander](https://doublecmd.sourceforge.io/) is a free cross platform
 # open source file manager with two panels side by side. It is inspired by Total
 # Commander and features some new ideas.
@@ -15,17 +14,18 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doublecommander:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doublecommander/data:/data
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doublecommander:/config
+      # Host data directories, mount as many as needed.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doublecommander/data:/data
     # ports:
-      # - 3000:3000 # Double Commander desktop gui.
-      # - 3001:3001 # Double Commander desktop gui HTTPS.
+      # Double Commander desktop gui.
+      # - 3000:3000
+      # Double Commander desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - doublecommander
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

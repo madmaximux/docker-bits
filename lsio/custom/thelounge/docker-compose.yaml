@@ -1,4 +1,3 @@
-
 # [Thelounge](https://thelounge.github.io/) (a fork of shoutIRC) is a web IRC
 # client that you host on your own server.
 
@@ -14,15 +13,14 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/thelounge:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/thelounge:/config
     # ports:
-      # - 9000:9000 # Application WebUI
+      # Application WebUI
+      # - 9000:9000
     networks:
       default:
         aliases:
           - thelounge
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

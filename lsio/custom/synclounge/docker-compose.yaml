@@ -1,4 +1,3 @@
-
 # [Synclounge](https://github.com/samcm/synclounge) is a third party tool that
 # allows you to watch Plex in sync with your friends/family, wherever you are.
 
@@ -11,15 +10,14 @@ services:
     environment:
       # - AUTH_LIST=plexuser1,plexuser2,email1,machineid1 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/synclounge:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/synclounge:/config
     # ports:
-      # - 8088:8088 # Web app and server port
+      # Web app and server port
+      # - 8088:8088
     networks:
       default:
         aliases:
           - synclounge
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

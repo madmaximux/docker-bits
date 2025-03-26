@@ -1,4 +1,3 @@
-
 # [Raneto](http://raneto.com/) - is an open source Knowledgebase platform that
 # uses static Markdown files to power your Knowledgebase.
 
@@ -14,15 +13,14 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/raneto:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/raneto:/config
     # ports:
-      # - 3000:3000 # The port for the Raneto web interface
+      # The port for the Raneto web interface
+      # - 3000:3000
     networks:
       default:
         aliases:
           - raneto
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

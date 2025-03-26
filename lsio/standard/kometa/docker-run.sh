@@ -9,7 +9,7 @@ docker run -d \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
   -e UMASK=${UMASK:-002} `# for UMASK` \
-  -e TZ=${TZ:-America/Chicago} `# for timezone` \
+  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -e KOMETA_CONFIG=/config/config.yml `# optional` `# Specify a custom config file to use.` \
   -e KOMETA_TIME=03:00 `# optional` `# Comma-separated list of times to update each day. Format: `HH:MM`.` \
   -e KOMETA_RUN=False `# optional` `# Set to `True` to run without the scheduler.` \

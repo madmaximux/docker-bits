@@ -1,4 +1,3 @@
-
 # [Ungoogled Chromium](https://github.com/ungoogled-software/ungoogled-chromium)
 # is Google Chromium, sans dependency on Google web services.
 
@@ -15,17 +14,17 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - CHROME_CLI=https://www.linuxserver.io/ # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ungoogled-chromium:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ungoogled-chromium:/config
     # ports:
-      # - 3000:3000 # Ungoogled Chromium desktop gui.
-      # - 3001:3001 # HTTPS Ungoogled Chromium desktop gui.
+      # Ungoogled Chromium desktop gui.
+      # - 3000:3000
+      # HTTPS Ungoogled Chromium desktop gui.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - ungoogled-chromium
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

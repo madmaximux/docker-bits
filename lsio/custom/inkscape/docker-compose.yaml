@@ -1,4 +1,3 @@
-
 # [Inkscape](https://inkscape.org/) is professional quality vector graphics
 # software which runs on Linux, Mac OS X and Windows desktop computers.
 
@@ -14,16 +13,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/inkscape:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/inkscape:/config
     # ports:
-      # - 3000:3000 # Inkscape desktop gui.
-      # - 3001:3001 # Inkscape desktop gui HTTPS.
+      # Inkscape desktop gui.
+      # - 3000:3000
+      # Inkscape desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - inkscape
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

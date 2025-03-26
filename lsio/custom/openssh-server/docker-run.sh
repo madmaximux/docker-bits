@@ -11,7 +11,7 @@ docker run -d \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
   -e UMASK=${UMASK:-002} `# for UMASK` \
-  -e TZ=${TZ:-America/Chicago} `# for timezone` \
+  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -e PUBLIC_KEY=yourpublickey `# optional` `# Optional ssh public key, which will automatically be added to authorized_keys.` \
   -e PUBLIC_KEY_FILE=/path/to/file `# optional` `# Optionally specify a file containing the public key (works with docker secrets).` \
   -e PUBLIC_KEY_DIR=/path/to/directory/containing/_only_/pubkeys `# optional` `# Optionally specify a directory containing the public keys (works with docker secrets).` \

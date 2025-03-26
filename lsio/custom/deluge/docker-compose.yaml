@@ -1,4 +1,3 @@
-
 # [Deluge](http://deluge-torrent.org/) is a lightweight, Free Software, cross-
 # platform BitTorrent client. * Full Encryption * WebUI * Plugin System * Much
 # more...
@@ -16,19 +15,21 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - DELUGE_LOGLEVEL=error # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/deluge:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/deluge:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
     # ports:
-      # - 8112:8112 # Port for webui
-      # - 6881:6881 # Inbound torrent traffic (See App Setup)
-      # - 6881:6881/udp # Inbound torrent traffic (See App Setup)
-      # - 58846:58846 # Default deluged port for thin client connectivity # optional
+      # Port for webui
+      # - 8112:8112
+      # Inbound torrent traffic (See App Setup)
+      # - 6881:6881
+      # Inbound torrent traffic (See App Setup)
+      # - 6881:6881/udp
+      # Default deluged port for thin client connectivity 
+      # - 58846:58846 # optional
     networks:
       default:
         aliases:
           - deluge
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

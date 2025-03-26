@@ -1,4 +1,3 @@
-
 # [Bazarr](https://www.bazarr.media/) is a companion application to Sonarr and
 # Radarr. It can manage and download subtitles based on your requirements. You
 # define your preferences by TV show or movie and Bazarr takes care of
@@ -16,16 +15,15 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/bazarr:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/bazarr:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
     # ports:
-      # - 6767:6767 # Allows HTTP access to the internal webserver.
+      # Allows HTTP access to the internal webserver.
+      # - 6767:6767
     networks:
       default:
         aliases:
           - bazarr
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

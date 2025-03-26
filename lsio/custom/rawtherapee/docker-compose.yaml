@@ -1,4 +1,3 @@
-
 # [RawTherapee](https://rawtherapee.com/) is a free, cross-platform raw image
 # processing program!
 
@@ -14,16 +13,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rawtherapee:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/rawtherapee:/config
     # ports:
-      # - 3000:3000 # RawTherapee desktop gui.
-      # - 3001:3001 # RawTherapee desktop gui HTTPS.
+      # RawTherapee desktop gui.
+      # - 3000:3000
+      # RawTherapee desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - rawtherapee
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

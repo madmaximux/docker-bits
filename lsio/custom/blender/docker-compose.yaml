@@ -1,4 +1,3 @@
-
 # [Blender](https://www.blender.org/) is a free and open-source 3D computer
 # graphics software toolset used for creating animated films, visual effects,
 # art, 3D printed models, motion graphics, interactive 3D applications, virtual
@@ -18,16 +17,16 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - SUBFOLDER=/ # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/blender:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/blender:/config
     # ports:
-      # - 3000:3000 # Blender desktop gui
-      # - 3001:3001 # Blender desktop gui HTTPS
+      # Blender desktop gui
+      # - 3000:3000
+      # Blender desktop gui HTTPS
+      # - 3001:3001
     networks:
       default:
         aliases:
           - blender
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

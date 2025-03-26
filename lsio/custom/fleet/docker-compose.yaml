@@ -1,4 +1,3 @@
-
 # [Fleet](https://github.com/linuxserver/fleet) provides an online web interface
 # which displays a set of maintained images from one or more owned repositories.
 
@@ -19,15 +18,14 @@ services:
       - fleet_database_password=dbuserpassword
       # - fleet_admin_secret=randomstring # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fleet:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/fleet:/config
     # ports:
-      # - 8080:8080 # Http port
+      # Http port
+      # - 8080:8080
     networks:
       default:
         aliases:
           - fleet
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

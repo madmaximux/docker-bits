@@ -1,4 +1,3 @@
-
 # [Dokuwiki](https://www.dokuwiki.org/dokuwiki/) is a simple to use and highly
 # versatile Open Source wiki software that doesn't require a database. It is
 # loved by users for its clean and readable syntax. The ease of maintenance,
@@ -19,16 +18,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/dokuwiki:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/dokuwiki:/config
     # ports:
-      # - 80:80 # Application HTTP Port
-      # - 443:443 # #optional Application HTTPS Port # optional
+      # Application HTTP Port
+      # - 80:80
+      # #optional Application HTTPS Port 
+      # - 443:443 # optional
     networks:
       default:
         aliases:
           - dokuwiki
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

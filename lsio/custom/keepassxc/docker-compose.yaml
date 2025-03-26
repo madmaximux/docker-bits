@@ -1,4 +1,3 @@
-
 # [KeePassXC](https://keepassxc.org/) is a free and open-source password
 # manager. It started as a community fork of KeePassX (itself a cross-platform
 # port of KeePass).
@@ -15,16 +14,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/keepassxc:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/keepassxc:/config
     # ports:
-      # - 3000:3000 # KeePassXC desktop gui.
-      # - 3001:3001 # KeePassXC desktop gui HTTPS.
+      # KeePassXC desktop gui.
+      # - 3000:3000
+      # KeePassXC desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - keepassxc
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

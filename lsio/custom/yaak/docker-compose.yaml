@@ -1,4 +1,3 @@
-
 # [Yaak](https://yaak.app/) is a desktop API client for organizing and executing
 # REST, GraphQL, and gRPC requests. It's built using
 # [Tauri](https://tauri.app/), [Rust](https://www.rust-lang.org/), and
@@ -16,16 +15,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/yaak:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/yaak:/config
     # ports:
-      # - 3000:3000 # Yaak desktop gui.
-      # - 3001:3001 # Yaak desktop gui HTTPS.
+      # Yaak desktop gui.
+      # - 3000:3000
+      # Yaak desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - yaak
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

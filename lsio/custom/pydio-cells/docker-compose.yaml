@@ -1,4 +1,3 @@
-
 # [Pydio-cells](https://pydio.com/) is the nextgen file sharing platform for
 # organizations. It is a full rewrite of the Pydio project using the Go language
 # following a micro-service architecture.
@@ -17,15 +16,14 @@ services:
       - EXTERNALURL=yourdomain.url
       # - SERVER_IP=0.0.0.0 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pydio-cells:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pydio-cells:/config
     # ports:
-      # - 8080:8080 # Http port
+      # Http port
+      # - 8080:8080
     networks:
       default:
         aliases:
           - pydio-cells
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

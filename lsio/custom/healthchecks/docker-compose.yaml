@@ -1,4 +1,3 @@
-
 # [Healthchecks](https://github.com/healthchecks/healthchecks) is a watchdog for
 # your cron jobs. It's a web server that listens for pings from your cron jobs,
 # plus a web interface.
@@ -34,16 +33,16 @@ services:
       # - SECRET_KEY= # optional
       # - SITE_LOGO_URL= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/healthchecks:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/healthchecks:/config
     # ports:
-      # - 8000:8000 # Healthchecks Web UI
-      # - 2525:2525 # Port for inbound SMTP pings # optional
+      # Healthchecks Web UI
+      # - 8000:8000
+      # Port for inbound SMTP pings 
+      # - 2525:2525 # optional
     networks:
       default:
         aliases:
           - healthchecks
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

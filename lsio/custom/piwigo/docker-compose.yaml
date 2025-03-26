@@ -1,4 +1,3 @@
-
 # [Piwigo](http://piwigo.org/) is a photo gallery software for the web that
 # comes with powerful features to publish and manage your collection of
 # pictures.
@@ -15,16 +14,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piwigo:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piwigo/gallery:/gallery
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piwigo:/config
+      # Image storage for Piwigo
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piwigo/gallery:/gallery
     # ports:
-      # - 80:80 # Application WebUI
+      # Application WebUI
+      # - 80:80
     networks:
       default:
         aliases:
           - piwigo
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

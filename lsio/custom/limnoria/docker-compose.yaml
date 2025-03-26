@@ -1,4 +1,3 @@
-
 # [Limnoria](https://github.com/ProgVal/limnoria) A robust, full-featured, and
 # user/programmer-friendly Python IRC bot, with many existing plugins. Successor
 # of the well-known Supybot.
@@ -15,15 +14,14 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/limnoria:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/limnoria:/config
     # ports:
-      # - 8080:8080 # Port for Limnoria's web interface.
+      # Port for Limnoria's web interface.
+      # - 8080:8080
     networks:
       default:
         aliases:
           - limnoria
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

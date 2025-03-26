@@ -1,4 +1,3 @@
-
 # [hiSHtory](https://github.com/ddworken/hishtory) is a better shell history. It
 # stores your shell history in context (what directory you ran the command in,
 # whether it succeeded or failed, how long it took, etc). This is all stored
@@ -18,15 +17,14 @@ services:
       # - HISHTORY_POSTGRES_DB=postgresql://${HISHTORY_DB_USER}:${HISHTORY_DB_PASS}@hishtory-db:5432/hishtory?sslmode=disable # optional
       # - HISHTORY_SQLITE_DB=/config/hishtory.db # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/hishtory-server:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/hishtory-server:/config
     # ports:
-      # - 8080:8080 # API port
+      # API port
+      # - 8080:8080
     networks:
       default:
         aliases:
           - hishtory-server
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

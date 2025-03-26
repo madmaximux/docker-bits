@@ -1,4 +1,3 @@
-
 # [Snapdrop](https://github.com/snapdrop/snapdrop) A local file sharing in your
 # browser. Inspired by Apple's Airdrop.
 
@@ -14,16 +13,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/snapdrop:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/snapdrop:/config
     # ports:
-      # - 80:80 # http gui
-      # - 443:443 # https gui
+      # http gui
+      # - 80:80
+      # https gui
+      # - 443:443
     networks:
       default:
         aliases:
           - snapdrop
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

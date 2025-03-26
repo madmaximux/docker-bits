@@ -1,4 +1,3 @@
-
 # [Ldap-auth](https://github.com/nginxinc/nginx-ldap-auth) software is for
 # authenticating users who request protected resources from servers proxied by
 # nginx. It includes a daemon (ldap-auth) that communicates with an
@@ -22,16 +21,16 @@ services:
       # - CERTFILE= # optional
       # - KEYFILE= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ldap-auth:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ldap-auth:/config
     # ports:
-      # - 8888:8888 # the port for ldap auth daemon
-      # - 9000:9000 # the port for ldap login page
+      # the port for ldap auth daemon
+      # - 8888:8888
+      # the port for ldap login page
+      # - 9000:9000
     networks:
       default:
         aliases:
           - ldap-auth
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

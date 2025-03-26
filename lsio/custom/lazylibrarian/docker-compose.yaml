@@ -1,4 +1,3 @@
-
 # [Lazylibrarian](https://lazylibrarian.gitlab.io/) is a program to follow
 # authors and grab metadata for all your digital reading needs. It uses a
 # combination of Goodreads Librarything and optionally GoogleBooks as sources
@@ -17,17 +16,17 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - DOCKER_MODS=linuxserver/mods:universal-calibre|linuxserver/mods:lazylibrarian-ffmpeg # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lazylibrarian:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lazylibrarian/books:/books
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lazylibrarian:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      # Books location
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lazylibrarian/books:/books
     # ports:
-      # - 5299:5299 # The port for the LazyLibrarian webinterface
+      # The port for the LazyLibrarian webinterface
+      # - 5299:5299
     networks:
       default:
         aliases:
           - lazylibrarian
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

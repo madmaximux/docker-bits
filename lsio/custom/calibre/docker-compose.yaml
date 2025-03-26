@@ -1,4 +1,3 @@
-
 # [Calibre](https://calibre-ebook.com/) is a powerful and easy to use e-book
 # manager. Users say it's outstanding and a must-have. It'll allow you to do
 # nearly everything and it takes things a step beyond normal e-book software.
@@ -19,17 +18,18 @@ services:
       # - PASSWORD= # optional
       # - CLI_ARGS= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre:/config
     # ports:
-      # - 8080:8080 # Calibre desktop gui.
-      # - 8181:8181 # Calibre desktop gui HTTPS.
-      # - 8081:8081 # Calibre webserver gui.
+      # Calibre desktop gui.
+      # - 8080:8080
+      # Calibre desktop gui HTTPS.
+      # - 8181:8181
+      # Calibre webserver gui.
+      # - 8081:8081
     networks:
       default:
         aliases:
           - calibre
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -1,4 +1,3 @@
-
 # [Davos](https://github.com/linuxserver/davos) is an FTP automation tool that
 # periodically scans given host locations for new files. It can be configured
 # for various purposes, including listening for specific files to appear in the
@@ -18,16 +17,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos/download:/download
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos:/config
+      # davos's file download location
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/davos/download:/download
     # ports:
-      # - 8080:8080 # This is the default port that davos runs under
+      # This is the default port that davos runs under
+      # - 8080:8080
     networks:
       default:
         aliases:
           - davos
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

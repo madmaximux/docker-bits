@@ -1,4 +1,3 @@
-
 # [Nginx](https://nginx.org/) is a simple webserver with php support. The config
 # files reside in `/config` for easy user customization.
 
@@ -14,16 +13,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nginx:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nginx:/config
     # ports:
-      # - 80:80 # http
-      # - 443:443 # https
+      # http
+      # - 80:80
+      # https
+      # - 443:443
     networks:
       default:
         aliases:
           - nginx
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

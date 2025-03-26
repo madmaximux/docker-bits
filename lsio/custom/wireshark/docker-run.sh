@@ -14,7 +14,7 @@ docker run -d \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
   -e UMASK=${UMASK:-002} `# for UMASK` \
-  -e TZ=${TZ:-America/Chicago} `# for timezone` \
+  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# optional` `# WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic.` \
   -p 3001:3001 `# optional` `# WireShark desktop gui HTTPS, only use this if you are not using host mode and sniffing Docker network traffic.` \
   -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireshark/config:/config `# Users home directory in the container, stores program settings and potentially dump files.` \

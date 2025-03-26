@@ -1,4 +1,3 @@
-
 # [Series Troxide](https://github.com/MaarifaMaarifa/series-troxide) a Simple
 # and Modern Series Tracker
 
@@ -14,17 +13,17 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/series-troxide:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/series-troxide:/config
     # ports:
-      # - 3000:3000 # Series Troxide desktop gui.
-      # - 3001:3001 # HTTPS Series Troxide desktop gui.
+      # Series Troxide desktop gui.
+      # - 3000:3000
+      # HTTPS Series Troxide desktop gui.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - series-troxide
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

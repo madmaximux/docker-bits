@@ -1,4 +1,3 @@
-
 # [Ardour](https://ardour.org/) is an open source, collaborative effort of a
 # worldwide team including musicians, programmers, and professional recording
 # engineers.
@@ -16,16 +15,16 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - SUBFOLDER=/ # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ardour:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ardour:/config
     # ports:
-      # - 3000:3000 # Ardour desktop gui # optional
-      # - 3001:3001 # Ardour desktop gui HTTPS # optional
+      # Ardour desktop gui 
+      # - 3000:3000 # optional
+      # Ardour desktop gui HTTPS 
+      # - 3001:3001 # optional
     networks:
       default:
         aliases:
           - ardour
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -1,4 +1,3 @@
-
 # [Audacity](https://www.audacityteam.org/) is an easy-to-use, multi-track audio
 # editor and recorder. Developed by a group of volunteers as open source.
 
@@ -14,16 +13,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/audacity:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/audacity:/config
     # ports:
-      # - 3000:3000 # Audacity desktop gui.
-      # - 3001:3001 # Audacity desktop gui HTTPS.
+      # Audacity desktop gui.
+      # - 3000:3000
+      # Audacity desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - audacity
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

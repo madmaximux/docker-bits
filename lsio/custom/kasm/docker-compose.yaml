@@ -1,4 +1,3 @@
-
 # [Kasm](https://www.kasmweb.com/?utm_campaign=LinuxServer&utm_source=listing)
 # Workspaces is a docker container streaming platform for delivering browser-
 # based access to desktops, applications, and web services. Kasm uses devops-
@@ -23,15 +22,19 @@ services:
       # - DOCKER_HUB_PASSWORD=PASS # optional
       # - DOCKER_MTU=1500 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kasm/opt:/opt
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kasm/profiles:/profiles
+      # Docker and installation storage.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kasm/opt:/opt
+      # Optionally specify a path for persistent profile storage.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kasm/profiles:/profiles
       # Optional for gamepad support.
-      - /dev/input:/dev/input
+      # - /dev/input:/dev/input
       # Optional for gamepad support.
-      - /run/udev/data:/run/udev/data
+      # - /run/udev/data:/run/udev/data
     # ports:
-      # - 3000:3000 # Kasm Installation wizard. (https)
-      # - 443:443 # Kasm Workspaces interface. (https)
+      # Kasm Installation wizard. (https)
+      # - 3000:3000
+      # Kasm Workspaces interface. (https)
+      # - 443:443
     networks:
       default:
         aliases:

@@ -1,4 +1,3 @@
-
 # [Ombi](https://ombi.io) allows you to host your own Plex Request and user
 # management system. If you are sharing your Plex server with other users, allow
 # them to request new content using an easy to manage interface! Manage all your
@@ -21,15 +20,14 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - BASE_URL=/ # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ombi:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ombi:/config
     # ports:
-      # - 3579:3579 # web gui
+      # web gui
+      # - 3579:3579
     networks:
       default:
         aliases:
           - ombi
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -1,4 +1,3 @@
-
 # [Sickchill](https://github.com/SickChill/SickChill) is an Automatic Video
 # Library Manager for TV Shows. It watches for new episodes of your favorite
 # shows, and when they are posted it does its magic.
@@ -15,16 +14,15 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickchill:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/sickchill:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
     # ports:
-      # - 8081:8081 # will map the container's port 8081 to port 8081 on the host
+      # will map the container's port 8081 to port 8081 on the host
+      # - 8081:8081
     networks:
       default:
         aliases:
           - sickchill
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

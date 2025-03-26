@@ -1,4 +1,3 @@
-
 # [MySQL Workbench](https://www.mysql.com/products/workbench/) is a unified
 # visual tool for database architects, developers, and DBAs. MySQL Workbench
 # provides data modeling, SQL development, and comprehensive administration
@@ -18,16 +17,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mysql-workbench:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mysql-workbench:/config
     # ports:
-      # - 3000:3000 # Mysql Workbench desktop gui.
-      # - 3001:3001 # Mysql Workbench desktop gui HTTPS.
+      # Mysql Workbench desktop gui.
+      # - 3000:3000
+      # Mysql Workbench desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - mysql-workbench
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

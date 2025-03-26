@@ -1,4 +1,3 @@
-
 # [WPS Office](https://www.wps.com/) is a lightweight, feature-rich
 # comprehensive office suite with high compatibility. As a handy and
 # professional office software, WPS Office allows you to edit files in Writer,
@@ -16,17 +15,17 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wps-office:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wps-office:/config
     # ports:
-      # - 3000:3000 # WPS Office desktop gui.
-      # - 3001:3001 # WPS Office desktop gui HTTPS.
+      # WPS Office desktop gui.
+      # - 3000:3000
+      # WPS Office desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - wps-office
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

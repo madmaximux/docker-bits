@@ -1,4 +1,3 @@
-
 # [Ngircd](https://ngircd.barton.de/) is a free, portable and lightweight
 # Internet Relay Chat server for small or private networks, developed under the
 # GNU General Public License (GPL). It is easy to configure, can cope with
@@ -18,15 +17,14 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ngircd:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ngircd:/config
     # ports:
-      # - 6667:6667 # ngircd port
+      # ngircd port
+      # - 6667:6667
     networks:
       default:
         aliases:
           - ngircd
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

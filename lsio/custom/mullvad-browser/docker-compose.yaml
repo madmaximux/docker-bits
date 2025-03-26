@@ -1,4 +1,3 @@
-
 # The [Mullvad Browser](https://mullvad.net/en/browser) is a privacy-focused web
 # browser developed in a collaboration between Mullvad VPN and the Tor Project.
 # It’s designed to minimize tracking and fingerprinting. You could say it’s a
@@ -20,17 +19,17 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - LOCAL_NET=192.168.0.0/16 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mullvad-browser:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/mullvad-browser:/config
     # ports:
-      # - 3000:3000 # Mullvad Browser GUI.
-      # - 3001:3001 # Mullvad Browser GUI HTTPS.
+      # Mullvad Browser GUI.
+      # - 3000:3000
+      # Mullvad Browser GUI HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - mullvad-browser
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

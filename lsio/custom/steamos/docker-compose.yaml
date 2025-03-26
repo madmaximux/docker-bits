@@ -1,4 +1,3 @@
-
 # [SteamOS](https://www.steamdeck.com/) is an Arch based Linux distribution made
 # by Valve Software. This container is a vanilla Arch install with Steam
 # repositories added for software support. **This container will only work with
@@ -22,19 +21,26 @@ services:
       # - STARTUP=KDE # optional
       # - RESOLUTION=1920x1080 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/steamos:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/steamos:/config
       # Optional for gamepad support. *Only working for Steam Remote Play
-      - /dev/input:/dev/input
+      # - /dev/input:/dev/input
       # Optional for gamepad support. *Only working for Steam Remote Play
-      - /run/udev/data:/run/udev/data
+      # - /run/udev/data:/run/udev/data
     # ports:
-      # - 3000:3000 # SteamOS desktop gui.
-      # - 3001:3001 # HTTPS SteamOS desktop gui.
-      # - 27031-27036:27031-27036/udp # Steam Remote Play Ports (UDP). # optional
-      # - 27031-27036:27031-27036 # Steam Remote Play Ports (TCP). # optional
-      # - 47984-47990:47984-47990 # Sunshine Ports (TCP). # optional
-      # - 48010-48010:48010-48010 # Sunshine Ports (TCP). # optional
-      # - 47998-48000:47998-48000/udp # Sunshine Ports (UDP). # optional
+      # SteamOS desktop gui.
+      # - 3000:3000
+      # HTTPS SteamOS desktop gui.
+      # - 3001:3001
+      # Steam Remote Play Ports (UDP). 
+      # - 27031-27036:27031-27036/udp # optional
+      # Steam Remote Play Ports (TCP). 
+      # - 27031-27036:27031-27036 # optional
+      # Sunshine Ports (TCP). 
+      # - 47984-47990:47984-47990 # optional
+      # Sunshine Ports (TCP). 
+      # - 48010-48010:48010-48010 # optional
+      # Sunshine Ports (UDP). 
+      # - 47998-48000:47998-48000/udp # optional
     networks:
       default:
         aliases:
@@ -43,8 +49,6 @@ services:
       # Video card passthrough to Steam.
       - /dev/dri:/dev/dri
     shm_size: "1gb"
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

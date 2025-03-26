@@ -1,4 +1,3 @@
-
 # [Pylon](https://github.com/pylonide/pylon) is a web based integrated
 # development environment built with Node.js as a backend and with a
 # supercharged JavaScript/HTML5 frontend, licensed under GPL version 3. This
@@ -19,16 +18,16 @@ services:
       # - PYUSER=myuser # optional
       # - PYPASS=mypass # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pylon:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pylon/code:/code
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pylon:/config
+      # Optionally if you want the bind mount your own code and have changes survive container upgrades.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/pylon/code:/code
     # ports:
-      # - 3131:3131 # The port for the Pylon web interface
+      # The port for the Pylon web interface
+      # - 3131:3131
     networks:
       default:
         aliases:
           - pylon
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

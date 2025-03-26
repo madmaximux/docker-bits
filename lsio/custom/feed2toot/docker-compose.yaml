@@ -1,4 +1,3 @@
-
 # [Feed2toot](https://gitlab.com/chaica/feed2toot) automatically parses rss
 # feeds, identifies new posts and posts them on the Mastodon social network.
 
@@ -15,13 +14,11 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - FEED_LIMIT=5 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/feed2toot:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/feed2toot:/config
     networks:
       default:
         aliases:
           - feed2toot
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

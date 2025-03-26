@@ -1,4 +1,3 @@
-
 # [Manyfold](https://github.com/manyfold3d/manyfold/) is an open source, self-
 # hosted web application for managing a collection of 3D models, particularly
 # focused on 3D printing.
@@ -18,16 +17,16 @@ services:
       - REDIS_URL=
       - SECRET_KEY_BASE=
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold:/config
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold/libraries:/libraries
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold:/config
+      # Location of your 3D model libraries.
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold/libraries:/libraries
     # ports:
-      # - 3214:3214 # Port for web frontend
+      # Port for web frontend
+      # - 3214:3214
     networks:
       default:
         aliases:
           - manyfold
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

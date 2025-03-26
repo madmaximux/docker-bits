@@ -1,4 +1,3 @@
-
 # [Adguardhome-sync](https://github.com/bakito/adguardhome-sync/) is a tool to
 # synchronize AdGuardHome config to replica instances.
 
@@ -15,15 +14,14 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - CONFIGFILE=/config/adguardhome-sync.yaml # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/adguardhome-sync:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/adguardhome-sync:/config
     # ports:
-      # - 8080:8080 # Port for AdGuardHome Sync's web API.
+      # Port for AdGuardHome Sync's web API.
+      # - 8080:8080
     networks:
       default:
         aliases:
           - adguardhome-sync
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

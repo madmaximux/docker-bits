@@ -1,4 +1,3 @@
-
 # [Doplarr](https://github.com/kiranshila/Doplarr) is an *arr request bot for
 # Discord.'
 
@@ -32,15 +31,14 @@ services:
       # - LOG_LEVEL=:info # optional
       # - JAVA_OPTS= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doplarr:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doplarr:/config
     # ports:
-      # - 80:80 # Application WebUI
+      # Application WebUI
+      # - 80:80
     networks:
       default:
         aliases:
           - doplarr
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

@@ -1,4 +1,3 @@
-
 # [Znc](http://wiki.znc.in/ZNC) is an IRC network bouncer or BNC. It can detach
 # the client from the actual IRC server, and also from selected channels.
 # Multiple clients from different locations can connect to a single ZNC account
@@ -16,15 +15,14 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/znc:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/znc:/config
     # ports:
-      # - 6501:6501 # Port ZNC listens on.
+      # Port ZNC listens on.
+      # - 6501:6501
     networks:
       default:
         aliases:
           - znc
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

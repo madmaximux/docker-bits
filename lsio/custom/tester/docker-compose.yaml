@@ -1,4 +1,3 @@
-
 # This internal tool is used as a desktop sandbox in our CI process to grab a
 # screenshot of a hopefully functional endpoint
 
@@ -10,14 +9,14 @@ services:
     container_name: tester
     environment:
       - URL=http://google.com
+    # volumes:
     # ports:
-      # - 3000:3000 # WebUI
+      # WebUI
+      # - 3000:3000
     networks:
       default:
         aliases:
           - tester
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

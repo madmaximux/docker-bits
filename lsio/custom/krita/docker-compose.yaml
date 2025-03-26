@@ -1,4 +1,3 @@
-
 # [Krita](https://krita.org/en/) is a professional FREE and open source painting
 # program. It is made by artists that want to see affordable art tools for
 # everyone.
@@ -15,16 +14,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/krita:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/krita:/config
     # ports:
-      # - 3000:3000 # Krita desktop gui.
-      # - 3001:3001 # Krita desktop gui HTTPS.
+      # Krita desktop gui.
+      # - 3000:3000
+      # Krita desktop gui HTTPS.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - krita
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

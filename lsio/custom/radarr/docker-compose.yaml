@@ -1,4 +1,3 @@
-
 # [Radarr](https://github.com/Radarr/Radarr) - A fork of Sonarr to work with
 # movies à la Couchpotato.
 
@@ -14,16 +13,15 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/radarr:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/radarr:/config
+      ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
     # ports:
-      # - 7878:7878 # The port for the Radarr Web UI
+      # The port for the Radarr Web UI
+      # - 7878:7878
     networks:
       default:
         aliases:
           - radarr
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

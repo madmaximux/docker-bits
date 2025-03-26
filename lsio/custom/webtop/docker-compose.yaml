@@ -1,4 +1,3 @@
-
 # [Webtop](https://github.com/linuxserver/docker-webtop) - Alpine, Ubuntu,
 # Fedora, and Arch based containers containing full desktop environments in
 # officially supported flavors accessible via any modern web browser.
@@ -17,22 +16,22 @@ services:
       # - SUBFOLDER=/ # optional
       # - TITLE=Webtop # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webtop:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webtop:/config
       # Docker Socket on the system, if you want to use Docker in the container
-      - /var/run/docker.sock:/var/run/docker.sock
+      # - /var/run/docker.sock:/var/run/docker.sock
     # ports:
-      # - 3000:3000 # Web Desktop GUI
-      # - 3001:3001 # Web Desktop GUI HTTPS
+      # Web Desktop GUI
+      # - 3000:3000
+      # Web Desktop GUI HTTPS
+      # - 3001:3001
     networks:
       default:
         aliases:
           - webtop
     devices:
       # Add this for GL support (Linux hosts only)
-      - /dev/dri:/dev/dri # optional
-    shm_size: "1gb" # optional
-    security_opt:
-      - no-new-privileges:true
+      # - /dev/dri:/dev/dri # optional
+    # shm_size: "1gb" # optional
     restart: unless-stopped
 
 networks:

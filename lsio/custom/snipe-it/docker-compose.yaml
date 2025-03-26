@@ -1,4 +1,3 @@
-
 # [Snipe-it](https://github.com/snipe/snipe-it) makes asset management easy. It
 # was built by people solving real-world IT and asset management problems, and a
 # solid UX has always been a top priority. Straightforward design and bulk
@@ -34,15 +33,14 @@ services:
       # - MAIL_ENV_USERNAME= # optional
       # - MAIL_ENV_PASSWORD= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/snipe-it:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/snipe-it:/config
     # ports:
-      # - 8080:80 # Snipe-IT Web UI
+      # Snipe-IT Web UI
+      # - 8080:80
     networks:
       default:
         aliases:
           - snipe-it
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

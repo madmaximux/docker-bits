@@ -1,4 +1,3 @@
-
 # [Spotube](https://spotube.krtirtho.dev/) is an open source, cross-platform
 # Spotify client compatible across multiple platforms utilizing Spotify's data
 # API and YouTube, Piped.video or JioSaavn as an audio source, eliminating the
@@ -16,16 +15,16 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/spotube:/config
+      ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/spotube:/config
     # ports:
-      # - 3000:3000 # Spotube desktop gui.
-      # - 3001:3001 # HTTPS Spotube desktop gui.
+      # Spotube desktop gui.
+      # - 3000:3000
+      # HTTPS Spotube desktop gui.
+      # - 3001:3001
     networks:
       default:
         aliases:
           - spotube
-    security_opt:
-      - no-new-privileges:true
     restart: unless-stopped
 
 networks:

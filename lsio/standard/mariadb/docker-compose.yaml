@@ -14,7 +14,7 @@ services:
       - PGID=${PGID:-100}
       # for UMASK
       - UMASK=${UMASK:-002}
-      # for timezone
+      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
       - TZ=${TZ:-America/Chicago}
       # Set this to root password for installation (minimum 4 characters & non-alphanumeric passwords must be properly escaped). (valid only for first run)
       - MYSQL_ROOT_PASSWORD=ROOT_ACCESS_PASSWORD
