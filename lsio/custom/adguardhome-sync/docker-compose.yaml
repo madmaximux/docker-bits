@@ -14,7 +14,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - CONFIGFILE=/config/adguardhome-sync.yaml # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/adguardhome-sync:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/adguardhome-sync${DOCKERCONFIGDIR:-}:/config
     # ports:
       # Port for AdGuardHome Sync's web API.
       # - 8080:8080

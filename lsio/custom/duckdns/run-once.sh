@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/duckdns/config
-mkdir -p ${BASEDIR:-/volume1/docker}/duckdns/config `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/duckdns/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/duckdns/config `#optional`

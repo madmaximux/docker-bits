@@ -13,7 +13,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/grav:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/grav${DOCKERCONFIGDIR:-}:/config
     # ports:
       # Port for web frontend
       # - 80:80

@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/pyload-ng/config
-mkdir -p ${BASEDIR:-/volume1/docker}/pyload-ng/downloads
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/pyload-ng/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/pyload-ng/downloads

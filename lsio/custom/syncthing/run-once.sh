@@ -1,5 +1,5 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/syncthing/config
-mkdir -p ${BASEDIR:-/volume1/docker}/syncthing/data1
-mkdir -p ${BASEDIR:-/volume1/docker}/syncthing/data2
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/data1
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/data2

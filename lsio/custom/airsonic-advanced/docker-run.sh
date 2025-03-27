@@ -14,11 +14,11 @@ docker run -d \
   -e CONTEXT_PATH= `# optional` `# For setting url-base in reverse proxy setups.` \
   -e JAVA_OPTS= `# optional` `# For passing additional java options.` \
   -p 4040:4040 `# WebUI` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/config:/config `# Configuration file location.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/music:/music `# Location of music.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/playlists:/playlists `# Location for playlists to be saved to.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/podcasts:/podcasts `# Location of podcasts.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/airsonic-advanced/media:/media `# optional` `# Location of other media.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/config:/config `# Configuration file location.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/music:/music `# Location of music.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/playlists:/playlists `# Location for playlists to be saved to.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/podcasts:/podcasts `# Location of podcasts.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/media:/media `# optional` `# Location of other media.` \
   --device /dev/snd:/dev/snd `# optional` `# Only needed to pass your host sound device to Airsonic's Java jukebox player.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/airsonic-advanced

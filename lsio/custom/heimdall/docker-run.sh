@@ -12,6 +12,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 80:80 `# http gui` \
   -p 443:443 `# https gui` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/heimdall/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/heimdall/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/heimdall

@@ -22,9 +22,9 @@ services:
       # - NGINX_PORT=80 # optional
       # - WEB_APP_PORT=3000 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbootxyz:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/netbootxyz${DOCKERCONFIGDIR:-}:/config
       # Storage for NETBOOT.XYZ bootable assets (live CDs and other files)
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbootxyz/assets:/assets
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/netbootxyz/assets:/assets
     # ports:
       # Web configuration interface.
       # - 3000:3000

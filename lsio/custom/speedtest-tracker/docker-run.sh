@@ -22,6 +22,6 @@ docker run -d \
   -e DISPLAY_TIMEZONE=Etc/UTC `# optional` `# Timezone for the UI.` \
   -e PRUNE_RESULTS_OLDER_THAN=0 `# optional` `# Days to keep test results.` \
   -p 80:80 `# Web UI` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/speedtest-tracker/config:/config `# Contains speedtest-tracker config and database, if using sqlite.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/speedtest-tracker/config:/config `# Contains speedtest-tracker config and database, if using sqlite.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/speedtest-tracker

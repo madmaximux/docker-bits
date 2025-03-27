@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/manyfold/config
-mkdir -p ${BASEDIR:-/volume1/docker}/manyfold/libraries `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/libraries `#optional`

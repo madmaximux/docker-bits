@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/nextcloud/config
-mkdir -p ${BASEDIR:-/volume1/docker}/nextcloud/data
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nextcloud/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nextcloud/data

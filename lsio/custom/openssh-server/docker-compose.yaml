@@ -27,7 +27,7 @@ services:
       # - USER_NAME=linuxserver.io # optional
       # - LOG_STDOUT= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openssh-server:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/openssh-server${DOCKERCONFIGDIR:-}:/config
     # ports:
       # ssh port
       # - 2222:2222

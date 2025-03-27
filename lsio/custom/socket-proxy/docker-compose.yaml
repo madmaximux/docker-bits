@@ -11,7 +11,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/socket-proxy:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/socket-proxy${DOCKERCONFIGDIR:-}:/config
     # ports:
     networks:
       default:

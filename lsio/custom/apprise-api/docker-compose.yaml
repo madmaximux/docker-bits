@@ -19,9 +19,9 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - APPRISE_ATTACH_SIZE=0 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/apprise-api:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/apprise-api${DOCKERCONFIGDIR:-}:/config
       # Temporary storage for attachments when sent with notifications.
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/apprise-api/attachments:/attachments
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/apprise-api/attachments:/attachments
     # ports:
       # Port for apprise's interface and API.
       # - 8000:8000

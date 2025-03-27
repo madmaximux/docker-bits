@@ -12,6 +12,6 @@ docker run -d \
   -e SUBFOLDER=/ `# optional` `# Specify a subfolder to use with reverse proxies, IE `/subfolder/`` \
   -p 3000:3000 `# optional` `# Ardour desktop gui` \
   -p 3001:3001 `# optional` `# Ardour desktop gui HTTPS` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ardour/config:/config `# Users home directory in the container, stores data and application config files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ardour/config:/config `# Users home directory in the container, stores data and application config files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/ardour

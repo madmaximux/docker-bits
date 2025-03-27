@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/calibre-web/config
-mkdir -p ${BASEDIR:-/volume1/docker}/calibre-web/books
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/calibre-web/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/calibre-web/books

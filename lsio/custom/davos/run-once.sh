@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/davos/config
-mkdir -p ${BASEDIR:-/volume1/docker}/davos/download
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/davos/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/davos/download

@@ -11,7 +11,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/qemu-static:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/qemu-static${DOCKERCONFIGDIR:-}:/config
     # ports:
     networks:
       default:

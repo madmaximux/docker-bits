@@ -15,11 +15,11 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing${DOCKERCONFIGDIR:-}:/config
       # Data1
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data1:/data1
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/data1:/data1
       # Data2
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data2:/data2
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/data2:/data2
     # ports:
       # Application WebUI
       # - 8384:8384

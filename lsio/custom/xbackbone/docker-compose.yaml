@@ -16,7 +16,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/xbackbone:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/xbackbone${DOCKERCONFIGDIR:-}:/config
     # ports:
       # http gui
       # - 80:80

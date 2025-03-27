@@ -15,7 +15,7 @@ services:
       # - CLI_ARGS=--gameid devtest # optional
     volumes:
       # Where luanti stores config files and maps etc.
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/luanti/config/.minetest:/config/.minetest
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/luanti/config/.minetest:/config/.minetest
     # ports:
       # Port Luanti listens on (UDP).
       # - 30000:30000/udp

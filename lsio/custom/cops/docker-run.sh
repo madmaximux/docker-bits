@@ -26,7 +26,7 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 80:80 `# HTTP WebUI` \
   -p 443:443 `# HTTPS WebUI` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/cops/config:/config `# COPS Application Data.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/cops/books:/books `# Calibre metadata.db location.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/cops/config:/config `# COPS Application Data.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/cops/books:/books `# Calibre metadata.db location.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/cops

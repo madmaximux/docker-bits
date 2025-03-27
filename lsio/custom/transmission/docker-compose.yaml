@@ -22,10 +22,10 @@ services:
       # - PEERPORT= # optional
       # - HOST_WHITELIST= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/transmission:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission${DOCKERCONFIGDIR:-}:/config
+      - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
       # Watch folder for torrent files.
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/transmission/watch:/watch
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/watch:/watch
     # ports:
       # WebUI
       # - 9091:9091

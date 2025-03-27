@@ -1,7 +1,7 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/airsonic-advanced/config
-mkdir -p ${BASEDIR:-/volume1/docker}/airsonic-advanced/music
-mkdir -p ${BASEDIR:-/volume1/docker}/airsonic-advanced/playlists
-mkdir -p ${BASEDIR:-/volume1/docker}/airsonic-advanced/podcasts
-mkdir -p ${BASEDIR:-/volume1/docker}/airsonic-advanced/media `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/music
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/playlists
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/podcasts
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/media `#optional`

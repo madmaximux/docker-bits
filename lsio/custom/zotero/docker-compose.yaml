@@ -13,7 +13,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/zotero:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/zotero${DOCKERCONFIGDIR:-}:/config
     # ports:
       # Zotero gui.
       # - 3000:3000

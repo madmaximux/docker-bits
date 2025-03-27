@@ -20,7 +20,7 @@ docker run -d \
   -p 3000:3000 `# Web configuration interface.` \
   -p 69:69/udp `# TFTP Port.` \
   -p 8080:80 `# optional` `# NGINX server for hosting assets.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbootxyz/config:/config `# Storage for boot menu files and web application config` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/netbootxyz/assets:/assets `# optional` `# Storage for NETBOOT.XYZ bootable assets (live CDs and other files)` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/netbootxyz/config:/config `# Storage for boot menu files and web application config` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/netbootxyz/assets:/assets `# optional` `# Storage for NETBOOT.XYZ bootable assets (live CDs and other files)` \
   --restart unless-stopped \
   ghcr.io/linuxserver/netbootxyz

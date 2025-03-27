@@ -12,7 +12,7 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 8123:8123 `# optional` `# Application WebUI, only use this if you are not using host mode.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/homeassistant/config:/config `# Home Assistant config storage path.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/homeassistant/config:/config `# Home Assistant config storage path.` \
   --device /path/to/device:/path/to/device `# optional` `# For passing through USB, serial or gpio devices.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/homeassistant

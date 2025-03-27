@@ -11,9 +11,9 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 8096:8096 `# Http webUI.` \
   -p 8920:8920 `# optional` `# Https webUI (you need to setup your own certificate).` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emby/config:/config `# Emby data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emby/data/tvshows:/data/tvshows `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/emby/data/movies:/data/movies `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/emby/config:/config `# Emby data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/emby/data/tvshows:/data/tvshows `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/emby/data/movies:/data/movies `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
   -v /opt/vc/lib:/opt/vc/lib `# optional` `# Path for Raspberry Pi OpenMAX libs *optional*.` \
   --device /dev/dri:/dev/dri `# optional` `# Only needed if you want to use your Intel or AMD GPU for hardware accelerated video encoding (vaapi).` \
   --device /dev/vchiq:/dev/vchiq `# optional` `# Only needed if you want to use your Raspberry Pi OpenMax video encoding (Bellagio).` \

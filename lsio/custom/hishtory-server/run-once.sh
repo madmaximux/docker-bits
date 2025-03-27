@@ -1,3 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/hishtory-server/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/hishtory-server/config

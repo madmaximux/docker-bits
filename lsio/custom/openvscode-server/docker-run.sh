@@ -14,6 +14,6 @@ docker run -d \
   -e SUDO_PASSWORD=password `# optional` `# If this optional variable is set, user will have sudo access in the openvscode-server terminal with the specified password.` \
   -e SUDO_PASSWORD_HASH= `# optional` `# Optionally set sudo password via hash (takes priority over `SUDO_PASSWORD` var). Format is `$type$salt$hashed`.` \
   -p 3000:3000 `# Web UI port.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openvscode-server/config:/config `# Contains all relevant configuration files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/openvscode-server/config:/config `# Contains all relevant configuration files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/openvscode-server

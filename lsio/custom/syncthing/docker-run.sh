@@ -14,8 +14,8 @@ docker run -d \
   -p 22000:22000/tcp `# Listening port (TCP)` \
   -p 22000:22000/udp `# Listening port (UDP)` \
   -p 21027:21027/udp `# Protocol discovery` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/config:/config `# Configuration files.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data1:/data1 `# Data1` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syncthing/data2:/data2 `# Data2` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/config:/config `# Configuration files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/data1:/data1 `# Data1` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/data2:/data2 `# Data2` \
   --restart unless-stopped \
   ghcr.io/linuxserver/syncthing

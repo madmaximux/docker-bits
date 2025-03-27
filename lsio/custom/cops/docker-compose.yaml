@@ -29,9 +29,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/cops:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/cops${DOCKERCONFIGDIR:-}:/config
       # Calibre metadata.db location.
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/cops/books:/books
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/cops/books:/books
     # ports:
       # HTTP WebUI
       # - 80:80

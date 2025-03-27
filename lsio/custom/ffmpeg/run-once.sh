@@ -1,3 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/ffmpeg/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ffmpeg/config

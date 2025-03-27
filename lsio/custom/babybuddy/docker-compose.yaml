@@ -15,7 +15,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       - CSRF_TRUSTED_ORIGINS=http://127.0.0.1:8000,https://babybuddy.domain.com
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/babybuddy:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/babybuddy${DOCKERCONFIGDIR:-}:/config
     # ports:
       # the port for the web ui
       # - 8000:8000

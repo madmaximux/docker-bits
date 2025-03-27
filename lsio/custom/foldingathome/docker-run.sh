@@ -18,6 +18,6 @@ docker run -d \
   -e CLI_ARGS= `# optional` `# Optionally pass additional cli arguments to `fah-client` on container start.` \
   -p 80:80 `# Application WebUI` \
   -p 7396:7396 `# optional` `# Folding@home web gui (redirects to [https://app.foldingathome.org](https://app.foldingathome.org)).` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/foldingathome/config:/config `# Where Folding@home should store its database and config.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/foldingathome/config:/config `# Where Folding@home should store its database and config.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/foldingathome

@@ -21,7 +21,7 @@ services:
       - MACHINE_NAME=
       # - CLI_ARGS= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/foldingathome:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/foldingathome${DOCKERCONFIGDIR:-}:/config
     # ports:
       # Application WebUI
       # - 80:80

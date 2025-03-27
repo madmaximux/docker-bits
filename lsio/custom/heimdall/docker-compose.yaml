@@ -15,7 +15,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/heimdall:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/heimdall${DOCKERCONFIGDIR:-}:/config
     # ports:
       # http gui
       # - 80:80

@@ -14,6 +14,6 @@ docker run -d \
   -e WHISPER_BEAM=1 `# optional` `# Number of candidates to consider simultaneously during transcription.` \
   -e WHISPER_LANG=en `# optional` `# Language that you will speak to the add-on.` \
   -p 10300:10300 `# Wyoming connection port.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/faster-whisper/config:/config `# Local path for Whisper config files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/faster-whisper/config:/config `# Local path for Whisper config files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/faster-whisper

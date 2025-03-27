@@ -14,9 +14,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webgrabplus:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/webgrabplus${DOCKERCONFIGDIR:-}:/config
       # Where webgrabplus should store it's data files.
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/webgrabplus/data:/data
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/webgrabplus/data:/data
     # ports:
     networks:
       default:

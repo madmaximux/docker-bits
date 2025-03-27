@@ -16,8 +16,8 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lidarr:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}:/mnt/data
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lidarr${DOCKERCONFIGDIR:-}:/config
+      - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
       # Application WebUI
       # - 8686:8686

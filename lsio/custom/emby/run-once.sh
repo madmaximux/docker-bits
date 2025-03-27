@@ -1,5 +1,5 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/emby/config
-mkdir -p ${BASEDIR:-/volume1/docker}/emby/data/tvshows
-mkdir -p ${BASEDIR:-/volume1/docker}/emby/data/movies
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/emby/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/emby/data/tvshows
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/emby/data/movies

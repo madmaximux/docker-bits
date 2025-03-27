@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/projectsend/config
-mkdir -p ${BASEDIR:-/volume1/docker}/projectsend/data
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/projectsend/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/projectsend/data

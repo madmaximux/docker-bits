@@ -1,3 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/code-server/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/code-server/config

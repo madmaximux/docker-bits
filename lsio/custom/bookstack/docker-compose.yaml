@@ -26,7 +26,7 @@ services:
       - DB_DATABASE=
       # - QUEUE_CONNECTION= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/bookstack:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bookstack${DOCKERCONFIGDIR:-}:/config
     # ports:
       # http/s web interface.
       # - 6875:80

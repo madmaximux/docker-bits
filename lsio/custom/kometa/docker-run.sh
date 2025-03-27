@@ -16,6 +16,6 @@ docker run -d \
   -e KOMETA_TEST=False `# optional` `# Set to `True` to run in debug mode with only collections that have `test: true`.` \
   -e KOMETA_NO_MISSING=False `# optional` `# Set to `True` to run without any of the missing movie/show functions.` \
   -p 80:80 `# Application WebUI` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kometa/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kometa/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/kometa

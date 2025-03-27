@@ -12,8 +12,8 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 8686:8686 `# Application WebUI` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lidarr/config:/config `# Configuration files for Lidarr.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lidarr/music:/music `# optional` `# Music files (See note in Application setup).` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/lidarr/downloads:/downloads `# optional` `# Path to your download folder for music (See note in Application setup).` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lidarr/config:/config `# Configuration files for Lidarr.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lidarr/music:/music `# optional` `# Music files (See note in Application setup).` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lidarr/downloads:/downloads `# optional` `# Path to your download folder for music (See note in Application setup).` \
   --restart unless-stopped \
   ghcr.io/linuxserver/lidarr

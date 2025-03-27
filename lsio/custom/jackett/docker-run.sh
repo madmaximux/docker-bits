@@ -16,7 +16,7 @@ docker run -d \
   -e AUTO_UPDATE=true `# optional` `# Allow Jackett to update inside of the container.` \
   -e RUN_OPTS= `# optional` `# Optionally specify additional arguments to be passed.` \
   -p 9117:9117 `# WebUI` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jackett/config:/config `# Where Jackett should store its config file.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jackett/downloads:/downloads `# Path to torrent blackhole.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jackett/config:/config `# Where Jackett should store its config file.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jackett/downloads:/downloads `# Path to torrent blackhole.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/jackett

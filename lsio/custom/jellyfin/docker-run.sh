@@ -19,8 +19,8 @@ docker run -d \
   -p 8920:8920 `# optional` `# Optional - Https webUI (you need to set up your own certificate).` \
   -p 7359:7359/udp `# optional` `# Optional - Allows clients to discover Jellyfin on the local network.` \
   -p 1900:1900/udp `# optional` `# Optional - Service discovery used by DNLA and clients.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jellyfin/config:/config `# Jellyfin data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jellyfin/data/tvshows:/data/tvshows `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jellyfin/data/movies:/data/movies `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jellyfin/config:/config `# Jellyfin data storage location. *This can grow very large, 50gb+ is likely for a large collection.*` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jellyfin/data/tvshows:/data/tvshows `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jellyfin/data/movies:/data/movies `# Media goes here. Add as many as needed e.g. `/data/movies`, `/data/tv`, etc.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/jellyfin

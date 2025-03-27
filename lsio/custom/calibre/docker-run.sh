@@ -16,6 +16,6 @@ docker run -d \
   -p 8080:8080 `# Calibre desktop gui.` \
   -p 8181:8181 `# Calibre desktop gui HTTPS.` \
   -p 8081:8081 `# Calibre webserver gui.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre/config:/config `# Where calibre should store its database and library.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/calibre/config:/config `# Where calibre should store its database and library.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/calibre

@@ -11,7 +11,7 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# Double Commander desktop gui.` \
   -p 3001:3001 `# Double Commander desktop gui HTTPS.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doublecommander/config:/config `# Users home directory in the container, stores program settings.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/doublecommander/data:/data `# Host data directories, mount as many as needed.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/doublecommander/config:/config `# Users home directory in the container, stores program settings.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/doublecommander/data:/data `# Host data directories, mount as many as needed.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/doublecommander

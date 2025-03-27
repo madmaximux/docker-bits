@@ -10,6 +10,6 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 8080:8080 `# Port for Limnoria's web interface.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/limnoria/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/limnoria/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/limnoria

@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/kavita/config
-mkdir -p ${BASEDIR:-/volume1/docker}/kavita/data `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kavita/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kavita/data `#optional`

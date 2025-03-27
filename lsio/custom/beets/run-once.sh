@@ -1,5 +1,5 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/beets/config
-mkdir -p ${BASEDIR:-/volume1/docker}/beets/music
-mkdir -p ${BASEDIR:-/volume1/docker}/beets/downloads
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/beets/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/beets/music
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/beets/downloads

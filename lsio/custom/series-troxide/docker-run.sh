@@ -10,7 +10,7 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# Series Troxide desktop gui.` \
   -p 3001:3001 `# HTTPS Series Troxide desktop gui.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/series-troxide/config:/config `# Users home directory in the container, stores local files and settings` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/series-troxide/config:/config `# Users home directory in the container, stores local files and settings` \
   --shm-size="1gb" \
   --restart unless-stopped \
   ghcr.io/linuxserver/series-troxide

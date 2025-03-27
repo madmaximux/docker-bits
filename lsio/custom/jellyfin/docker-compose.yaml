@@ -20,8 +20,8 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - JELLYFIN_PublishedServerUrl=http://192.168.0.5 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/jellyfin:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/media:/mnt/data/media
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jellyfin${DOCKERCONFIGDIR:-}:/config
+      - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
     # ports:
       # Http webUI.
       # - 8096:8096

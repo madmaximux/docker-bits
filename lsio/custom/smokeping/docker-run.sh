@@ -13,7 +13,7 @@ docker run -d \
   -e SHARED_SECRET=password `# optional` `# Specify the master shared secret for this host. Used when in slave mode.` \
   -e CACHE_DIR=/tmp `# optional` `# Specify the cache directory for this host. Used when in slave mode.` \
   -p 80:80 `# Allows HTTP access to the internal webserver.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/smokeping/config:/config `# Persistent config files` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/smokeping/data:/data `# Storage location for db and application data (graphs etc)` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping/data:/data `# Storage location for db and application data (graphs etc)` \
   --restart unless-stopped \
   ghcr.io/linuxserver/smokeping

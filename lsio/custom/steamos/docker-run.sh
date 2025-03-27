@@ -22,7 +22,7 @@ docker run -d \
   -p 47984-47990:47984-47990 `# optional` `# Sunshine Ports (TCP).` \
   -p 48010-48010:48010-48010 `# optional` `# Sunshine Ports (TCP).` \
   -p 47998-48000:47998-48000/udp `# optional` `# Sunshine Ports (UDP).` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/steamos/config:/config `# Users home directory in the container, stores all files and games.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/steamos/config:/config `# Users home directory in the container, stores all files and games.` \
   -v /dev/input:/dev/input `# optional` `# Optional for gamepad support. *Only working for Steam Remote Play` \
   -v /run/udev/data:/run/udev/data `# optional` `# Optional for gamepad support. *Only working for Steam Remote Play` \
   --device /dev/dri:/dev/dri `# Video card passthrough to Steam.` \

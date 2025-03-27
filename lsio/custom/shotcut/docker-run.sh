@@ -10,6 +10,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# Shotcut desktop gui.` \
   -p 3001:3001 `# Shotcut desktop gui HTTPS.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/shotcut/config:/config `# Where Shotcut should store its config.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/shotcut/config:/config `# Where Shotcut should store its config.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/shotcut

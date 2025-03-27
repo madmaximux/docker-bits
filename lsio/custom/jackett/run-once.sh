@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/jackett/config
-mkdir -p ${BASEDIR:-/volume1/docker}/jackett/downloads
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jackett/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jackett/downloads

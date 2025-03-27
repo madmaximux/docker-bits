@@ -13,7 +13,7 @@ docker run -d \
   -e REDIS_URL= `# Redis/Valkey database URL in `redis://<hostname>:<port>/<db number>` format.` \
   -e SECRET_KEY_BASE= `# Browser session secret. Changing it will terminate all active browser sessions.` \
   -p 3214:3214 `# Port for web frontend` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold/config:/config `# Persistent storage for application configuration data.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/manyfold/libraries:/libraries `# optional` `# Location of your 3D model libraries.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/config:/config `# Persistent storage for application configuration data.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/libraries:/libraries `# optional` `# Location of your 3D model libraries.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/manyfold

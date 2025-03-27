@@ -1,5 +1,5 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/medusa/config
-mkdir -p ${BASEDIR:-/volume1/docker}/medusa/downloads
-mkdir -p ${BASEDIR:-/volume1/docker}/medusa/tv
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/medusa/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/medusa/downloads
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/medusa/tv

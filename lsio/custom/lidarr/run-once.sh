@@ -1,5 +1,5 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/lidarr/config
-mkdir -p ${BASEDIR:-/volume1/docker}/lidarr/music `#optional`
-mkdir -p ${BASEDIR:-/volume1/docker}/lidarr/downloads `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lidarr/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lidarr/music `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lidarr/downloads `#optional`

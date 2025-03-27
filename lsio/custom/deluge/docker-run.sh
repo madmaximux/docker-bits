@@ -14,7 +14,7 @@ docker run -d \
   -p 6881:6881 `# Inbound torrent traffic (See App Setup)` \
   -p 6881:6881/udp `# Inbound torrent traffic (See App Setup)` \
   -p 58846:58846 `# optional` `# Default deluged port for thin client connectivity` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/deluge/config:/config `# deluge configs` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/deluge/downloads:/downloads `# torrent download directory` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/deluge/config:/config `# deluge configs` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/deluge/downloads:/downloads `# torrent download directory` \
   --restart unless-stopped \
   ghcr.io/linuxserver/deluge

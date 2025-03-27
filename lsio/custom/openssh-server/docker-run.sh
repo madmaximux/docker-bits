@@ -23,6 +23,6 @@ docker run -d \
   -e USER_NAME=linuxserver.io `# optional` `# Optionally specify a user name (Default:`linuxserver.io`)` \
   -e LOG_STDOUT= `# optional` `# Set to `true` to log to stdout instead of file.` \
   -p 2222:2222 `# ssh port` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/openssh-server/config:/config `# Contains all relevant configuration files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/openssh-server/config:/config `# Contains all relevant configuration files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/openssh-server

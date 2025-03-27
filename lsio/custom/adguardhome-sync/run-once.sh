@@ -1,3 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/adguardhome-sync/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/adguardhome-sync/config

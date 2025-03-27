@@ -10,6 +10,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -e CLI_ARGS=--gameid devtest `# optional` `# Optionally specify any [CLI variables](https://wiki.luanti.net/Command_line) you want to launch the app with` \
   -p 30000:30000/udp `# Port Luanti listens on (UDP).` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/luanti/config/.minetest:/config/.minetest `# Where luanti stores config files and maps etc.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/luanti/config/.minetest:/config/.minetest `# Where luanti stores config files and maps etc.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/luanti

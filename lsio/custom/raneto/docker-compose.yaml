@@ -13,7 +13,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/raneto:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/raneto${DOCKERCONFIGDIR:-}:/config
     # ports:
       # The port for the Raneto web interface
       # - 3000:3000

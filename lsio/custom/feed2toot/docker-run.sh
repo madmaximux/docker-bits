@@ -9,6 +9,6 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -e FEED_LIMIT=5 `# optional` `# Limit number of RSS entries published at each execution.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/feed2toot/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/feed2toot/config:/config `# Persistent config files` \
   --restart unless-stopped \
   ghcr.io/linuxserver/feed2toot

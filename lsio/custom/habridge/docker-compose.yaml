@@ -18,7 +18,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       - SEC_KEY=
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/habridge:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/habridge${DOCKERCONFIGDIR:-}:/config
     # ports:
       # WebUI
       # - 8080:8080

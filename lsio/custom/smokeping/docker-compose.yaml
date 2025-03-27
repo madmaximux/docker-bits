@@ -17,9 +17,9 @@ services:
       # - SHARED_SECRET=password # optional
       # - CACHE_DIR=/tmp # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/smokeping:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping${DOCKERCONFIGDIR:-}:/config
       # Storage location for db and application data (graphs etc)
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/smokeping/data:/data
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping/data:/data
     # ports:
       # Allows HTTP access to the internal webserver.
       # - 80:80

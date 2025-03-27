@@ -13,7 +13,7 @@ docker run -d \
   -p 8875:8875 `# Status Page WebUI` \
   -p 554:554 `# RTSP Port` \
   -p 1900:1900/udp `# App Discovery` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/minisatip/config:/config `# Configuration files and minisatip data` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/minisatip/config:/config `# Configuration files and minisatip data` \
   --device /dev/dvb:/dev/dvb `# For passing through Tv-cards` \
   --restart unless-stopped \
   ghcr.io/linuxserver/minisatip

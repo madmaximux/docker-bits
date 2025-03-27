@@ -13,7 +13,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/kicad:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kicad${DOCKERCONFIGDIR:-}:/config
     # ports:
       # KiCad desktop gui.
       # - 3000:3000

@@ -18,9 +18,9 @@ services:
       # - DOCKER_MODS=linuxserver/mods:universal-calibre # optional
       # - OAUTHLIB_RELAX_TOKEN_SCOPE=1 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre-web:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/calibre-web${DOCKERCONFIGDIR:-}:/config
       # Where your preexisting calibre database is located.
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/calibre-web/books:/books
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/calibre-web/books:/books
     # ports:
       # WebUI
       # - 8083:8083

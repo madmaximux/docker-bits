@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/flexget/config
-mkdir -p ${BASEDIR:-/volume1/docker}/flexget/data `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/flexget/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/flexget/data `#optional`

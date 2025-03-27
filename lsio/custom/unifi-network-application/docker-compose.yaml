@@ -23,7 +23,7 @@ services:
       # - MEM_STARTUP=1024 # optional
       # - MONGO_TLS= # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/unifi-network-application:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/unifi-network-application${DOCKERCONFIGDIR:-}:/config
     # ports:
       # Unifi web admin port
       # - 8443:8443

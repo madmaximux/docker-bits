@@ -1,3 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/openvscode-server/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/openvscode-server/config

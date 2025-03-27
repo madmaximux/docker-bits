@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/mstream/config
-mkdir -p ${BASEDIR:-/volume1/docker}/mstream/music
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mstream/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mstream/music

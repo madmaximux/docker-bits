@@ -15,8 +15,8 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - DELUGE_LOGLEVEL=error # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/deluge:/config
-      - ${DOCKERSTORAGEDIR:-/volume1/data}/downloads:/mnt/data/downloads
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/deluge${DOCKERCONFIGDIR:-}:/config
+      - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
     # ports:
       # Port for webui
       # - 8112:8112

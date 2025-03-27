@@ -14,9 +14,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piwigo:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/piwigo${DOCKERCONFIGDIR:-}:/config
       # Image storage for Piwigo
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/piwigo/gallery:/gallery
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/piwigo/gallery:/gallery
     # ports:
       # Application WebUI
       # - 80:80

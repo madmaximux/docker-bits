@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/webgrabplus/config
-mkdir -p ${BASEDIR:-/volume1/docker}/webgrabplus/data
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/webgrabplus/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/webgrabplus/data

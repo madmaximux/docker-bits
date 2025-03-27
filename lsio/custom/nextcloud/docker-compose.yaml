@@ -18,9 +18,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nextcloud:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nextcloud${DOCKERCONFIGDIR:-}:/config
       # Your personal data.
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/nextcloud/data:/data
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nextcloud/data:/data
     # ports:
       # WebUI
       # - 443:443

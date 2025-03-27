@@ -14,7 +14,7 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - FEED_LIMIT=5 # optional
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/feed2toot:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/feed2toot${DOCKERCONFIGDIR:-}:/config
     networks:
       default:
         aliases:

@@ -20,6 +20,6 @@ docker run -d \
   -e PROXY_DOMAIN=code-server.my.domain `# optional` `# If this optional variable is set, this domain will be proxied for subdomain proxying. See [Documentation](https://github.com/coder/code-server/blob/main/docs/guide.md#using-a-subdomain)` \
   -e DEFAULT_WORKSPACE=/config/workspace `# optional` `# If this optional variable is set, code-server will open this directory by default` \
   -p 8443:8443 `# web gui` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/code-server/config:/config `# Contains all relevant configuration files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/code-server/config:/config `# Contains all relevant configuration files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/code-server

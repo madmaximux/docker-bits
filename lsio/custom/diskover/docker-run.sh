@@ -12,7 +12,7 @@ docker run -d \
   -e ES_HOST=elasticsearch `# ElasticSearch host (optional)` \
   -e ES_PORT=9200 `# ElasticSearch port (optional)` \
   -p 80:80 `# diskover Web UI` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/diskover/config:/config `# Persistent config files` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/diskover/data:/data `# Default mount point to crawl` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/diskover/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/diskover/data:/data `# Default mount point to crawl` \
   --restart unless-stopped \
   ghcr.io/linuxserver/diskover

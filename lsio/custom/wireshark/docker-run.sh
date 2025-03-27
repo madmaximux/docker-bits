@@ -17,6 +17,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# optional` `# WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic.` \
   -p 3001:3001 `# optional` `# WireShark desktop gui HTTPS, only use this if you are not using host mode and sniffing Docker network traffic.` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/wireshark/config:/config `# Users home directory in the container, stores program settings and potentially dump files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wireshark/config:/config `# Users home directory in the container, stores program settings and potentially dump files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/wireshark

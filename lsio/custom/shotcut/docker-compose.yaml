@@ -13,7 +13,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/shotcut:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/shotcut${DOCKERCONFIGDIR:-}:/config
     # ports:
       # Shotcut desktop gui.
       # - 3000:3000

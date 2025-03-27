@@ -16,7 +16,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/homeassistant:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/homeassistant${DOCKERCONFIGDIR:-}:/config
     ports:
       # Application WebUI, only use this if you are not using host mode. 
       # - 8123:8123 # optional

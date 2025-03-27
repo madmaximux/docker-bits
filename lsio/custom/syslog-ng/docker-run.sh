@@ -13,7 +13,7 @@ docker run -d \
   -p 514:5514/udp `# Syslog UDP` \
   -p 601:6601/tcp `# Syslog TCP` \
   -p 6514:6514/tcp `# Syslog TLS` \
-  -v ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/syslog-ng/config:/config `# Stores config and application files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syslog-ng/config:/config `# Stores config and application files` \
   -v /var/log:/var/log `# optional` `# Stores logs collected by the syslog-ng service` \
   --restart unless-stopped \
   ghcr.io/linuxserver/syslog-ng

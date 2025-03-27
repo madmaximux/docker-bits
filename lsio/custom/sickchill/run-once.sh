@@ -1,5 +1,5 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${BASEDIR:-/volume1/docker}/sickchill/config
-mkdir -p ${BASEDIR:-/volume1/docker}/sickchill/downloads `#optional`
-mkdir -p ${BASEDIR:-/volume1/docker}/sickchill/tv `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sickchill/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sickchill/downloads `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sickchill/tv `#optional`

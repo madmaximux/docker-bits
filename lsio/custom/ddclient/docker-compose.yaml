@@ -16,7 +16,7 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/ddclient:/config
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ddclient${DOCKERCONFIGDIR:-}:/config
     # ports:
       # Application WebUI
       # - 80:80
