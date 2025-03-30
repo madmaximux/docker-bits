@@ -18,6 +18,7 @@ services:
       - VERSION=docker
       # - PLEX_CLAIM= # optional
     volumes:
+      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
     ports:
       # Plex Media Server

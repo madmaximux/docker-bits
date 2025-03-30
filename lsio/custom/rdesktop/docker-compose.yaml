@@ -17,7 +17,6 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rdesktop${DOCKERCONFIGDIR:-}:/config
       # Docker Socket on the system, if you want to use Docker in the container
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rdesktop${DOCKERCONFIGDIR:-}:/config
     # ports:
       # # RDP access port
       # - 3389:3389

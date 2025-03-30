@@ -17,6 +17,5 @@ docker run -d \
   -e LOG_FILE=false `# optional` `# Set to `true` to log to file (also need to map /config).` \
   -p 80:80 `# Application WebUI` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/duckdns/config:/config `# Configuration files.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/duckdns/config:/config `# optional` `# Persistent config files. Also set `LOG_FILE=true` to keep address history.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/duckdns

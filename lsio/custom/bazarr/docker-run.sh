@@ -13,5 +13,6 @@ docker run -d \
   -p 6767:6767 `# Allows HTTP access to the internal webserver.` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bazarr/config:/config `# Persistent config files` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bazarr/data/media:/data/media `# optional` `# Location of media on disk` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bazarr/data/media:/data/media `# optional` `# Location of media on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/bazarr

@@ -18,6 +18,7 @@ docker run -d \
   -p 32410:32410/udp `# optional` `# GDM network discovery (local)` \
   -p 32413:32413/udp `# optional` `# GDM network discovery (local)` \
   -p 32414:32414/udp `# optional` `# GDM network discovery (local)` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex/config:/config `# Plex library location. *This can grow very large, 50gb+ is likely for a large collection.*` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex/data/media:/data/media `# Location of media on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/plex

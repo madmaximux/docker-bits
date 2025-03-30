@@ -16,6 +16,7 @@ docker run -d \
   -e AUTO_UPDATE=true `# optional` `# Allow Jackett to update inside of the container.` \
   -e RUN_OPTS= `# optional` `# Optionally specify additional arguments to be passed.` \
   -p 9117:9117 `# WebUI` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jackett/config:/config `# Where Jackett should store its config file.` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jackett/data/downloads:/data/downloads `# Location of downloads on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/jackett

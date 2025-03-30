@@ -13,5 +13,6 @@ docker run -d \
   -p 8080:8080 `# HTTP port for the WebUI.` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sabnzbd/config:/config `# Persistent config files` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sabnzbd/data/downloads:/data/downloads `# optional` `# Location of downloads on disk` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sabnzbd/data/downloads:/data/downloads `# optional` `# Location of downloads on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/sabnzbd

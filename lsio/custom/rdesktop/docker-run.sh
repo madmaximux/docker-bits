@@ -12,7 +12,6 @@ docker run -d \
   -p 3389:3389 `# RDP access port` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rdesktop/config:/config `# Configuration files.` \
   -v /var/run/docker.sock:/var/run/docker.sock `# optional` `# Docker Socket on the system, if you want to use Docker in the container` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rdesktop/config:/config `# optional` `# abc users home directory` \
   --device /dev/dri:/dev/dri `# optional` `# Add this for GL support (Linux hosts only)` \
   --shm-size="1gb" `# optional` \
   --restart unless-stopped \

@@ -25,7 +25,6 @@ services:
       # - LOG_FILE=false # optional
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/duckdns${DOCKERCONFIGDIR:-}:/config
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/duckdns${DOCKERCONFIGDIR:-}:/config
     ports:
       # Application WebUI
       - 80:80
