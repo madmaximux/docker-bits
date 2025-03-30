@@ -28,7 +28,7 @@ services:
       # Where lychee will store uploaded images.
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lychee/pictures:/pictures
     # ports:
-      # http gui
+      # # http gui
       # - 80:80
     networks:
       default:

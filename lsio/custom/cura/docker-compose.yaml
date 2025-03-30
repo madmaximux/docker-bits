@@ -16,9 +16,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/cura${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Cura desktop gui.
+      # # Cura desktop gui.
       # - 3000:3000
-      # Cura desktop gui HTTPS.
+      # # Cura desktop gui HTTPS.
       # - 3001:3001
     networks:
       default:

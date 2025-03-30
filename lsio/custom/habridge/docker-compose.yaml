@@ -20,9 +20,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/habridge${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # WebUI
+      # # WebUI
       # - 8080:8080
-      # HABridge communication port.
+      # # HABridge communication port.
       # - 50000:50000
     networks:
       default:

@@ -17,7 +17,7 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sickchill${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # will map the container's port 8081 to port 8081 on the host
+      # # will map the container's port 8081 to port 8081 on the host
       # - 8081:8081
     networks:
       default:

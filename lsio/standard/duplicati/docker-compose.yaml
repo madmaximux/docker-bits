@@ -15,10 +15,8 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # for UMASK
-      - UMASK=${UMASK:-002}
       # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
-      - TZ=${TZ:-America/Chicago}
+      - TZ=${TZ:-Europe/Amsterdam}
       # Encryption key for settings database. Minimum 8 characters, alphanumeric.
       - SETTINGS_ENCRYPTION_KEY=
       # Optionally specify any [CLI variables](https://duplicati.readthedocs.io/en/latest/07-other-command-line-utilities/) you want to launch the app with

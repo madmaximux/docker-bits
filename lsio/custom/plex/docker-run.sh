@@ -13,8 +13,11 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -e VERSION=docker `# Set whether to update plex or not - see Application Setup section.` \
   -e PLEX_CLAIM= `# optional` `# Optionally you can obtain a claim token from https://plex.tv/claim and input here. Keep in mind that the claim tokens expire within 4 minutes.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex/config:/config `# Plex library location. *This can grow very large, 50gb+ is likely for a large collection.*` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex/tv:/tv `# Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex/movies:/movies `# Media goes here. Add as many as needed e.g. `/movies`, `/tv`, etc.` \
+  -p 32400:32400/tcp `# Plex Media Server` \
+  -p 32412:32412/udp `# optional` `# GDM network discovery (local)` \
+  -p 32410:32410/udp `# optional` `# GDM network discovery (local)` \
+  -p 32413:32413/udp `# optional` `# GDM network discovery (local)` \
+  -p 32414:32414/udp `# optional` `# GDM network discovery (local)` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex/data/media:/data/media `# Location of media on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/plex

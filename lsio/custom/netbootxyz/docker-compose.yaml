@@ -26,11 +26,11 @@ services:
       # Storage for NETBOOT.XYZ bootable assets (live CDs and other files)
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/netbootxyz/assets:/assets
     # ports:
-      # Web configuration interface.
+      # # Web configuration interface.
       # - 3000:3000
-      # TFTP Port.
+      # # TFTP Port.
       # - 69:69/udp
-      # NGINX server for hosting assets. 
+      # # NGINX server for hosting assets.
       # - 8080:80 # optional
     networks:
       default:

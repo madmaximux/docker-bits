@@ -18,10 +18,9 @@ services:
       # - FG_WEBUI_PASSWORD=info # optional
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/flexget${DOCKERCONFIGDIR:-}:/config
-      # Default path for downloads.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/flexget/data:/data
+      - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # HTTP port for the WebUI.
+      # # HTTP port for the WebUI.
       # - 5050:5050
     networks:
       default:

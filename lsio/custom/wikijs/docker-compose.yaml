@@ -20,10 +20,9 @@ services:
       # - DB_PASS= # optional
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs${DOCKERCONFIGDIR:-}:/config
-      # Where Wiki.js data is stored.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs/data:/data
+      - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # Port for Wiki.js's web interface.
+      # # Port for Wiki.js's web interface.
       # - 3000:3000
     networks:
       default:

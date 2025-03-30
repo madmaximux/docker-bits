@@ -15,16 +15,15 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - DELUGE_LOGLEVEL=error # optional
     volumes:
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/deluge${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
     # ports:
-      # Port for webui
+      # # Port for webui
       # - 8112:8112
-      # Inbound torrent traffic (See App Setup)
+      # # Inbound torrent traffic (See App Setup)
       # - 6881:6881
-      # Inbound torrent traffic (See App Setup)
+      # # Inbound torrent traffic (See App Setup)
       # - 6881:6881/udp
-      # Default deluged port for thin client connectivity 
+      # # Default deluged port for thin client connectivity
       # - 58846:58846 # optional
     networks:
       default:

@@ -18,23 +18,18 @@ services:
       # - CONTEXT_PATH= # optional
       # - JAVA_OPTS= # optional
     volumes:
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
-      # Location for playlists to be saved to.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/playlists:/playlists
-      # Location of podcasts.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/podcasts:/podcasts
       # Location of other media.
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced/media:/media
     # ports:
-      # WebUI
+      # # WebUI
       # - 4040:4040
     networks:
       default:
         aliases:
           - airsonic-advanced
     devices:
-      # Only needed to pass your host sound device to Airsonic's Java jukebox player.
+      # # Only needed to pass your host sound device to Airsonic's Java jukebox player.
       # - /dev/snd:/dev/snd # optional
     restart: unless-stopped
 

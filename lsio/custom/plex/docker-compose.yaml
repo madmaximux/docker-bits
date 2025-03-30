@@ -18,19 +18,18 @@ services:
       - VERSION=docker
       # - PLEX_CLAIM= # optional
     volumes:
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
     ports:
       # Plex Media Server
       - 32400:32400/tcp
-      # GDM network discovery (local)
-      # - 32412:32412/udp
-      # GDM network discovery (local)
-      # - 32410:32410/udp
-      # GDM network discovery (local)
-      # - 32413:32413/udp
-      # GDM network discovery (local)
-      # - 32414:32414/udp
+      # # GDM network discovery (local)
+      # - 32412:32412/udp # optional
+      # # GDM network discovery (local)
+      # - 32410:32410/udp # optional
+      # # GDM network discovery (local)
+      # - 32413:32413/udp # optional
+      # # GDM network discovery (local)
+      # - 32414:32414/udp # optional
     networks:
       default:
         aliases:

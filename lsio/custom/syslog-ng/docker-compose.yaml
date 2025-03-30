@@ -17,13 +17,13 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syslog-ng${DOCKERCONFIGDIR:-}:/config
       # Stores logs collected by the syslog-ng service
-      # - /var/log:/var/log
+      - /var/log:/var/log
     # ports:
-      # Syslog UDP
+      # # Syslog UDP
       # - 514:5514/udp
-      # Syslog TCP
+      # # Syslog TCP
       # - 601:6601/tcp
-      # Syslog TLS
+      # # Syslog TLS
       # - 6514:6514/tcp
     networks:
       default:

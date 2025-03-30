@@ -19,10 +19,9 @@ services:
       - TZ=${TZ:-America/Chicago}
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nextcloud${DOCKERCONFIGDIR:-}:/config
-      # Your personal data.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nextcloud/data:/data
+      - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # WebUI
+      # # WebUI
       # - 443:443
     networks:
       default:

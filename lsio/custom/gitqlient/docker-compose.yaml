@@ -16,9 +16,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/gitqlient${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # GitQlient desktop gui.
+      # # GitQlient desktop gui.
       # - 3000:3000
-      # HTTPS GitQlient desktop gui.
+      # # HTTPS GitQlient desktop gui.
       # - 3001:3001
     networks:
       default:

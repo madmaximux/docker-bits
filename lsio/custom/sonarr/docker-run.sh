@@ -13,7 +13,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 8989:8989 `# The port for the Sonarr web interface` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sonarr/config:/config `# Database and sonarr configs` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sonarr/tv:/tv `# optional` `# Location of TV library on disk (See note in Application setup)` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sonarr/downloads:/downloads `# optional` `# Location of download managers output directory (See note in Application setup)` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sonarr/data:/data `# optional` `# Location of data on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/sonarr

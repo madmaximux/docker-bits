@@ -23,7 +23,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/planka${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Planka web UI.
+      # # Planka web UI.
       # - 1337:1337
     networks:
       default:

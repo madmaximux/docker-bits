@@ -17,10 +17,8 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sabnzbd${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
-      # Local path for incomplete-downloads.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sabnzbd/incomplete-downloads:/incomplete-downloads
     # ports:
-      # HTTP port for the WebUI.
+      # # HTTP port for the WebUI.
       # - 8080:8080
     networks:
       default:

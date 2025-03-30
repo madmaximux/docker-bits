@@ -16,10 +16,9 @@ services:
       - TZ=${TZ:-America/Chicago}
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/projectsend${DOCKERCONFIGDIR:-}:/config
-      # Where to store files to share.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/projectsend/data:/data
+      - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # WebUI
+      # # WebUI
       # - 80:80
     networks:
       default:

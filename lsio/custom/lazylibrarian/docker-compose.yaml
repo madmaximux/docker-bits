@@ -16,12 +16,11 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - DOCKER_MODS=linuxserver/mods:universal-calibre|linuxserver/mods:lazylibrarian-ffmpeg # optional
     volumes:
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lazylibrarian${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
       # Books location
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lazylibrarian/books:/books
     # ports:
-      # The port for the LazyLibrarian webinterface
+      # # The port for the LazyLibrarian webinterface
       # - 5299:5299
     networks:
       default:

@@ -14,10 +14,8 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # for UMASK
-      - UMASK=${UMASK:-002}
       # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
-      - TZ=${TZ:-America/Chicago}
+      - TZ=${TZ:-Europe/Amsterdam}
       # Whisper model that will be used for transcription. From [here](https://github.com/SYSTRAN/faster-whisper/blob/master/faster_whisper/utils.py#L12-L31), all with `-int8` compressed variants
       - WHISPER_MODEL=tiny-int8
       # Number of candidates to consider simultaneously during transcription.

@@ -17,10 +17,8 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # for UMASK
-      - UMASK=${UMASK:-002}
       # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
-      - TZ=${TZ:-America/Chicago}
+      - TZ=${TZ:-Europe/Amsterdam}
       # The protocol, IP/URL, and port that your application will be accessed on (ie. `http://192.168.1.1:6875` or `https://bookstack.mydomain.com`
       - APP_URL=
       # Session encryption key. You will need to generate this with `docker run -it --rm --entrypoint /bin/bash lscr.io/linuxserver/bookstack:latest appkey`

@@ -13,10 +13,8 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # for UMASK
-      - UMASK=${UMASK:-002}
       # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
-      - TZ=${TZ:-America/Chicago}
+      - TZ=${TZ:-Europe/Amsterdam}
       # Database connection URL. For sqlite use `sqlite3:/config/manyfold.sqlite3`. For postgres or mariadb use `<scheme>://<username>:<password>@<hostname>:<port>/<db name>` where `<scheme>` is `postgresql` or `mysql2`. Special characters in username/password must be [URL encoded](https://en.wikipedia.org/wiki/Percent-encoding).
       - DATABASE_URL=
       # Redis/Valkey database URL in `redis://<hostname>:<port>/<db number>` format.

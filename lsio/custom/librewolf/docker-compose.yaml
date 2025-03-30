@@ -18,9 +18,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/librewolf${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # LibreWolf desktop gui.
+      # # LibreWolf desktop gui.
       # - 3000:3000
-      # LibreWolf desktop gui HTTPS.
+      # # LibreWolf desktop gui HTTPS.
       # - 3001:3001
     networks:
       default:

@@ -18,9 +18,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/orcaslicer${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Orca Slicer desktop gui.
+      # # Orca Slicer desktop gui.
       # - 3000:3000
-      # Orca Slicer desktop gui HTTPS.
+      # # Orca Slicer desktop gui HTTPS.
       # - 3001:3001
     networks:
       default:

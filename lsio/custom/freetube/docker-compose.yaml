@@ -15,9 +15,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/freetube${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # FreeTube desktop gui.
+      # # FreeTube desktop gui.
       # - 3000:3000
-      # HTTPS FreeTube desktop gui.
+      # # HTTPS FreeTube desktop gui.
       # - 3001:3001
     networks:
       default:

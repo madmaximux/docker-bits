@@ -14,10 +14,10 @@ services:
       - TZ=${TZ:-America/Chicago}
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/tautulli${DOCKERCONFIGDIR:-}:/config
-      # Plex logs
-      # - ${DOCKERCONFIGDIR:-/volume1/docker/appdata}/plex/Library/Application Support/Plex Media Server/Logs:/plex_logs
+      # # Plex logs
+      # - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/plex/Library/Application Support/Plex Media Server/Logs:/plex_logs
     # ports:
-      # WebUI
+      # # WebUI
       # - 8181:8181
     networks:
       default:

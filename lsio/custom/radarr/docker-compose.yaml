@@ -16,7 +16,7 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/radarr${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # The port for the Radarr Web UI
+      # # The port for the Radarr Web UI
       # - 7878:7878
     networks:
       default:

@@ -29,7 +29,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/openssh-server${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # ssh port
+      # # ssh port
       # - 2222:2222
     networks:
       default:

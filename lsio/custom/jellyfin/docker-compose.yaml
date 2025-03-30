@@ -20,16 +20,15 @@ services:
       - TZ=${TZ:-America/Chicago}
       # - JELLYFIN_PublishedServerUrl=http://192.168.0.5 # optional
     volumes:
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jellyfin${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
     # ports:
-      # Http webUI.
+      # # Http webUI.
       # - 8096:8096
-      # Optional - Https webUI (you need to set up your own certificate). 
+      # # Optional - Https webUI (you need to set up your own certificate).
       # - 8920:8920 # optional
-      # Optional - Allows clients to discover Jellyfin on the local network. 
+      # # Optional - Allows clients to discover Jellyfin on the local network.
       # - 7359:7359/udp # optional
-      # Optional - Service discovery used by DNLA and clients. 
+      # # Optional - Service discovery used by DNLA and clients.
       # - 1900:1900/udp # optional
     networks:
       default:

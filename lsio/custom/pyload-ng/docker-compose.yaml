@@ -14,12 +14,11 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/pyload-ng${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
     # ports:
-      # Allows HTTP access to the application
+      # # Allows HTTP access to the application
       # - 8000:8000
-      # Click'n'Load port. 
+      # # Click'n'Load port.
       # - 9666:9666 # optional
     networks:
       default:

@@ -24,14 +24,12 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
-      # Watch folder for torrent files.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/watch:/watch
     # ports:
-      # WebUI
+      # # WebUI
       # - 9091:9091
-      # Torrent Port TCP
+      # # Torrent Port TCP
       # - 51413:51413
-      # Torrent Port UDP
+      # # Torrent Port UDP
       # - 51413:51413/udp
     networks:
       default:

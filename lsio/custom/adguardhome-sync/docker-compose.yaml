@@ -16,7 +16,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/adguardhome-sync${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Port for AdGuardHome Sync's web API.
+      # # Port for AdGuardHome Sync's web API.
       # - 8080:8080
     networks:
       default:

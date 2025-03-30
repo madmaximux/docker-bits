@@ -19,7 +19,7 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/lidarr${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # Application WebUI
+      # # Application WebUI
       # - 8686:8686
     networks:
       default:

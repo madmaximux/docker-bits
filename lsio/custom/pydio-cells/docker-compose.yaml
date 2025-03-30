@@ -18,7 +18,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/pydio-cells${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Http port
+      # # Http port
       # - 8080:8080
     networks:
       default:

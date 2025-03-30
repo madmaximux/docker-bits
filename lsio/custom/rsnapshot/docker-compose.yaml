@@ -18,9 +18,10 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rsnapshot${DOCKERCONFIGDIR:-}:/config
       # Storage location for all snapshots.
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rsnapshot/.snapshots:/.snapshots
-      # Storage location for data to be backed up.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rsnapshot/data:/data
+      - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
+      # # Application WebUI
+      # - 80:80
     networks:
       default:
         aliases:

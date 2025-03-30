@@ -12,7 +12,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 6767:6767 `# Allows HTTP access to the internal webserver.` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bazarr/config:/config `# Persistent config files` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bazarr/movies:/movies `# optional` `# Location of your movies` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bazarr/tv:/tv `# optional` `# Location of your TV Shows` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bazarr/data/media:/data/media `# optional` `# Location of media on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/bazarr

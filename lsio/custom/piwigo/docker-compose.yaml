@@ -18,7 +18,7 @@ services:
       # Image storage for Piwigo
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/piwigo/gallery:/gallery
     # ports:
-      # Application WebUI
+      # # Application WebUI
       # - 80:80
     networks:
       default:

@@ -18,7 +18,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/grocy${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # will map the container's port 80 to port 9283 on the host
+      # # will map the container's port 80 to port 9283 on the host
       # - 9283:80
     networks:
       default:

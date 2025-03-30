@@ -25,23 +25,23 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/unifi-network-application${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Unifi web admin port
+      # # Unifi web admin port
       # - 8443:8443
-      # Unifi STUN port
+      # # Unifi STUN port
       # - 3478:3478/udp
-      # Required for AP discovery
+      # # Required for AP discovery
       # - 10001:10001/udp
-      # Required for device communication
+      # # Required for device communication
       # - 8080:8080
-      # Required for `Make controller discoverable on L2 network` option 
+      # # Required for `Make controller discoverable on L2 network` option
       # - 1900:1900/udp # optional
-      # Unifi guest portal HTTPS redirect port 
+      # # Unifi guest portal HTTPS redirect port
       # - 8843:8843 # optional
-      # Unifi guest portal HTTP redirect port 
+      # # Unifi guest portal HTTP redirect port
       # - 8880:8880 # optional
-      # For mobile throughput test 
+      # # For mobile throughput test
       # - 6789:6789 # optional
-      # Remote syslog port 
+      # # Remote syslog port
       # - 5514:5514/udp # optional
     networks:
       default:

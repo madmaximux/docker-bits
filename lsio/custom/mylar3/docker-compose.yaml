@@ -14,12 +14,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mylar3${DOCKERCONFIGDIR:-}:/config
-      # Map to your comics folder.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mylar3/comics:/comics
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
     # ports:
-      # WebUI
+      # # WebUI
       # - 8090:8090
     networks:
       default:

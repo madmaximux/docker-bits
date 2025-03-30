@@ -21,7 +21,7 @@ services:
       # Location of your 3D model libraries.
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/libraries:/libraries
     # ports:
-      # Port for web frontend
+      # # Port for web frontend
       # - 3214:3214
     networks:
       default:

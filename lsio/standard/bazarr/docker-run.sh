@@ -8,8 +8,7 @@ docker run -d \
   --name=bazarr \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
-  -e UMASK=${UMASK:-002} `# for UMASK` \
-  -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
+  -e TZ=${TZ:-Europe/Amsterdam} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 6767:6767 `# Allows HTTP access to the internal webserver.` \
   -v ${BASEDIR:-/volume1/docker}/bazarr/config:/config `# Persistent config files` \
   -v ${BASEDIR:-/volume1/docker}/bazarr/movies:/movies `# optional` `# Location of your movies` \

@@ -15,9 +15,10 @@ services:
       - TZ=${TZ:-America/Chicago}
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/webgrabplus${DOCKERCONFIGDIR:-}:/config
-      # Where webgrabplus should store it's data files.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/webgrabplus/data:/data
+      - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
+      # # Application WebUI
+      # - 80:80
     networks:
       default:
         aliases:

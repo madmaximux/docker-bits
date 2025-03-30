@@ -17,10 +17,8 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # for UMASK
-      - UMASK=${UMASK:-002}
       # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
-      - TZ=${TZ:-America/Chicago}
+      - TZ=${TZ:-Europe/Amsterdam}
       # Top url you have control over (e.g. `example.com` if you own it, or `customsubdomain.example.com` if dynamic dns).
       - URL=example.com
       # Certbot validation method to use, options are `http` or `dns` (`dns` method also requires `DNSPLUGIN` variable set).

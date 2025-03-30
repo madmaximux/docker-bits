@@ -13,6 +13,6 @@ docker run -d \
   -e NZBGET_PASS=tegbzn6789 `# optional` `# Specify the password for web authentication.` \
   -p 6789:6789 `# WebUI` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nzbget/config:/config `# Persistent config` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nzbget/downloads:/downloads `# optional` `# Location of downloads on disk.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nzbget/data/downloads:/data/downloads `# optional` `# Location of downloads on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/nzbget

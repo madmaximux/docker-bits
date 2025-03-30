@@ -17,10 +17,8 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # for UMASK
-      - UMASK=${UMASK:-002}
       # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
-      - TZ=${TZ:-America/Chicago}
+      - TZ=${TZ:-Europe/Amsterdam}
       # Register for an account on `https://app.foldingathome.org` and retrieve account token in settings. Required on first start.
       - ACCOUNT_TOKEN=
       # Assign a friendly name to this instance (no spaces). Required on first start.

@@ -16,7 +16,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/limnoria${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Port for Limnoria's web interface.
+      # # Port for Limnoria's web interface.
       # - 8080:8080
     networks:
       default:

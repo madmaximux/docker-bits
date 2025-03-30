@@ -19,7 +19,7 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nzbhydra2${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
     # ports:
-      # WebUI
+      # # WebUI
       # - 5076:5076
     networks:
       default:

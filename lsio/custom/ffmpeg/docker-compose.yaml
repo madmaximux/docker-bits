@@ -1,4 +1,6 @@
-# This container needs special attention. Please check https://hub.docker.com/r/linuxserver/ffmpeg for details.
+# # This container needs special attention. Please check
+# https://hub.docker.com/r/linuxserver/ffmpeg for details.
+
 ---
 
 services:
@@ -13,7 +15,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ffmpeg${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Application WebUI
+      # # Application WebUI
       # - 80:80
     networks:
       default:

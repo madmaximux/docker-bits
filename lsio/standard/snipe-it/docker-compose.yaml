@@ -14,10 +14,8 @@ services:
       - PUID=${PUID:-1024}
       # for GroupID
       - PGID=${PGID:-100}
-      # for UMASK
-      - UMASK=${UMASK:-002}
       # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
-      - TZ=${TZ:-America/Chicago}
+      - TZ=${TZ:-Europe/Amsterdam}
       # App key used for encrypting stored data. Generate with `docker exec snipe-it php /app/www/artisan key:generate --show`.
       - APP_KEY=
       # Hostname or IP and port if applicable, be sure to define https/http

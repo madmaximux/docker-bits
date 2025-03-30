@@ -13,8 +13,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 8888:8888 `# WebUI` \
   -p 55555:55555 `# Sync Port.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/resilio-sync/config:/config `# Where resilio-sync should store its config file.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/resilio-sync/downloads:/downloads `# Folder for downloads/cache.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/resilio-sync/sync:/sync `# Sync folders root.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/resilio-sync/data/downloads:/data/downloads `# Location of downloads on disk` \
   --restart unless-stopped \
   ghcr.io/linuxserver/resilio-sync

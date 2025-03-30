@@ -12,7 +12,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/synclounge${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Web app and server port
+      # # Web app and server port
       # - 8088:8088
     networks:
       default:

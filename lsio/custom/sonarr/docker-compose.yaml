@@ -19,7 +19,7 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/sonarr${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # The port for the Sonarr web interface
+      # # The port for the Sonarr web interface
       # - 8989:8989
     networks:
       default:

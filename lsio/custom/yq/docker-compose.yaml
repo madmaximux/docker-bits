@@ -1,4 +1,6 @@
-# This container needs special attention. Please check https://hub.docker.com/r/linuxserver/yq for details.
+# # This container needs special attention. Please check
+# https://hub.docker.com/r/linuxserver/yq for details.
+
 ---
 
 services:
@@ -13,6 +15,8 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/yq${DOCKERCONFIGDIR:-}:/config
     # ports:
+      # # Application WebUI
+      # - 80:80
     networks:
       default:
         aliases:

@@ -23,23 +23,23 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/steamos${DOCKERCONFIGDIR:-}:/config
       # Optional for gamepad support. *Only working for Steam Remote Play
-      # - /dev/input:/dev/input
+      - /dev/input:/dev/input
       # Optional for gamepad support. *Only working for Steam Remote Play
-      # - /run/udev/data:/run/udev/data
+      - /run/udev/data:/run/udev/data
     # ports:
-      # SteamOS desktop gui.
+      # # SteamOS desktop gui.
       # - 3000:3000
-      # HTTPS SteamOS desktop gui.
+      # # HTTPS SteamOS desktop gui.
       # - 3001:3001
-      # Steam Remote Play Ports (UDP). 
+      # # Steam Remote Play Ports (UDP).
       # - 27031-27036:27031-27036/udp # optional
-      # Steam Remote Play Ports (TCP). 
+      # # Steam Remote Play Ports (TCP).
       # - 27031-27036:27031-27036 # optional
-      # Sunshine Ports (TCP). 
+      # # Sunshine Ports (TCP).
       # - 47984-47990:47984-47990 # optional
-      # Sunshine Ports (TCP). 
+      # # Sunshine Ports (TCP).
       # - 48010-48010:48010-48010 # optional
-      # Sunshine Ports (UDP). 
+      # # Sunshine Ports (UDP).
       # - 47998-48000:47998-48000/udp # optional
     networks:
       default:

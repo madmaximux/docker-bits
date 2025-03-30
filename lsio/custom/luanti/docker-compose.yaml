@@ -17,7 +17,7 @@ services:
       # Where luanti stores config files and maps etc.
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/luanti/config/.minetest:/config/.minetest
     # ports:
-      # Port Luanti listens on (UDP).
+      # # Port Luanti listens on (UDP).
       # - 30000:30000/udp
     networks:
       default:

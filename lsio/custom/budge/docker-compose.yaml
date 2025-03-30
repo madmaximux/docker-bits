@@ -15,9 +15,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/budge${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # http gui
+      # # http gui
       # - 80:80
-      # https gui
+      # # https gui
       # - 443:443
     networks:
       default:

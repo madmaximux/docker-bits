@@ -17,9 +17,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/spotube${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Spotube desktop gui.
+      # # Spotube desktop gui.
       # - 3000:3000
-      # HTTPS Spotube desktop gui.
+      # # HTTPS Spotube desktop gui.
       # - 3001:3001
     networks:
       default:

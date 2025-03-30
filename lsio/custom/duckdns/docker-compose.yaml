@@ -11,13 +11,13 @@ services:
     container_name: duckdns
     # network_mode: host # optional
     environment:
-      # for UserID
+      # # for UserID
       # - PUID=${PUID:-1024} # optional
-      # for GroupID
+      # # for GroupID
       # - PGID=${PGID:-100} # optional
-      # for UMASK
+      # # for UMASK
       # - UMASK=${UMASK:-002} # optional
-      # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
+      # # specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).
       # - TZ=${TZ:-America/Chicago} # optional
       - SUBDOMAINS=subdomain1,subdomain2
       - TOKEN=token

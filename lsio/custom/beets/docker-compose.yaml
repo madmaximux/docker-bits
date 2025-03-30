@@ -15,10 +15,9 @@ services:
       - UMASK=${UMASK:-002}
       - TZ=${TZ:-America/Chicago}
     volumes:
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/beets${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # Application WebUI
+      # # Application WebUI
       # - 8337:8337
     networks:
       default:

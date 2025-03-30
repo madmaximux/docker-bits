@@ -21,13 +21,13 @@ services:
       # Data2
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/syncthing/data2:/data2
     # ports:
-      # Application WebUI
+      # # Application WebUI
       # - 8384:8384
-      # Listening port (TCP)
+      # # Listening port (TCP)
       # - 22000:22000/tcp
-      # Listening port (UDP)
+      # # Listening port (UDP)
       # - 22000:22000/udp
-      # Protocol discovery
+      # # Protocol discovery
       # - 21027:21027/udp
     networks:
       default:

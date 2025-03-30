@@ -19,9 +19,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mysql-workbench${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # Mysql Workbench desktop gui.
+      # # Mysql Workbench desktop gui.
       # - 3000:3000
-      # Mysql Workbench desktop gui HTTPS.
+      # # Mysql Workbench desktop gui HTTPS.
       # - 3001:3001
     networks:
       default:

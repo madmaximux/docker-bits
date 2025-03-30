@@ -26,7 +26,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/code-server${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # web gui
+      # # web gui
       # - 8443:8443
     networks:
       default:

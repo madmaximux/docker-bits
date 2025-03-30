@@ -16,10 +16,9 @@ services:
       - TZ=${TZ:-America/Chicago}
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kavita${DOCKERCONFIGDIR:-}:/config
-      # Media library containing manga, comics and books.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kavita/data:/data
+      - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # web gui
+      # # web gui
       # - 5000:5000
     networks:
       default:
