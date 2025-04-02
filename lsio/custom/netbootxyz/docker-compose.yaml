@@ -23,8 +23,8 @@ services:
       # - WEB_APP_PORT=3000 # optional
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/netbootxyz${DOCKERCONFIGDIR:-}:/config
-      # Storage for NETBOOT.XYZ bootable assets (live CDs and other files)
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/netbootxyz/assets:/assets
+      ## Storage for NETBOOT.XYZ bootable assets (live CDs and other files)
+      # - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/netbootxyz/assets:/assets
     # ports:
       # # Web configuration interface.
       # - 3000:3000

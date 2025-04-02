@@ -18,8 +18,8 @@ services:
       - SECRET_KEY_BASE=
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold${DOCKERCONFIGDIR:-}:/config
-      # Location of your 3D model libraries.
-      - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/libraries:/libraries
+      ## Location of your 3D model libraries.
+      # - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/libraries:/libraries
     # ports:
       # # Port for web frontend
       # - 3214:3214
