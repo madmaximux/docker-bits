@@ -20,7 +20,7 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # # Allows HTTP access to the internal webserver.
+      # Allows HTTP access to the internal webserver.
       # - 80:80
     networks:
       default:
@@ -31,4 +31,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

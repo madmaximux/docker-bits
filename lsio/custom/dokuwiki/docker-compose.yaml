@@ -20,9 +20,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/dokuwiki${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Application HTTP Port
+      # Application HTTP Port
       # - 80:80
-      # # #optional Application HTTPS Port
+      # #optional Application HTTPS Port
       # - 443:443 # optional
     networks:
       default:
@@ -33,4 +33,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

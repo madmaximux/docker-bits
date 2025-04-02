@@ -17,9 +17,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ardour${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Ardour desktop gui
+      # Ardour desktop gui
       # - 3000:3000 # optional
-      # # Ardour desktop gui HTTPS
+      # Ardour desktop gui HTTPS
       # - 3001:3001 # optional
     networks:
       default:
@@ -30,4 +30,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

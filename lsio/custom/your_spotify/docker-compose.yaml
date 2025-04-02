@@ -23,9 +23,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/your_spotify${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # your_spotify HTTP webui
+      # your_spotify HTTP webui
       # - 80:80
-      # # your_spotify HTTPS webui
+      # your_spotify HTTPS webui
       # - 443:443
     networks:
       default:
@@ -36,4 +36,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

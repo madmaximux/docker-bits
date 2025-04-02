@@ -19,20 +19,20 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/boinc${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Boinc desktop gui.
+      # Boinc desktop gui.
       # - 8080:8080
-      # # Boinc desktop gui HTTPS.
+      # Boinc desktop gui HTTPS.
       # - 8181:8181
     networks:
       default:
         aliases:
           - boinc
     devices:
-      # # Only needed if you want to use your Intel GPU (vaapi).
+      # Only needed if you want to use your Intel GPU (vaapi).
       # - /dev/dri:/dev/dri # optional
     restart: unless-stopped
 
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

@@ -33,7 +33,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/doplarr${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Application WebUI
+      # Application WebUI
       # - 80:80
     networks:
       default:
@@ -44,4 +44,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

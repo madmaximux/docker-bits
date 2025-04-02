@@ -22,22 +22,22 @@ services:
       # Where you want the PVR to store recordings.
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/tvheadend/recordings:/recordings
     # ports:
-      # # WebUI
+      # WebUI
       # - 9981:9981
-      # # HTSP server port.
+      # HTSP server port.
       # - 9982:9982
     networks:
       default:
         aliases:
           - tvheadend
     devices:
-      # # Only needed if you want to use your AMD/Intel GPU for hardware accelerated video encoding (vaapi).
+      # Only needed if you want to use your AMD/Intel GPU for hardware accelerated video encoding (vaapi).
       # - /dev/dri:/dev/dri # optional
-      # # Only needed if you want to pass through a DVB card to the container. If you use IPTV or HDHomeRun you can leave it out.
+      # Only needed if you want to pass through a DVB card to the container. If you use IPTV or HDHomeRun you can leave it out.
       # - /dev/dvb:/dev/dvb # optional
     restart: unless-stopped
 
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

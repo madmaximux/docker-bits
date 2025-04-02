@@ -22,7 +22,7 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # # Port for Wiki.js's web interface.
+      # Port for Wiki.js's web interface.
       # - 3000:3000
     networks:
       default:
@@ -33,4 +33,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

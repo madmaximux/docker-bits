@@ -19,9 +19,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/firefox${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Firefox desktop gui.
+      # Firefox desktop gui.
       # - 3000:3000
-      # # Firefox desktop gui HTTPS.
+      # Firefox desktop gui HTTPS.
       # - 3001:3001
     networks:
       default:
@@ -33,4 +33,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

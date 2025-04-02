@@ -21,18 +21,18 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/airsonic-advanced${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
     # ports:
-      # # WebUI
+      # WebUI
       # - 4040:4040
     networks:
       default:
         aliases:
           - airsonic-advanced
     devices:
-      # # Only needed to pass your host sound device to Airsonic's Java jukebox player.
+      # Only needed to pass your host sound device to Airsonic's Java jukebox player.
       # - /dev/snd:/dev/snd # optional
     restart: unless-stopped
 
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

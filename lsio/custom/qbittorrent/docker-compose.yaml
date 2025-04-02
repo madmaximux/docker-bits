@@ -19,11 +19,11 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/qbittorrent${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
     # ports:
-      # # WebUI
+      # WebUI
       # - 8080:8080
-      # # tcp connection port
+      # tcp connection port
       # - 6881:6881
-      # # udp connection port
+      # udp connection port
       # - 6881:6881/udp
     networks:
       default:
@@ -34,4 +34,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

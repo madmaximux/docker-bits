@@ -18,9 +18,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bambustudio${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Bambu Studio desktop gui.
+      # Bambu Studio desktop gui.
       # - 3000:3000
-      # # Bambu Studio desktop gui HTTPS.
+      # Bambu Studio desktop gui HTTPS.
       # - 3001:3001
     networks:
       default:
@@ -31,4 +31,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

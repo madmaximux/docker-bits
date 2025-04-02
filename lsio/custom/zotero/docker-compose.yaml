@@ -15,9 +15,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/zotero${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Zotero gui.
+      # Zotero gui.
       # - 3000:3000
-      # # HTTPS Zotero gui.
+      # HTTPS Zotero gui.
       # - 3001:3001
     networks:
       default:
@@ -29,4 +29,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

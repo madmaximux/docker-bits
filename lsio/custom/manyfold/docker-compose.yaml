@@ -18,10 +18,10 @@ services:
       - SECRET_KEY_BASE=
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold${DOCKERCONFIGDIR:-}:/config
-      ## Location of your 3D model libraries.
+      # Location of your 3D model libraries.
       # - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/libraries:/libraries
     # ports:
-      # # Port for web frontend
+      # Port for web frontend
       # - 3214:3214
     networks:
       default:
@@ -32,4 +32,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

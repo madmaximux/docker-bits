@@ -19,7 +19,7 @@ services:
       - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
       - ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads
     # ports:
-      # # will map the container's port 8081 to port 8081 on the host
+      # will map the container's port 8081 to port 8081 on the host
       # - 8081:8081
     networks:
       default:
@@ -30,4 +30,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

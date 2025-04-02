@@ -23,9 +23,9 @@ services:
       # Location of raw files.
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ubooquity/files:/files
     # ports:
-      # # The library port.
+      # The library port.
       # - 2202:2202
-      # # The admin port.
+      # The admin port.
       # - 2203:2203
     networks:
       default:
@@ -36,4 +36,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

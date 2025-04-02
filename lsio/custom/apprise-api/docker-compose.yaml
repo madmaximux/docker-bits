@@ -20,10 +20,10 @@ services:
       # - APPRISE_ATTACH_SIZE=0 # optional
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/apprise-api${DOCKERCONFIGDIR:-}:/config
-      ## Temporary storage for attachments when sent with notifications.
+      # Temporary storage for attachments when sent with notifications.
       # - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/apprise-api/attachments:/attachments
     # ports:
-      # # Port for apprise's interface and API.
+      # Port for apprise's interface and API.
       # - 8000:8000
     networks:
       default:
@@ -34,4 +34,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

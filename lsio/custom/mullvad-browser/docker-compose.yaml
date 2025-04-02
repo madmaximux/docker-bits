@@ -21,9 +21,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mullvad-browser${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Mullvad Browser GUI.
+      # Mullvad Browser GUI.
       # - 3000:3000
-      # # Mullvad Browser GUI HTTPS.
+      # Mullvad Browser GUI HTTPS.
       # - 3001:3001
     networks:
       default:
@@ -35,4 +35,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

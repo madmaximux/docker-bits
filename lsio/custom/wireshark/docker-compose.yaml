@@ -25,9 +25,9 @@ services:
     ports:
       # Application WebUI
       - 80:80
-      # # WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic.
+      # WireShark desktop gui, only use this if you are not using host mode and sniffing Docker network traffic.
       # - 3000:3000 # optional
-      # # WireShark desktop gui HTTPS, only use this if you are not using host mode and sniffing Docker network traffic.
+      # WireShark desktop gui HTTPS, only use this if you are not using host mode and sniffing Docker network traffic.
       # - 3001:3001 # optional
     networks:
       default:
@@ -38,4 +38,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

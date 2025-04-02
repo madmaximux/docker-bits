@@ -15,9 +15,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/snapdrop${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # http gui
+      # http gui
       # - 80:80
-      # # https gui
+      # https gui
       # - 443:443
     networks:
       default:
@@ -28,4 +28,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

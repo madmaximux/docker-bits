@@ -23,9 +23,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ldap-auth${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # the port for ldap auth daemon
+      # the port for ldap auth daemon
       # - 8888:8888
-      # # the port for ldap login page
+      # the port for ldap login page
       # - 9000:9000
     networks:
       default:
@@ -36,4 +36,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

@@ -19,7 +19,7 @@ services:
       - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
       - ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media
     # ports:
-      # # Allows HTTP access to the internal webserver.
+      # Allows HTTP access to the internal webserver.
       # - 6767:6767
     networks:
       default:
@@ -30,4 +30,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

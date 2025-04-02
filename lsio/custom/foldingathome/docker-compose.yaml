@@ -23,9 +23,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/foldingathome${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Application WebUI
+      # Application WebUI
       # - 80:80
-      # # Folding@home web gui (redirects to [https://app.foldingathome.org](https://app.foldingathome.org)).
+      # Folding@home web gui (redirects to [https://app.foldingathome.org](https://app.foldingathome.org)).
       # - 7396:7396 # optional
     networks:
       default:
@@ -36,4 +36,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

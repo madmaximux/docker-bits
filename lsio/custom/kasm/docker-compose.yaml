@@ -24,16 +24,16 @@ services:
     volumes:
       # Docker and installation storage.
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kasm/opt:/opt
-      ## Optionally specify a path for persistent profile storage.
+      # Optionally specify a path for persistent profile storage.
       # - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kasm/profiles:/profiles
       # Optional for gamepad support.
       - /dev/input:/dev/input
       # Optional for gamepad support.
       - /run/udev/data:/run/udev/data
     # ports:
-      # # Kasm Installation wizard. (https)
+      # Kasm Installation wizard. (https)
       # - 3000:3000
-      # # Kasm Workspaces interface. (https)
+      # Kasm Workspaces interface. (https)
       # - 443:443
     networks:
       default:
@@ -44,4 +44,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

@@ -18,14 +18,14 @@ services:
       # Docker Socket on the system, if you want to use Docker in the container
       - /var/run/docker.sock:/var/run/docker.sock
     # ports:
-      # # RDP access port
+      # RDP access port
       # - 3389:3389
     networks:
       default:
         aliases:
           - rdesktop
     devices:
-      # # Add this for GL support (Linux hosts only)
+      # Add this for GL support (Linux hosts only)
       # - /dev/dri:/dev/dri # optional
     # shm_size: "1gb" # optional
     restart: unless-stopped
@@ -33,4 +33,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

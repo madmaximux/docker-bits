@@ -18,11 +18,11 @@ services:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/emulatorjs${DOCKERCONFIGDIR:-}:/config
       - ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data}
     # ports:
-      # # Rom/artwork management interface, used to generate/manage config files and download artwork
+      # Rom/artwork management interface, used to generate/manage config files and download artwork
       # - 3000:3000
-      # # Emulation frontend containing static web files used to browse and launch games
+      # Emulation frontend containing static web files used to browse and launch games
       # - 80:80
-      # # IPFS peering port, if you want to participate in the P2P network to distribute frontend artwork please forward this to the Internet
+      # IPFS peering port, if you want to participate in the P2P network to distribute frontend artwork please forward this to the Internet
       # - 4001:4001 # optional
     networks:
       default:
@@ -33,4 +33,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

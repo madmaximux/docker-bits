@@ -17,16 +17,16 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kdenlive${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Kdenlive desktop gui
+      # Kdenlive desktop gui
       # - 3000:3000
-      # # Kdenlive desktop gui HTTPS
+      # Kdenlive desktop gui HTTPS
       # - 3001:3001
     networks:
       default:
         aliases:
           - kdenlive
     devices:
-      # # Add this for hardware acceleration (Linux hosts only)
+      # Add this for hardware acceleration (Linux hosts only)
       # - /dev/dri:/dev/dri # optional
     # shm_size: "1gb" # optional
     restart: unless-stopped
@@ -34,4 +34,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

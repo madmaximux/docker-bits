@@ -20,7 +20,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/faster-whisper${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Wyoming connection port.
+      # Wyoming connection port.
       # - 10300:10300
     networks:
       default:
@@ -31,4 +31,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

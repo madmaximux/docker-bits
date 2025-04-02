@@ -17,9 +17,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/github-desktop${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Github Desktop gui.
+      # Github Desktop gui.
       # - 3000:3000
-      # # HTTPS Github Desktop gui.
+      # HTTPS Github Desktop gui.
       # - 3001:3001
     networks:
       default:
@@ -31,4 +31,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

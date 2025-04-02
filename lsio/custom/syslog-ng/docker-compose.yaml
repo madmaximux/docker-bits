@@ -19,11 +19,11 @@ services:
       # Stores logs collected by the syslog-ng service
       - /var/log:/var/log
     # ports:
-      # # Syslog UDP
+      # Syslog UDP
       # - 514:5514/udp
-      # # Syslog TCP
+      # Syslog TCP
       # - 601:6601/tcp
-      # # Syslog TLS
+      # Syslog TLS
       # - 6514:6514/tcp
     networks:
       default:
@@ -34,4 +34,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

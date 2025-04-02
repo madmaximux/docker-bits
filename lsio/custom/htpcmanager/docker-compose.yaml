@@ -15,7 +15,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/htpcmanager${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Application WebUI
+      # Application WebUI
       # - 8085:8085
     networks:
       default:
@@ -26,4 +26,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

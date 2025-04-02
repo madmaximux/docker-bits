@@ -23,13 +23,13 @@ services:
     ports:
       # Plex Media Server
       - 32400:32400/tcp
-      # # GDM network discovery (local)
+      # GDM network discovery (local)
       # - 32412:32412/udp # optional
-      # # GDM network discovery (local)
+      # GDM network discovery (local)
       # - 32410:32410/udp # optional
-      # # GDM network discovery (local)
+      # GDM network discovery (local)
       # - 32413:32413/udp # optional
-      # # GDM network discovery (local)
+      # GDM network discovery (local)
       # - 32414:32414/udp # optional
     networks:
       default:
@@ -40,4 +40,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

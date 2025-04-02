@@ -19,10 +19,10 @@ services:
       # - PYPASS=mypass # optional
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/pylon${DOCKERCONFIGDIR:-}:/config
-      ## Optionally if you want the bind mount your own code and have changes survive container upgrades.
+      # Optionally if you want the bind mount your own code and have changes survive container upgrades.
       # - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/pylon/code:/code
     # ports:
-      # # The port for the Pylon web interface
+      # The port for the Pylon web interface
       # - 3131:3131
     networks:
       default:
@@ -33,4 +33,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

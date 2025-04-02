@@ -21,7 +21,7 @@ services:
       # davos's file download location
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/davos/download:/download
     # ports:
-      # # This is the default port that davos runs under
+      # This is the default port that davos runs under
       # - 8080:8080
     networks:
       default:
@@ -32,4 +32,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

@@ -15,7 +15,7 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/overseerr${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Port for Overseerr's web interface.
+      # Port for Overseerr's web interface.
       # - 5055:5055
     networks:
       default:
@@ -26,4 +26,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

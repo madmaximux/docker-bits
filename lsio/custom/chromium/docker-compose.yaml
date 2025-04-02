@@ -17,9 +17,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/chromium${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Chromium desktop gui.
+      # Chromium desktop gui.
       # - 3000:3000
-      # # HTTPS Chromium desktop gui.
+      # HTTPS Chromium desktop gui.
       # - 3001:3001
     networks:
       default:
@@ -31,4 +31,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true

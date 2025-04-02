@@ -35,9 +35,9 @@ services:
     volumes:
       - ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/healthchecks${DOCKERCONFIGDIR:-}:/config
     # ports:
-      # # Healthchecks Web UI
+      # Healthchecks Web UI
       # - 8000:8000
-      # # Port for inbound SMTP pings
+      # Port for inbound SMTP pings
       # - 2525:2525 # optional
     networks:
       default:
@@ -48,4 +48,4 @@ services:
 networks:
   default:
     name: ${NETWORK_NAME:-synobridge}
-    external: ${NETWORK_EXTERNAL:-false}
+#    external: true
