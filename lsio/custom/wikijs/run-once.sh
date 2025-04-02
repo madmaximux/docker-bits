@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs/config
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs/data
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs${DOCKERCONFIGDIR:-}
+mkdir -p ${DOCKERSTORAGEPATH:-/volume1/data}

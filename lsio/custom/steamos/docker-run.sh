@@ -6,6 +6,7 @@
 . ./.env
 docker run -d \
   --name=steamos \
+    --hostname=hostname `# optional` `# Specify the hostname of the host, this is useful for keeping a persistent hostname between upgrades and identifying the server in the remote play Steam Client.` \
   --cap-add=NET_ADMIN \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
@@ -22,9 +23,11 @@ docker run -d \
   -p 47984-47990:47984-47990 `# optional` `# Sunshine Ports (TCP).` \
   -p 48010-48010:48010-48010 `# optional` `# Sunshine Ports (TCP).` \
   -p 47998-48000:47998-48000/udp `# optional` `# Sunshine Ports (UDP).` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/steamos/config:/config `# Users home directory in the container, stores all files and games.` \
-  -v /dev/input:/dev/input `# optional` `# Optional for gamepad support. *Only working for Steam Remote Play` \
-  -v /run/udev/data:/run/udev/data `# optional` `# Optional for gamepad support. *Only working for Steam Remote Play` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/steamos${DOCKERCONFIGDIR:-}:/config \
+      # Optional for gamepad support. *Only working for Steam Remote Play
+  -v /dev/input:/dev/input  `# Optional for gamepad support. *Only working for Steam Remote Play` \
+      # Optional for gamepad support. *Only working for Steam Remote Play
+  -v /run/udev/data:/run/udev/data  `# Optional for gamepad support. *Only working for Steam Remote Play` \
   --device /dev/dri:/dev/dri `# Video card passthrough to Steam.` \
   --shm-size="1gb" \
   --restart unless-stopped \

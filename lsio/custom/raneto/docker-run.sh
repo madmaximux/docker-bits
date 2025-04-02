@@ -9,6 +9,6 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# The port for the Raneto web interface` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/raneto/config:/config `# Raneto config and Markdown files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/raneto${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/raneto

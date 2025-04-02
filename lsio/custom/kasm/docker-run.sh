@@ -20,8 +20,10 @@ docker run -d \
   -p 3000:3000 `# Kasm Installation wizard. (https)` \
   -p 443:443 `# Kasm Workspaces interface. (https)` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kasm/opt:/opt `# Docker and installation storage.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kasm/profiles:/profiles `# optional` `# Optionally specify a path for persistent profile storage.` \
-  -v /dev/input:/dev/input `# optional` `# Optional for gamepad support.` \
-  -v /run/udev/data:/run/udev/data `# optional` `# Optional for gamepad support.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kasm/profiles:/profiles `# Optionally specify a path for persistent profile storage.` \
+      # Optional for gamepad support.
+  -v /dev/input:/dev/input  `# Optional for gamepad support.` \
+      # Optional for gamepad support.
+  -v /run/udev/data:/run/udev/data  `# Optional for gamepad support.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/kasm

@@ -1,5 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/config
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/data/downloads `#optional`
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/watch `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission${DOCKERCONFIGDIR:-}
+mkdir -p ${DOCKERSTORAGEPATH:-/volume1/data}/downloads

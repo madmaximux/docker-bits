@@ -14,6 +14,6 @@ docker run -d \
   -e fleet_database_password=dbuserpassword `# The database user's password.` \
   -e fleet_admin_secret=randomstring `# optional` `# A string used as part of the password key derivation process.` \
   -p 8080:8080 `# Http port` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/fleet/config:/config `# The primary config file and rolling log files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/fleet${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/fleet

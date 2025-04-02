@@ -1,4 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/apprise-api/config
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/apprise-api/attachments `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/apprise-api${DOCKERCONFIGDIR:-}

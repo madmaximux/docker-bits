@@ -12,6 +12,6 @@ docker run -d \
   -e PMA_ARBITRARY=1 `# optional` `# Set to `1` to allow you to connect to any server. Setting to `0` will only allow you to connect to specified hosts (See Application Setup)` \
   -e PMA_ABSOLUTE_URI=https://phpmyadmin.example.com `# optional` `# Set the URL you will use to access the web frontend` \
   -p 80:80 `# Port for web frontend` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/phpmyadmin/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/phpmyadmin${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/phpmyadmin

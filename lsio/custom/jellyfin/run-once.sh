@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jellyfin/config
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jellyfin/data/media
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/jellyfin${DOCKERCONFIGDIR:-}
+mkdir -p ${DOCKERSTORAGEPATH:-/volume1/data}/media

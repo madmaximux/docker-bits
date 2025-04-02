@@ -10,6 +10,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# KiCad desktop gui.` \
   -p 3001:3001 `# KiCad desktop gui HTTPS.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kicad/config:/config `# Users home directory in the container, stores program settings and files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/kicad${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/kicad

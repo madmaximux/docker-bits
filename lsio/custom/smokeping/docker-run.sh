@@ -5,6 +5,7 @@
 . ./.env
 docker run -d \
   --name=smokeping \
+    --hostname={{ project_name }} `# optional` `# In a master-slave architecture, the hostname of the master node is displayed as its name in the web interface, while the hostname of the slave nodes represents their device aliases. These slave hostnames must match the aliases defined in the master's Slaves file.` \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
   -e UMASK=${UMASK:-002} `# for UMASK` \
@@ -13,7 +14,7 @@ docker run -d \
   -e SHARED_SECRET=password `# optional` `# Specify the master shared secret for this host. Used when in slave mode.` \
   -e CACHE_DIR=/tmp `# optional` `# Specify the cache directory for this host. Used when in slave mode.` \
   -p 80:80 `# Allows HTTP access to the internal webserver.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping/config:/config `# Persistent config files` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping/data:/data `# Storage location for db and application data (graphs etc)` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping${DOCKERCONFIGDIR:-}:/config \
+  -v ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data} \
   --restart unless-stopped \
   ghcr.io/linuxserver/smokeping

@@ -9,6 +9,6 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 80:80 `# Application WebUI` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/qemu-static/config:/config `# Configuration files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/qemu-static${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/qemu-static

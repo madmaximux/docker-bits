@@ -48,6 +48,6 @@ docker run -d \
   -e NO_CHOWN= `# optional` `# Set to `true` to skip chown of /config on init. *READ THE APPLICATION NOTES BEFORE SETTING THIS*.` \
   -p 80:80 `# Port for web frontend` \
   -p 443:443 `# Port for web frontend` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mastodon/config:/config `# Contains all relevant configuration files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mastodon${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/mastodon

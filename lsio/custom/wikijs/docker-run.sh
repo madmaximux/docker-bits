@@ -15,7 +15,7 @@ docker run -d \
   -e DB_USER= `# optional` `# DB username (postgres only)` \
   -e DB_PASS= `# optional` `# DB password (postgres only)` \
   -p 3000:3000 `# Port for Wiki.js's web interface.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs/config:/config `# Persistent config files` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs/data:/data `# Where Wiki.js data is stored.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/wikijs${DOCKERCONFIGDIR:-}:/config \
+  -v ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data} \
   --restart unless-stopped \
   ghcr.io/linuxserver/wikijs

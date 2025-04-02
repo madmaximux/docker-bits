@@ -27,6 +27,6 @@ docker run -d \
   -e SWAG_AUTORELOAD_WATCHLIST= `# optional` `# A [pipe](https://en.wikipedia.org/wiki/Vertical_bar)-separated list of additional folders for auto reload to watch in addition to `/config/nginx`` \
   -p 443:443 `# HTTPS port` \
   -p 80:80 `# optional` `# HTTP port (required for HTTP validation and HTTP -> HTTPS redirect)` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/swag/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/swag${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/swag

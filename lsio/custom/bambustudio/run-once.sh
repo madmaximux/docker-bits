@@ -1,3 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bambustudio/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/bambustudio${DOCKERCONFIGDIR:-}

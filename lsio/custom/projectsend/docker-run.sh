@@ -11,7 +11,7 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 80:80 `# WebUI` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/projectsend/config:/config `# Persistent config files` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/projectsend/data:/data `# Where to store files to share.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/projectsend${DOCKERCONFIGDIR:-}:/config \
+  -v ${DOCKERSTORAGEPATH:-/volume1/data}:${DOCKERMOUNTPATH:-/mnt/data} \
   --restart unless-stopped \
   ghcr.io/linuxserver/projectsend

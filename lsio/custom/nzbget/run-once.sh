@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nzbget/config
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nzbget/data/downloads `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/nzbget${DOCKERCONFIGDIR:-}
+mkdir -p ${DOCKERSTORAGEPATH:-/volume1/data}/downloads

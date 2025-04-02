@@ -11,7 +11,7 @@ docker run -d \
   -e EDGE_CLI=https://www.linuxserver.io/ `# optional` `# Specify one or multiple Chromium CLI flags, this string will be passed to the application in full.` \
   -p 3000:3000 `# Edge desktop gui.` \
   -p 3001:3001 `# HTTPS Edge desktop gui.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/msedge/config:/config `# Users home directory in the container, stores local files and settings` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/msedge${DOCKERCONFIGDIR:-}:/config \
   --shm-size="1gb" \
   --restart unless-stopped \
   ghcr.io/linuxserver/msedge

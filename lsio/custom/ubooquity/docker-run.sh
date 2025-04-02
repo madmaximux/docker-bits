@@ -12,7 +12,7 @@ docker run -d \
   -e MAXMEM= `# optional` `# To set the maximum memory. ( ex: set '1024' for 1GB )` \
   -p 2202:2202 `# The library port.` \
   -p 2203:2203 `# The admin port.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ubooquity/config:/config `# Config files and database for ubooquity.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ubooquity${DOCKERCONFIGDIR:-}:/config \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ubooquity/books:/books `# Location of books.` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ubooquity/comics:/comics `# Location of comics.` \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ubooquity/files:/files `# Location of raw files.` \

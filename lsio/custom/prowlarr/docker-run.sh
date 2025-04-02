@@ -13,6 +13,6 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 9696:9696 `# The port for the Prowlarr web UI` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/prowlarr/config:/config `# Database and Prowlarr configs` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/prowlarr${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/prowlarr

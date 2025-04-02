@@ -27,6 +27,6 @@ docker run -d \
   -e LOG_LEVEL=:info `# optional` `# The log level for the logging backend. This can be changed for debugging purposes. One of trace `:debug` `:info` `:warn` `:error` `:fatal` `:report`` \
   -e JAVA_OPTS= `# optional` `# For passing additional java options.` \
   -p 80:80 `# Application WebUI` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/doplarr/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/doplarr${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/doplarr

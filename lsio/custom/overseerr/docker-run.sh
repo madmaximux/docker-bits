@@ -9,6 +9,6 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 5055:5055 `# Port for Overseerr's web interface.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/overseerr/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/overseerr${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/overseerr

@@ -13,6 +13,6 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 6667:6667 `# ngircd port` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ngircd/config:/config `# Where `ngircd.conf` is stored` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/ngircd${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/ngircd

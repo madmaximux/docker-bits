@@ -1,4 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/config
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold/libraries `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/manyfold${DOCKERCONFIGDIR:-}

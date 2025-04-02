@@ -12,6 +12,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# GIMP desktop gui.` \
   -p 3001:3001 `# GIMP desktop gui HTTPS.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/gimp/config:/config `# Users home directory in the container, stores local files and settings` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/gimp${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/gimp

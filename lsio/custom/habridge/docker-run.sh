@@ -15,6 +15,6 @@ docker run -d \
   -e SEC_KEY= `# Key used to secure communication.` \
   -p 8080:8080 `# WebUI` \
   -p 50000:50000 `# HABridge communication port.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/habridge/config:/config `# Where HABridge stores config files and data.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/habridge${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/habridge

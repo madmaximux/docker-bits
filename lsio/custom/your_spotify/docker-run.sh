@@ -18,6 +18,6 @@ docker run -d \
   -e MONGO_ENDPOINT=mongodb://mongo:27017/your_spotify `# Set mongodb endpoint address/port.` \
   -p 80:80 `# your_spotify HTTP webui` \
   -p 443:443 `# your_spotify HTTPS webui` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/your_spotify/config:/config `# Configuration files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/your_spotify${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/your_spotify

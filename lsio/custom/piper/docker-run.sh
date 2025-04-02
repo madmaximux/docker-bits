@@ -16,6 +16,6 @@ docker run -d \
   -e PIPER_SPEAKER=0 `# optional` `# Speaker number to use if the voice supports multiple speakers.` \
   -e PIPER_PROCS=1 `# optional` `# Number of Piper processes to run simultaneously.` \
   -p 10200:10200 `# Wyoming connection port.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/piper/config:/config `# Local path for piper config files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/piper${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/piper

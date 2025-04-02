@@ -14,7 +14,7 @@ docker run -d \
   -e DOCKER_MODS=linuxserver/mods:universal-calibre `# optional` `# #optional & **x86-64 only** Adds the ability to perform ebook conversion` \
   -e OAUTHLIB_RELAX_TOKEN_SCOPE=1 `# optional` `# Optionally set this to allow Google OAUTH to work` \
   -p 8083:8083 `# WebUI` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/calibre-web/config:/config `# Where calibre-web stores the internal database and config.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/calibre-web${DOCKERCONFIGDIR:-}:/config \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/calibre-web/books:/books `# Where your preexisting calibre database is located.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/calibre-web

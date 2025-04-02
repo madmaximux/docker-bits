@@ -1,4 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping/config
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping/data
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/smokeping${DOCKERCONFIGDIR:-}
+mkdir -p ${DOCKERSTORAGEPATH:-/volume1/data}

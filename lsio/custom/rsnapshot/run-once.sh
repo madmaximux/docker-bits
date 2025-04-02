@@ -1,5 +1,4 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rsnapshot/config
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rsnapshot/.snapshots `#optional`
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rsnapshot/data `#optional`
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rsnapshot${DOCKERCONFIGDIR:-}
+mkdir -p ${DOCKERSTORAGEPATH:-/volume1/data}

@@ -14,7 +14,7 @@ docker run -d \
   -p 8080:8080 `# WebUI` \
   -p 6881:6881 `# tcp connection port` \
   -p 6881:6881/udp `# udp connection port` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/qbittorrent/config:/config `# Contains all relevant configuration files.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/qbittorrent/data/downloads:/data/downloads `# optional` `# Location of downloads on disk` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/qbittorrent${DOCKERCONFIGDIR:-}:/config \
+  -v ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads \
   --restart unless-stopped \
   ghcr.io/linuxserver/qbittorrent

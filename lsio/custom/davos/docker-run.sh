@@ -13,7 +13,7 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 8080:8080 `# This is the default port that davos runs under` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/davos/config:/config `# davos's config location. This is where it stores its database file and logs.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/davos${DOCKERCONFIGDIR:-}:/config \
   -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/davos/download:/download `# davos's file download location` \
   --restart unless-stopped \
   ghcr.io/linuxserver/davos

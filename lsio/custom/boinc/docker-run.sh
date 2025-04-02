@@ -14,7 +14,7 @@ docker run -d \
   -e PASSWORD= `# optional` `# Optionally set a password for the gui.` \
   -p 8080:8080 `# Boinc desktop gui.` \
   -p 8181:8181 `# Boinc desktop gui HTTPS.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/boinc/config:/config `# Where BOINC should store its database and config.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/boinc${DOCKERCONFIGDIR:-}:/config \
   --device /dev/dri:/dev/dri `# optional` `# Only needed if you want to use your Intel GPU (vaapi).` \
   --restart unless-stopped \
   ghcr.io/linuxserver/boinc

@@ -13,8 +13,9 @@ docker run -d \
   -e TITLE=Webtop `# optional` `# String which will be used as page/tab title in the web browser.` \
   -p 3000:3000 `# Web Desktop GUI` \
   -p 3001:3001 `# Web Desktop GUI HTTPS` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/webtop/config:/config `# abc users home directory` \
-  -v /var/run/docker.sock:/var/run/docker.sock `# optional` `# Docker Socket on the system, if you want to use Docker in the container` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/webtop${DOCKERCONFIGDIR:-}:/config \
+      # Docker Socket on the system, if you want to use Docker in the container
+  -v /var/run/docker.sock:/var/run/docker.sock  `# Docker Socket on the system, if you want to use Docker in the container` \
   --device /dev/dri:/dev/dri `# optional` `# Add this for GL support (Linux hosts only)` \
   --shm-size="1gb" `# optional` \
   --restart unless-stopped \

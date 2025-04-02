@@ -29,6 +29,6 @@ docker run -d \
   -e MAIL_ENV_USERNAME= `# optional` `# SMTP server login username.` \
   -e MAIL_ENV_PASSWORD= `# optional` `# SMTP server login password.` \
   -p 8080:80 `# Snipe-IT Web UI` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/snipe-it/config:/config `# Contains your config files and data storage for Snipe-IT` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/snipe-it${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/snipe-it

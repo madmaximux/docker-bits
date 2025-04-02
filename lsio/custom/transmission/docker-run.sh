@@ -20,8 +20,8 @@ docker run -d \
   -p 9091:9091 `# WebUI` \
   -p 51413:51413 `# Torrent Port TCP` \
   -p 51413:51413/udp `# Torrent Port UDP` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/config:/config `# Where transmission should store config files and logs.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/data/downloads:/data/downloads `# optional` `# Location of downloads on disk` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/watch:/watch `# optional` `# Watch folder for torrent files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission${DOCKERCONFIGDIR:-}:/config \
+  -v ${DOCKERSTORAGEPATH:-/volume1/data}/downloads:${DOCKERMOUNTPATH:-/mnt/data}/downloads \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/transmission/watch:/watch `# Watch folder for torrent files.` \
   --restart unless-stopped \
   ghcr.io/linuxserver/transmission

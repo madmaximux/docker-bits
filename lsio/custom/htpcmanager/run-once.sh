@@ -1,3 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/htpcmanager/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/htpcmanager${DOCKERCONFIGDIR:-}

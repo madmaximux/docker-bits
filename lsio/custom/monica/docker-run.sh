@@ -19,6 +19,6 @@ docker run -d \
   -e APP_DISABLE_SIGNUP=true `# optional` `# Set to `false` to enable new account sign-ups.` \
   -p 80:80 `# http gui` \
   -p 443:443 `# https gui` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/monica/config:/config `# Persistent config files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/monica${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/monica

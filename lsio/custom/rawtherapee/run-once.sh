@@ -1,3 +1,3 @@
 ln -s ../docker-env.cfg ./.env
 . ./.env
-mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rawtherapee/config
+mkdir -p ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/rawtherapee${DOCKERCONFIGDIR:-}

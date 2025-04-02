@@ -10,7 +10,7 @@ docker run -d \
   -e UMASK=${UMASK:-002} `# for UMASK` \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# The port for the mStream web interface` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mstream/config:/config `# mStream config` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mstream/data/media:/data/media `# Location of media on disk` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mstream${DOCKERCONFIGDIR:-}:/config \
+  -v ${DOCKERSTORAGEPATH:-/volume1/data}/media:${DOCKERMOUNTPATH:-/mnt/data}/media \
   --restart unless-stopped \
   ghcr.io/linuxserver/mstream

@@ -11,6 +11,6 @@ docker run -d \
   -e SUBFOLDER=/ `# optional` `# Specify a subfolder to use with reverse proxies, IE `/subfolder/`` \
   -p 3000:3000 `# optional` `# digiKam desktop gui` \
   -p 3001:3001 `# optional` `# digiKam desktop gui HTTPS` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/digikam/config:/config `# Users home directory in the container, stores database.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/digikam${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/digikam

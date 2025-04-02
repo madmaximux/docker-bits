@@ -12,6 +12,6 @@ docker run -d \
   -e TZ=${TZ:-America/Chicago} `# specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List).` \
   -p 3000:3000 `# MediaElch desktop gui.` \
   -p 3001:3001 `# MediaElch desktop gui HTTPS.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mediaelch/config:/config `# Users home directory in the container, stores program settings and files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/mediaelch${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/mediaelch

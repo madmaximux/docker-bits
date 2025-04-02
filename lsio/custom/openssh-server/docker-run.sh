@@ -8,6 +8,7 @@
 . ./.env
 docker run -d \
   --name=openssh-server \
+    --hostname={{ project_name }} `# optional` `# Optionally the hostname can be defined.` \
   -e PUID=${PUID:-1024} `# for UserID` \
   -e PGID=${PGID:-100} `# for GroupID` \
   -e UMASK=${UMASK:-002} `# for UMASK` \
@@ -23,6 +24,6 @@ docker run -d \
   -e USER_NAME=linuxserver.io `# optional` `# Optionally specify a user name (Default:`linuxserver.io`)` \
   -e LOG_STDOUT= `# optional` `# Set to `true` to log to stdout instead of file.` \
   -p 2222:2222 `# ssh port` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/openssh-server/config:/config `# Contains all relevant configuration files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/openssh-server${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/openssh-server

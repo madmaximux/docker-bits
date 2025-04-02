@@ -17,6 +17,6 @@ docker run -d \
   -e SECRET_KEY=notasecretkey `# Session encryption key, recommended 32-64 character alphanumeric.` \
   -e TRUST_PROXY=0 `# Set to `1` to trust upstream proxies if reverse proxying.` \
   -p 1337:1337 `# Planka web UI.` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/planka/config:/config `# Local path for planka config files.` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/planka${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/planka

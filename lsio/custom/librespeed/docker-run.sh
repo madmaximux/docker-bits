@@ -19,6 +19,6 @@ docker run -d \
   -e DB_PORT=DB_PORT `# optional` `# Database port. Required for mysql.` \
   -e IPINFO_APIKEY=ACCESS_TOKEN `# optional` `# Access token from ipinfo.io. Required for detailed IP information.` \
   -p 80:80 `# web gui` \
-  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/librespeed/config:/config `# Persistent config files` \
+  -v ${DOCKERCONFIGPATH:-/volume1/docker/appdata}/librespeed${DOCKERCONFIGDIR:-}:/config \
   --restart unless-stopped \
   ghcr.io/linuxserver/librespeed
