@@ -12,7 +12,7 @@ Please keep the following in mind.
 
 Detailed information about installing and using the scripts and more can be found [here](https://www.technorabilia.com/docker-scripts-for-linuxserver-io-docker-containers).
 
-This repo was automatically generated from [madmaximux/docker-bits](https://github.com/madmaximux/generate-bits).
+This repo was automatically generated from [madmaximux/generate-bits](https://github.com/madmaximux/generate-bits).
 
 ---
 
