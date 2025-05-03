@@ -19,10 +19,10 @@ services:
     volumes:
       # Persistent config files
       - ${BASEDIR:-/volume1/docker}/sabnzbd/config:/config
-      # Local path for finished downloads.
-      - ${BASEDIR:-/volume1/docker}/sabnzbd/downloads:/downloads # optional
       # Local path for incomplete-downloads.
       - ${BASEDIR:-/volume1/docker}/sabnzbd/incomplete-downloads:/incomplete-downloads # optional
+      # Local path for finished downloads.
+      - ${BASEDIR:-/volume1/docker}/sabnzbd/downloads:/downloads # optional
     ports:
       # HTTP port for the WebUI.
       - 8080:8080
